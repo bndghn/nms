@@ -12,6 +12,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 // Begin include library
+require_once($config['basedir'].'/core/main.php');
 require_once($config['basedir'].'/libraries/smarty/Smarty.class.php');
 require_once($config['basedir'].'/core/template.class.php');
 require_once($config['basedir'].'/libraries/adodb/adodb.inc.php');
@@ -91,6 +92,21 @@ else
 for ($i=0; $i<count($lang); $i++)
 {
 	STemplate::assign('lang'.$i, $lang[$i]);
+}
+
+
+//create static smarty varible from db
+$cnfg = $conn->Execute("SELECT * FROM `config`");
+
+if($cnfg)
+{
+    while(!$cnfg->EOF)
+    {
+        $field = $cnfg->fields['setting'];
+        $config[$field] = $cnfg->fields['value'];
+        STemplate::assign($field, strip_mq_gpc($config[$field]));
+        @$cnfg->MoveNext();
+    }
 }
 
 //create static smarty varible
