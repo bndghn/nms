@@ -3,8 +3,8 @@
 $config = array();
 
 // Begin Configuration
-$config['basedir']     =  'C:\xampp\htdocs\nmc';
-$config['baseurl']     =  'http://localhost/nmc';
+$config['basedir']     =  'C:\xampp\htdocs\nms';
+$config['baseurl']     =  'http://localhost/nms';
 
 // Start Sessions
 if (session_status() == PHP_SESSION_NONE) {
