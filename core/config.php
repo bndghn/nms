@@ -23,7 +23,7 @@ $dbType = 'mysqli';
 $dbHost = 'localhost';
 $dbUser = 'root';
 $dbPass = '';
-$dbName = 'nmc';
+$dbName = 'nms';
 $default_language = "persian"; // Arabic, Turkish & English Comming soon
 date_default_timezone_set('Asia/Tehran');
 $config['adminurl']      =  $config['baseurl'].'/administrator';
@@ -100,4 +100,8 @@ STemplate::assign('adminurl',       $config['adminurl']);
 STemplate::assign('cssurl',       $config['cssurl']);
 STemplate::assign('imagedir',        $config['imagedir']);
 STemplate::assign('imageurl',        $config['imageurl']);
+
+//config smarty
+STemplate::setCompileDir($config['basedir']."/temporary");
+STemplate::setTplDir($config['basedir']."/themes");
 ?>
