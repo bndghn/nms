@@ -1,0 +1,1 @@
+salam. you are in {$site_name}

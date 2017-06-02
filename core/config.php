@@ -69,17 +69,17 @@ if ($_SESSION['language'] == "")
 //load Language File
 if ($_SESSION['language'] === "persian")
 {
-	include("lang/persian.php");
+	include($config['basedir']."/lang/persian.php");
 	STemplate::assign('rtl', "1");
 	
 }
 elseif ($_SESSION['language'] === "arabic")
 {
-	include("lang/arabic.php");
+	include($config['basedir']."/lang/arabic.php");
 	STemplate::assign('rtl', "1");
 }
 elseif ($_SESSION['language'] === "english"){
-	include("lang/english.php");
+	include($config['basedir']."/lang/english.php");
 	STemplate::assign('rtl', "0");
 }
 else
