@@ -1,4 +1,4 @@
-# NMC
+# NMS
 Notify Management System
 
 this system is under Developing.
