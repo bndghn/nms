@@ -4,23 +4,14 @@ include('../core/config.php');
 // define var
 $error      =   "";
 $message    =   "";
-if(isset($_SESSION['ADMINID'])){
-    $adminID = $_SESSION['ADMINID'];
-}else {
-    $adminID = "";
-}
 
-if(isset($_SESSION['ADMINUSERNAME'])){
-    $adminUN = $_SESSION['ADMINUSERNAME'];
-}else {
-    $adminUN = "";
-}
+// Define Varibel From Sessions
+(isset($_SESSION['ADMINID']) ? $adminID = $_SESSION['ADMINID'] : $adminID = "");
+(isset($_SESSION['ADMINUSERNAME']) ? $adminUN = $_SESSION['ADMINUSERNAME'] : $adminUN = "");
+(isset($_SESSION['ADMINPASSWORD']) ? $adminPSS = $_SESSION['ADMINPASSWORD'] : $adminPSS = "");
 
-if(isset($_SESSION['ADMINPASSWORD'])){
-    $adminPSS = $_SESSION['ADMINPASSWORD'];
-}else {
-    $adminPSS = "";
-}
+
+
 
 //check login or not. if login redirect to admin.php
 if ($adminID != "" && $adminUN != "" && $adminPSS != "")
@@ -30,13 +21,11 @@ if ($adminID != "" && $adminUN != "" && $adminPSS != "")
 }
 else
 {
-    if(isset($_POST['submit'])){
-        $submit = $_POST['submit'];
-    }else{
-        $submit = "";
-    }
+    // file $submit with useful value
+    (isset($_POST['submit']) ? $sumbit = $_POST['submit'] : $sumbit = "");
+    
     // check login form
-    if( $sumbit = "1"){
+    if( $sumbit != ""){
         // code for checking data of login form
         
     }

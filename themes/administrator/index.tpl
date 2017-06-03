@@ -1,1 +1,1 @@
-salam. you are in {$site_name}
+salam. you are in {$site_name} {$lang0}

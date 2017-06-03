@@ -61,7 +61,10 @@ if(isset($_REQUEST['language'])){
 }
 
 // fill Language session
-if ($_SESSION['language'] == "")
+
+// check Language Session have value or not
+(isset($_SESSION['language']) ? $sLang = $_SESSION['language'] : $sLang = "");
+if ($sLang === "")
 {
 	$_SESSION['language'] = $default_language;
 }
