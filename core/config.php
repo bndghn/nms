@@ -28,7 +28,8 @@ $dbName = 'nms';
 $default_language = "persian"; // Arabic, Turkish & English Comming soon
 date_default_timezone_set('Asia/Tehran');
 $config['adminurl']      =  $config['baseurl'].'/administrator';
-$config['cssurl']      =  $config['baseurl'].'assets/css';
+$config['assetsdir']      =  $config['baseurl'].'/assets';
+$config['cssurl']      =  $config['baseurl'].'/assets/css';
 $config['imagedir']      =  $config['basedir'].'/images';
 $config['imageurl']      =  $config['baseurl'].'/images';
 
@@ -113,12 +114,13 @@ if($cnfg)
 }
 
 //create static smarty varible
-STemplate::assign('baseurl',       $config['baseurl']);
-STemplate::assign('basedir',       $config['basedir']);
+STemplate::assign('baseurl',        $config['baseurl']);
+STemplate::assign('basedir',        $config['basedir']);
 STemplate::assign('adminurl',       $config['adminurl']);
-STemplate::assign('cssurl',       $config['cssurl']);
-STemplate::assign('imagedir',        $config['imagedir']);
-STemplate::assign('imageurl',        $config['imageurl']);
+STemplate::assign('assets',         $config['assetsdir']);
+STemplate::assign('cssurl',         $config['cssurl']);
+STemplate::assign('imagedir',       $config['imagedir']);
+STemplate::assign('imageurl',       $config['imageurl']);
 
 //config smarty
 STemplate::setCompileDir($config['basedir']."/temporary");

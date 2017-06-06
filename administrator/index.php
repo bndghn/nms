@@ -16,7 +16,7 @@ $message    =   "";
 //check login or not. if login redirect to admin.php
 if ($adminID != "" && $adminUN != "" && $adminPSS != "")
 {
-	$redirect = $config['adminurl']."/admin.php";
+	$redirect = $config['adminurl']."/dashboard.php";
     header("location: $redirect");
 }
 else
@@ -33,5 +33,8 @@ else
     //load nessary template for loading
     STemplate::assign('message',$message);
     STemplate::assign('error',$error);
+    
+    STemplate::display('administrator/header.tpl');
     STemplate::display('administrator/index.tpl');
+    STemplate::display('administrator/footer.tpl');
 }
