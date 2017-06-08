@@ -70,13 +70,13 @@
                 {/if}
 			</td>
 			<td>
-				 {$user['username']}
+				 {$user['username']|stripslashes}
 			</td>
 			<td>
-				{$user['fname']} {$user['lname']}
+				{$user['fname']|stripslashes} {$user['lname']|stripslashes}
 			</td>
 			<td>
-				 {$user['mobile']}
+				 {$user['mobile']|stripslashes|farsidigit}
 			</td>
 			<td class="center">
 				 12 Jan 2012
