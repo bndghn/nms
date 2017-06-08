@@ -44,31 +44,39 @@
 							<table class="table table-striped table-bordered table-hover" id="datatable_sample">
                                 <thead>
                                     <tr>
-                                        <th class="table-checkbox">
+                                        <th class="table-checkbox text-center width-20">
                                             <input type="checkbox" class="group-checkable" data-set="#datatable_sample .checkboxes"/>
                                         </th>
+                                        <th class="width-30">{$lang31}</th>
                                         <th>{$lang12}</th>
-                                        <th>{$lang14}</th>
-                                        <th>Points</th>
+                                        <th>{$lang30}</th>
+                                        <th>{$lang15}</th>
                                         <th>Joined</th>
                                         <th>Status</th>
                                     </tr>
                                 </thead>
 
 	<tbody>
-		<tr class="odd gradeX">
-			<td>
+        {foreach from=$users item=user}
+        <tr class="odd gradeX">
+			<td class="text-center">
 				<input type="checkbox" class="checkboxes" value="1"/>
 			</td>
-			<td>
-				 shuxer
+            <td class="text-center">
+                {if $user['gender'] eq "0"}
+                <img src="{$assets}/images/male.png"/>
+                {else}
+                <img src="{$assets}/images/female.png"/>
+                {/if}
 			</td>
 			<td>
-				<a href="mailto:shuxer@gmail.com">
-				shuxer@gmail.com </a>
+				 {$user['username']}
 			</td>
 			<td>
-				 120
+				{$user['fname']} {$user['lname']}
+			</td>
+			<td>
+				 {$user['mobile']}
 			</td>
 			<td class="center">
 				 12 Jan 2012
@@ -78,28 +86,9 @@
 				Approved </span>
 			</td>
 		</tr>
-		<tr class="odd gradeX">
-			<td>
-				<input type="checkbox" class="checkboxes" value="1"/>
-			</td>
-			<td>
-				 looper
-			</td>
-			<td>
-				<a href="mailto:looper90@gmail.com">
-				looper90@gmail.com </a>
-			</td>
-			<td>
-				 120
-			</td>
-			<td class="center">
-				 12.12.2011
-			</td>
-			<td>
-				<span class="label label-sm label-warning">
-				Suspended </span>
-			</td>
-		</tr>
+           
+        {/foreach}
+		
 	</tbody>
 </table>
 
