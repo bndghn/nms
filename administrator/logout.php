@@ -17,7 +17,7 @@ $_SESSION['ADMIN_MOBILE']   = "";
 $_SESSION['ISADMIN']        = 1;
 
 session_destroy();
-if($error===""){
+if($error==="" AND $ $message==="" ){
     header("location: ".$config['adminurl']);
 }elseif($message!=""){
     header("location:$config[adminurl]/index.php?message=$message"); 
