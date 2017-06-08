@@ -2,9 +2,7 @@
 
 include('../core/config.php');
 
-//check login or not
 verify_login_admin();
-    
 // define var
 $error      =   "";
 $message    =   "";
@@ -14,5 +12,5 @@ $message    =   "";
     STemplate::assign('error',$error);
     
     STemplate::display('administrator/header.tpl');
-    STemplate::display('administrator/dashboard.tpl');
-    STemplate::display('administrator/footer.tpl');
+    STemplate::display('administrator/users.tpl');
+    STemplate::display('administrator/footer.tpl'); /* Load form users file */

@@ -3,7 +3,7 @@
 
 			{include file='administrator/aside.tpl'}
             
-			{include file='administrator/top_head.tpl'}
+			{include file='administrator/top_head.tpl' nocache}
 
 
 			

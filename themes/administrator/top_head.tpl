@@ -10,7 +10,7 @@
 				</span>
 
 				<form method="get" action="page-search.html" class="search pull-left hidden-xs">
-					<input type="text" class="form-control" name="k" placeholder="Search for something..." />
+					<input type="text" class="form-control" name="k" placeholder="{$lang19} ..." />
 				</form>
 
 				<nav>
@@ -24,7 +24,7 @@
 								<img class="user-avatar" alt="" src="{$assets}/images/noavatar.jpg" height="34" /> 
 								<span class="user-name">
 									<span class="hidden-xs">
-										John Doe <i class="fa fa-angle-down"></i>
+										 {$smarty.session.ADMIN_FNAME|stripslashes} {$smarty.session.ADMIN_LNAME|stripslashes}<i class="fa fa-angle-down"></i>
 									</span>
 								</span>
 							</a>
@@ -47,7 +47,7 @@
 									<a href="page-lock.html"><i class="fa fa-lock"></i> Lock Screen</a>
 								</li>
 								<li><!-- logout -->
-									<a href="page-login.html"><i class="fa fa-power-off"></i> Log Out</a>
+									<a href="logout.php"><i class="fa fa-power-off"></i>{$lang28}</a>
 								</li>
 							</ul>
 						</li>
@@ -60,3 +60,4 @@
 
 			</header>
 			<!-- /HEADER -->
+            

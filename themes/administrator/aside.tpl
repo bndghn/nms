@@ -7,9 +7,21 @@
 				<nav id="sideNav"><!-- MAIN MENU -->
 					<ul class="nav nav-list">
 						<li class="active"><!-- dashboard -->
-							<a class="dashboard" href="index.html"><!-- warning - url used by default by ajax (if eneabled) -->
-								<i class="main-icon fa fa-dashboard"></i> <span>Dashboard</span>
+                            <!-- warning - url used by default by ajax (if eneabled) -->
+							<a class="dashboard" href="{$adminurl}/dashboard.php">
+								<i class="main-icon fa fa-dashboard"></i> <span>{$lang7}</span>
 							</a>
+						</li>
+                        <li>
+							<a href="#">
+								<i class="fa fa-menu-arrow pull-right"></i>
+								<i class="main-icon fa fa-users"></i> <span>{$lang6}</span>
+							</a>
+							<ul><!-- submenus -->
+								<li><a href="{$adminurl}/users.php">فهرست کاربران</a></li>
+								<li><a href="{$adminurl}/users.group">{$lang20}</a></li>
+								<li><a href="{$adminurl}/users.acl">{$lang21}</a></li>
+							</ul>
 						</li>
 						<li>
 							<a href="#">
@@ -23,28 +35,10 @@
 								<li><a href="graphs-chartjs.html">Chart.js</a></li>
 							</ul>
 						</li>
-						<li>
-							<a href="#">
-								<i class="fa fa-menu-arrow pull-right"></i>
-								<i class="main-icon fa fa-table"></i> <span>Tables</span>
-							</a>
-							<ul><!-- submenus -->
-								<li><a href="tables-bootstrap.html">Bootstrap Tables</a></li>
-								<li><a href="tables-jqgrid.html">jQuery Grid</a></li>
-								<li><a href="tables-footable.html">jQuery Footable</a></li>
-								<li>
-									<a href="#">
-										<i class="fa fa-menu-arrow pull-right"></i>
-										Datatables
-									</a>
-									<ul>
-										<li><a href="tables-datatable-managed.html">Managed Datatables</a></li>
-										<li><a href="tables-datatable-editable.html">Editable Datatables</a></li>
-										<li><a href="tables-datatable-advanced.html">Advanced Datatables</a></li>
-									</ul>
-								</li>
-							</ul>
-						</li>
+                        
+                        
+                        
+						
 						<li>
 							<a href="#">
 								<i class="fa fa-menu-arrow pull-right"></i>
@@ -182,8 +176,32 @@
 					</ul>
 
 					<!-- SECOND MAIN LIST -->
-					<h3>MORE</h3>
+					<h3>{$lang17}</h3>
 					<ul class="nav nav-list">
+                    
+                        <li>
+							<a href="#">
+								<i class="fa fa-menu-arrow pull-right"></i>
+								<i class="main-icon fa fa-user"></i> <span>{$lang18}</span>
+							</a>
+							<ul><!-- submenus -->
+								<li><a href="tables-bootstrap.html">Bootstrap Tables</a></li>
+								<li><a href="tables-jqgrid.html">jQuery Grid</a></li>
+								<li><a href="tables-footable.html">jQuery Footable</a></li>
+								<li>
+									<a href="#">
+										<i class="fa fa-menu-arrow pull-right"></i>
+										Datatables
+									</a>
+									<ul>
+										<li><a href="tables-datatable-managed.html">Managed Datatables</a></li>
+										<li><a href="tables-datatable-editable.html">Editable Datatables</a></li>
+										<li><a href="tables-datatable-advanced.html">Advanced Datatables</a></li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+                        
 						<li>
 							<a href="calendar.html">
 								<i class="main-icon fa fa-calendar"></i>
