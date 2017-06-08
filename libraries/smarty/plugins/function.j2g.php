@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Jalali to Gregorian Convertor
  *
