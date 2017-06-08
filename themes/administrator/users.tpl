@@ -51,7 +51,7 @@
                                         <th>{$lang12}</th>
                                         <th>{$lang30}</th>
                                         <th>{$lang15}</th>
-                                        <th>Joined</th>
+                                        <th>{$lang32}</th>
                                         <th>Status</th>
                                     </tr>
                                 </thead>
@@ -79,7 +79,7 @@
 				 {$user['mobile']|stripslashes|farsidigit}
 			</td>
 			<td class="center">
-				 12 Jan 2012
+				 {$user['joined']|jdate_format:"%Y/%m/%d"|farsidigit}
 			</td>
 			<td>
 				<span class="label label-sm label-success">
