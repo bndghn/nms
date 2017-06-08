@@ -3,7 +3,7 @@
 include('../core/config.php');
 
 (isset($_GET['error']) ? $error = intval($_GET['error']) : $error = "");
-
+(isset($_GET['message']) ? $message = intval($_GET['message']) : $message = "");
 
 $_SESSION['ADMIN_ID']       = "";
 $_SESSION['ADMIN_ID']       = "";
@@ -19,6 +19,8 @@ $_SESSION['ISADMIN']        = 1;
 session_destroy();
 if($error===""){
     header("location: ".$config['adminurl']);
+}elseif($message!=""){
+    header("location:$config[adminurl]/index.php?message=$message"); 
 }else{
-    header("location:$config[adminurl]/index.php?error=$error");
+    header("location:$config[adminurl]/index.php?error=$error"); 
 }
