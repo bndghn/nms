@@ -105,10 +105,8 @@ function insert_get_user_list($var){
         $add_sql    .= " LIMIT ".$start.",". $limit;
     }
     $query  = "SELECT * FROM `users` WHERE ".$add_sql;
-    echo $query;
-    if($result = $conn->execute($query)){
-        $conn->errorMsg();
-    }
+    //echo $query;
+    $result = $conn->execute($query);
     $users = $result->getAll();
     
     return $users;
