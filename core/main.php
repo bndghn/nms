@@ -87,3 +87,30 @@ function verify_login_admin()
             exit;
 		}
 }
+
+function insert_get_user_list($var){
+    global $conn,$config;
+    if(!isset($var['user_group']) ){
+        $add_sql    = "`user_group` = 0 ";
+    }else{
+        $ugroup = intval($var['user_group']);
+        $add_sql    = "`user_group` = $ugroup ";
+    }
+    if(!isset($var['start'])){
+        $limit = intval($config['limit_users']);
+        $add_sql    .= " LIMIT 0,". $limit;
+    }else{
+        $limit  = intval($config['limit_users']);
+        $start  = intval($var['limit_start']);
+        $add_sql    .= " LIMIT ".$start.",". $limit;
+    }
+    $query  = "SELECT * FROM `users` WHERE ".$add_sql;
+    echo $query;
+    if($result = $conn->execute($query)){
+        $conn->errorMsg();
+    }
+    $users = $result->getAll();
+    
+    return $users;
+    
+}
