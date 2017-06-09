@@ -181,7 +181,20 @@ body.min #aside ul.nav>li:hover>a span {
 body.min #middle {
 	margin-right:50px;
 }
-
+ /** table
+ ************************************************* **/
+.td.align-middle , table>tbody>tr>td.align-middle{
+   vertical-align: middle!important;
+}
+ /* popover
+ *************************************************  **/
+.popover{
+    font-family:'sans', Arial, sans-serif;
+}
+.popover-content label{
+    font-weight: 600;
+    width: 90px;
+}
 
 /**	Panel
 *************************************************** **/
