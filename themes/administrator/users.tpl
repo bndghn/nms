@@ -56,7 +56,8 @@
                                 </thead>
 
 	<tbody>
-        {foreach from=$users item=user}
+        {insert name=get_user_list value=var assign=usersList}
+        {foreach from=$usersList item=user}
         <tr class="odd gradeX {if $user['status'] eq "0"}warning {elseif $user['status'] eq "2"}danger{/if}">
 			<td class="text-center">
 				<input type="checkbox" class="checkboxes" value="1"/>

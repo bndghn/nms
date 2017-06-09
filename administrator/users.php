@@ -8,9 +8,6 @@ verify_login_admin();
 $error      =   "";
 $message    =   "";
 
-$query  = "SELECT * FROM `users`";
-$result = $conn->Execute($query);
-$users  = $result->getrows();
 
 
 
@@ -18,8 +15,6 @@ $users  = $result->getrows();
 STemplate::assign('message',$message);
 STemplate::assign('error',$error);
 
-// send var to theme
-STemplate::assign('users',$users);
 
 STemplate::display('administrator/header.tpl');
 STemplate::display('administrator/users.tpl');
