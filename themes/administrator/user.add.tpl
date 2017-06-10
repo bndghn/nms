@@ -46,11 +46,11 @@
                                         <div class="row">
                                             <div class="form-group">
                                                 <div class="col-md-6 col-sm-6">
-                                                    <label>First Name *</label>
+                                                    <label>{$lang51} *</label>
                                                     <input type="text" name="contact[first_name]" value="" class="form-control required">
                                                 </div>
                                                 <div class="col-md-6 col-sm-6">
-                                                    <label>Last Name *</label>
+                                                    <label>{$lang52} *</label>
                                                     <input type="text" name="contact[last_name]" value="" class="form-control required">
                                                 </div>
                                             </div>
@@ -59,11 +59,11 @@
                                         <div class="row">
                                             <div class="form-group">
                                                 <div class="col-md-6 col-sm-6">
-                                                    <label>Email *</label>
+                                                    <label>{$lang53} *</label>
                                                     <input type="email" name="contact[email]" value="" class="form-control required">
                                                 </div>
                                                 <div class="col-md-6 col-sm-6">
-                                                    <label>Phone *</label>
+                                                    <label>{$lang54} *</label>
                                                     <input type="text" name="contact[phone]" value="" class="form-control required">
                                                 </div>
                                             </div>
@@ -72,7 +72,7 @@
                                         <div class="row">
                                             <div class="form-group">
                                                 <div class="col-md-12 col-sm-12">
-                                                    <label>Position *</label>
+                                                    <label>{$lang56} *</label>
                                                     <select name="contact[position]" class="form-control pointer required">
                                                         <option value="">--- Select ---</option>
                                                         <option value="Marketing">PR &amp; Marketing</option>
