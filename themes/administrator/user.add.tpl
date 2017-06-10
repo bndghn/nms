@@ -75,10 +75,10 @@
                                                     <label>{$lang56} *</label>
                                                     <select name="contact[position]" class="form-control pointer required">
                                                         <option value="">--- Select ---</option>
-                                                        <option value="Marketing">PR &amp; Marketing</option>
-                                                        <option value="Developer">Web Developer</option>
-                                                        <option value="php">PHP Programmer</option>
-                                                        <option value="Javascript">Javascript Programmer</option>
+                                                        <option value="0">کاربر عادی</option>
+                                                        <option value="3">کارمند</option>
+                                                        <option value="5">مدیر</option>
+                                                        
                                                     </select>
                                                 </div>
                                             </div>
@@ -87,12 +87,24 @@
                                         <div class="row">
                                             <div class="form-group">
                                                 <div class="col-md-6 col-sm-6">
-                                                    <label>Expected Salary *</label>
-                                                    <input type="text" name="contact[expected_salary]" value="" class="form-control required">
+                                                    <label>استان *</label>
+                                                    <select name="contact[position]" class="form-control pointer required">
+                                                        <option value="">--- Select ---</option>
+                                                        <option value="0">کاربر عادی</option>
+                                                        <option value="3">کارمند</option>
+                                                        <option value="5">مدیر</option>
+                                                        
+                                                    </select>
                                                 </div>
                                                 <div class="col-md-6 col-sm-6">
-                                                    <label>Start Date *</label>
-                                                    <input type="text" name="contact[start_date]" value="" class="form-control datepicker required" data-format="yyyy-mm-dd" data-lang="en" data-RTL="false">
+                                                    <label>شهر *</label>
+                                                    <select name="contact[position]" class="form-control pointer required">
+                                                        <option value="">--- Select ---</option>
+                                                        <option value="0">کاربر عادی</option>
+                                                        <option value="3">کارمند</option>
+                                                        <option value="5">مدیر</option>
+                                                        
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -100,7 +112,7 @@
                                         <div class="row">
                                             <div class="form-group">
                                                 <div class="col-md-12 col-sm-12">
-                                                    <label>Experience *</label>
+                                                    <label>آدرس *</label>
                                                     <textarea name="contact[experience]" rows="4" class="form-control required"></textarea>
                                                 </div>
                                             </div>
@@ -110,8 +122,8 @@
                                             <div class="form-group">
                                                 <div class="col-md-12 col-sm-12">
                                                     <label>
-                                                        Website
-                                                        <small class="text-muted">- optional</small>
+                                                        آدرس پروفایل
+                                                        <small class="text-muted">- اختیاری</small>
                                                     </label>
                                                     <input type="text" name="contact[website]" placeholder="http://" class="form-control">
                                                 </div>
@@ -122,8 +134,8 @@
                                             <div class="form-group">
                                                 <div class="col-md-12">
                                                     <label>
-                                                        File Attachment 
-                                                        <small class="text-muted">Curriculum Vitae - optional</small>
+                                                        تصویر پروفایل 
+                                                        <small class="text-muted">- اختیاری</small>
                                                     </label>
 
                                                     <!-- custom file upload -->
@@ -144,8 +156,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <button type="submit" class="btn btn-3d btn-teal btn-xlg btn-block margin-top-30">
-                                                SEND APPLICATION
-                                                <span class="block font-lato">We'll get back to you within 48 hours</span>
+                                                افزودن کاربر
                                             </button>
                                         </div>
                                     </div>
