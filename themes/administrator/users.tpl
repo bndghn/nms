@@ -118,7 +118,7 @@
 						<!-- panel footer -->
 						<div class="panel-footer clearfix">
 
-                            <a class="btn btn-purple pull-right btn-sm nomargin-top nomargin-bottom" href="#">{$lang48}</a>
+                            <a class="btn btn-purple pull-right btn-sm nomargin-top nomargin-bottom" href="{$adminurl}/user.add.php">{$lang48}</a>
 
 						</div>
 						<!-- /panel footer -->
@@ -206,7 +206,7 @@
 
                             <!-- panel footer -->
                             <div class="panel-footer clearfix">
-                                <a class="btn btn-purple pull-right btn-sm nomargin-top nomargin-bottom" href="#">{$lang49}</a>
+                                <a class="btn btn-purple pull-right btn-sm nomargin-top nomargin-bottom" href="{$adminurl}/user.add.php?ugroup=5">{$lang49}</a>
                                 
                             </div>
                             <!-- /panel footer -->
@@ -298,7 +298,7 @@
 
                                 <!-- panel footer -->
                                 <div class="panel-footer clearfix">
-                                    <a class="btn btn-purple pull-right btn-sm nomargin-top nomargin-bottom" href="#">{$lang50}</a>
+                                    <a class="btn btn-purple pull-right btn-sm nomargin-top nomargin-bottom" href="{$adminurl}/user.add.php?ugroup=3">{$lang50}</a>
 
                                 </div>
                                 <!-- /panel footer -->
