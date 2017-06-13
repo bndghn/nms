@@ -139,7 +139,8 @@
                                         </a>
                                     </li>
                                 </ul>
-
+                                
+                               
                                 <!-- tabs content -->
                                 <div class="tab-content transparent">
                                     <div id="jtab1_nobg" class="tab-pane active">
@@ -147,40 +148,40 @@
                                             <table class="table table-striped table-bordered table-hover" id="datatable_sample">
                                                 <thead>
                                                     <tr>
-                                                        <th class="table-checkbox text-center width-20">
-                                                            <input type="checkbox" class="group-checkable" data-set="#datatable_sample .checkboxes">
-                                                        </th>
-                                                        <th class="width-30 text-center">گروه کاربری</th>
-                                                        <th class="width-100 text-center">نوع کاربری</th>
-                                                        <th class="width-150 text-center">نام کاربری</th>
+                                                        
+                                                        <th class=" text-center">گروه کاربری</th>
+                                                        <th class="width-50 text-center">وضعیت</th>
                                                         <th class="width-100 text-center">عملیات</th>
-                                                        <!-- <th class="text-center">عملیات</th> -->
+                                                        
                                                     </tr>
                                                 </thead>
 
                                                 <tbody>
-                                                                    <tr class="odd gradeX ">
-                                                        <td class="text-center">
-                                                            <input type="checkbox" class="checkboxes" value="1">
-                                                        </td>
+                                                    {insert name=get_user_group_list value=gvar assign=groupList}
+                                                    {foreach from=$groupList item=group}
+                                                    <tr class="odd gradeX ">
+                                                        
                                                         <td class="text-center align-middle">
-                                                            گروه A
+                                                           {$group['category']}
                                                         </td>
+                                                       
                                                         <td class="align-middle text-center">
-                                                             مدیر
-                                                        </td>
-                                                        <td class="align-middle text-center">
-                                                            akbarpour
+                                                            {if $group['status'] eq 0 }غیرفعال{else}فعال{/if}
                                                         </td>
                                                         
                                                         <td class="text-center  align-middle">
-                                                            <a href="#" class="btn btn-default btn-xs"><i class="fa fa-edit white"></i> ویرایش </a>
-                                                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-times white"></i> حذف </a>
+                                                           
+                                                           {if {$group['id']} eq 1 or {$group['id']} eq 2 or {$group['id']} eq 3}
+                                                            <a href="#" class="btn btn-danger btn-xs disabled"><i class="fa fa-times white"></i> حذف </a>
+                                                           {else}
+                                                            <a href="{$adminurl}/users.group.php?delete={$group['id']}" class="btn btn-danger btn-xs" onclick="{literal} return confirm('آیا از حذف این گروه مطمئن هستید؟!');{/literal}"><i class="fa fa-times white"></i> حذف </a>
+                                                            {/if}
 
                                                         </td>
 
                                                     
                                                     </tr>
+                                                    {/foreach}
                                                     </tbody>
                                                 </table>
                                          </div>
@@ -190,39 +191,46 @@
                                             <table class="table table-striped table-bordered table-hover" id="datatable_sample">
                                                 <thead>
                                                     <tr>
-                                                        <th class="table-checkbox text-center width-20">
-                                                            <input type="checkbox" class="group-checkable" data-set="#datatable_sample .checkboxes">
-                                                        </th>
-                                                        <th class="width-30 text-center">گروه کاربری</th>
-                                                        <th class="width-150 text-center">نام کاربری</th>
-                                                        <th class="width-150 text-center">نام و نام&zwnj;خانوادگی</th>
+                                                        
+                                                        <th class="text-center">گروه مشتریان</th>
+                                                        
+                                                        <th class="width-50 text-center">وضعیت</th>
                                                         <th class="width-100 text-center">عملیات</th>
-                                                        <!-- <th class="text-center">عملیات</th> -->
+                                                        
                                                     </tr>
                                                 </thead>
 
                                                 <tbody>
-                                                                    <tr class="odd gradeX ">
-                                                        <td class="text-center">
-                                                            <input type="checkbox" class="checkboxes" value="1">
-                                                        </td>
+                                                     
+                                                    {insert name=get_user_group_list isCustomer=1 value=gvar assign=cgList}
+                                                    {foreach from=$cgList item=cGroup}
+                                                    <tr class="odd gradeX ">
+                                                        
                                                         <td class="text-center align-middle">
-                                                            گروه A
+                                                           {$cGroup['category']}
                                                         </td>
+                                                       
                                                         <td class="align-middle text-center">
-                                                              akbar22
-                                                        </td>
-                                                        <td class="align-middle text-center">
-                                                           علی علی اکبری
+                                                            {if $cGroup['status'] eq 0 }غیرفعال{else}فعال{/if}
+                                                            
                                                         </td>
                                                         
                                                         <td class="text-center  align-middle">
-                                                            <a href="#" class="btn btn-default btn-xs"><i class="fa fa-edit white"></i> ویرایش </a>
-                                                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-times white"></i> حذف </a>
-                                                        
+                                                           
+                                                             
+                                                            <a href="{$adminurl}/users.group.php?delete={$cGroup['id']}" class="btn btn-danger btn-xs" onclick="{literal} return confirm('آیا از حذف این گروه مطمئن هستید؟!');{/literal}"><i class="fa fa-times white"></i> حذف </a>
+                                                           
+                                                            
+                                                          
+
+
                                                         </td>
+
+                                                    
                                                     </tr>
-                                                    </tbody>
+                                                    {/foreach}                            
+                                                                                   
+                                                </tbody>
                                                 </table>
                                             </div>
                                     </div>
