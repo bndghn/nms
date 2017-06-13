@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="en-US">
+{locale path="$basedir/themes" domain="$basedir/lang"}
+<html lang="fa-IR">
 	<head>
 		<meta charset="utf-8" />
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
@@ -8,7 +9,7 @@
 		<meta name="Author" content="ben dehqan" />
 
 		<!-- mobile settings -->
-		<meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0" />
+		<meta name="viewport" content="width=device-width"{,basedir}/themes" maximum-scale=1, initial-scale=1, user-scalable=0" />
 
 		<!-- WEB FONTS -->
 		
@@ -29,3 +30,4 @@
 		.boxed = boxed version
 	-->
 	<body>
+	
