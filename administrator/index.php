@@ -41,6 +41,7 @@ else
         // code for checking data of login form
         (isset($_POST['username']) ? $username = cleanit($_POST['username']) : $username = "");
         (isset($_POST['password']) ? $password = cleanit($_POST['password']) : $password = "");
+        (isset($_POST['remember']) ? $remember = 1 : $remember = 0);
         
         //check that input is fill or not
         if ($username === "")
@@ -95,8 +96,14 @@ else
                         $query_history  = "UPDATE `users` SET `last_login`='".time()."',`last_ip`=$qLIP WHERE `username`=$qUsername";
                         $conn->execute($query_history);
                         //$error = $conn->errorMsg();
+                        
+                        $_SESSION['ADMIN_LOGIN'] = 1;
+                        
+                        
+                        
                         $_SESSION['ADMIN_ID'] = $getID;
                         $_SESSION['ADMIN_USER'] = $getUname;
+                        $_SESSION['USERNAME'] = $getUname;
                         $_SESSION['ADMIN_PASS'] = $encodePass;
                         $_SESSION['ADMIN_GENDER'] = $getGender;
                         $_SESSION['ADMIN_FNAME'] = $getFname;
@@ -104,6 +111,10 @@ else
                         $_SESSION['ADMIN_EMAIL'] = $getEmail;
                         $_SESSION['ADMIN_MOBILE'] = $getMobile;
                         $_SESSION['ISADMIN'] = 1;
+                        
+                        if($remember===1){
+                            create_remember();
+                        }
 
                         $redirect = $config['adminurl']."/dashboard.php";
                         header("location: $redirect");
