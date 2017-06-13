@@ -12,6 +12,24 @@ $message    =   "";
  
 
 
+(isset($_GET['delete']) ? $isDelete = $_GET['delete'] : $isDelete = "");
+
+if ($isDelete !=""){
+    
+    $deleteID = intval($isDelete);
+    $query = "DELETE FROM `user_group` WHERE `id` = ".$deleteID;
+    
+    if($result = $conn->EXECUTE($query)){
+        header("location: ".$config['adminurl']."/users.group.php");
+        $message = " کاربر با موفقیت حذف شد.";
+    }
+    else{
+        $error= $conn->errorMsg();
+    }
+}
+    
+
+
 
 (isset($_POST['isSubmit']) ? $submit = $_POST['isSubmit'] : $submit = "");
 
@@ -33,7 +51,7 @@ if ($submit === "1"){
     
     
     
-    
+
     
     
     
