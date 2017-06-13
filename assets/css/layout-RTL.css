@@ -17,6 +17,19 @@ textarea {
 	text-align:right;
 }
 
+.switch > .switch-label{
+    font-family:'sans', Arial, sans-serif;
+    font-weight: normal;
+    width: 65px;
+}
+
+.rtl{
+    direction: rtl;
+}
+.ltr{
+    direction: ltr;
+}
+
 
 /** Commons
 *************************************************** **/
