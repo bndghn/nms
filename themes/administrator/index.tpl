@@ -45,7 +45,7 @@
                         <input type="password" name="password" id="password">
                         <b class="tooltip tooltip-top-right">{$lang2} {$lang22}</b>
                     </label>
-                    <label class="checkbox"><input type="checkbox" name="checkbox-inline" checked><i></i>{$lang3}</label>
+                    <label class="checkbox"><input type="checkbox" name="remember" checked><i></i>{$lang3}</label>
                 </section>
 
             </fieldset>
