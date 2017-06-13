@@ -3,7 +3,7 @@
 $config = array();
 
 // Begin Configuration
-$config['basedir']     =  'C:\xampp\htdocs\nms';
+$config['basedir']     =  'E:\xampp\htdocs\nms';
 $config['baseurl']     =  'http://localhost/nms';
 
 // Start Sessions
@@ -24,7 +24,7 @@ $dbType = 'mysqli';
 $dbHost = 'localhost';
 $dbUser = 'root';
 $dbPass = '';
-$dbName = 'nms';
+$dbName = 'shop';
 $default_language = "persian"; // Arabic, Turkish & English Comming soon
 date_default_timezone_set('Asia/Tehran');
 $config['adminurl']      =  $config['baseurl'].'/administrator';

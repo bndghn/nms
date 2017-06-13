@@ -19,7 +19,7 @@
 							</a>
 							<ul><!-- submenus -->
 								<li><a href="{$adminurl}/users.php">فهرست کاربران</a></li>
-								<li><a href="{$adminurl}/users.group">{$lang20}</a></li>
+								<li><a href="{$adminurl}/users.group.php">{$lang20}</a></li>
 								<li><a href="{$adminurl}/users.acl">{$lang21}</a></li>
 							</ul>
 						</li>
