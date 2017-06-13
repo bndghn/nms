@@ -3,7 +3,7 @@
 $config = array();
 
 // Begin Configuration
-$config['basedir']     =  'E:\xampp\htdocs\nms';
+$config['basedir']     =  'c:\xampp\htdocs\nms';
 $config['baseurl']     =  'http://localhost/nms';
 
 // Start Sessions
