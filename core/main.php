@@ -55,37 +55,138 @@ function getLocalIP(){
 
 function verify_login_admin()
 {
-        global $config,$conn;
-        if($_SESSION['ADMIN_ID'] != "" && is_numeric($_SESSION['ADMIN_ID']) && $_SESSION['ADMIN_USER'] != "" && $_SESSION['ADMIN_PASS'] != "")
-        {
-            $qUsername = $conn->qStr($_SESSION['ADMIN_USER']);
-            $qPass = $conn->qStr($_SESSION['ADMIN_PASS']);
-            $qID = intval($_SESSION['ADMIN_ID']);
-             
-            
-            
-			$query="SELECT * FROM `users` WHERE `username`=$qUsername AND `pass`=$qPass AND `id`=".$qID;
-        	$executequery=$conn->execute($query);
-            $isAdmin    =  intval($executequery->fields['admin']);
-            
-			if($conn->affected_rows()!==1)
-			{ 
-                header("location:$config[adminurl]/logout.php?error=26");
-            	exit;
-			}
-            
-            if($isAdmin === 0){
-                header("location:$config[adminurl]/logout.php?error=25");
-            	exit;
-            }
+    global $config,$conn;
 
+    if(!isset($_SESSION['ADMIN_LOGIN'])){
+        $CookieStatus = loginByCookie("1");
+        if($CookieStatus!=""){
+            header("location: ".$config['adminurl']."/logout.php?error=".$CookieStatus);
         }
-		else
-		{
-			
-            header("location:$config[adminurl]/logout.php?error=29");
-            exit;
-		}
+    }
+    /** for more security remove SHARPS #
+     ********************************* */
+  #  elseif(!adminIsValid()) {
+  #     header("location: ".$config['adminurl']."/logout");
+  #  }
+    
+        
+}
+
+function adminIsValid(){
+    global $config,$conn;
+    $adminID = intval($_SESSION['ADMIN_ID']);
+    $sql = "SELECT `admin` FROM `users` WHERE id=".$adminID;
+    $rs=$conn->execute($sql);
+    if($rs->fields['admin'] === "0"){
+        $_SESSION['ISADMIN'] = 0;
+        $_SESSION['ADMIN_LOGIN'] = 0;
+        return false;
+    }elseif($rs->fields['status'] === "0"){
+        $_SESSION['ADMIN_LOGIN'] = 0;
+        $_SESSION['LOGIN'] = 0;
+        return false;
+    }else{
+        return true;
+    }
+}
+
+function create_remember(){
+    
+    $key = md5(sha1($_SESSION['USERNAME'] . get_last_ip()));
+    global $conn;
+    $username = $conn->qStr($_SESSION['USERNAME']);
+    $sql="update `users` set remember_time='".date('Y-m-d H:i:s')."', remember_key='".$key."' WHERE username=".$username;
+    $conn->execute($sql);
+    echo $conn->errorMsg();
+    setcookie('remember', gzcompress(serialize(array($_SESSION['USERNAME'], $key)), 9), time()+60*60*24*30);
+}
+
+function destroy_remember($username) {
+    if (strlen($username) > 0) {
+            global $conn;
+            $conn->qStr($username);
+            $sql="update `users` set `remember_time`=NULL,`remember_key`=NULL WHERE `username`='".$username."'";
+            
+            $conn->execute($sql);
+           echo $conn->errorMsg();
+    }
+    setcookie ("remember", "", time() - 3600);
+}
+
+function loginByCookie($isAdmin="0"){
+    global $config,$conn;
+    $error="";
+    if (!isset($_SESSION["USERNAME"]) && isset($_COOKIE['remember'])) 
+    {
+        $sql="update `users` set `remember_time`=NULL and `remember_key`=NULL WHERE `remember_time`<'".date('Y-m-d H:i:s', mktime(0, 0, 0, date("m")-1, date("d"),   date("Y")))."'";
+        $conn->execute($sql); 
+        //echo $conn->errorMsg();
+        list($username, $key) = @unserialize(gzuncompress(stripslashes($_COOKIE['remember'])));
+        if (strlen($username) > 0 && strlen($key) > 0)
+        {
+            $conn->qStr($username);
+            $conn->qStr($key);
+            
+            $sql="SELECT * FROM `users` WHERE `username`= '".$username."' and `remember_key`='".$key."'";
+            
+            $rs=$conn->execute($sql);
+            //echo $conn->errorMsg();
+            if($rs->recordCount()<1)
+            {
+                $error = '26';
+            }
+            elseif($rs->fields['status'] === "0")
+            {
+                $error = '57';
+            }
+            if($isAdmin==="1"){
+                if($rs->fields['admin'] === "0"){
+                    $error = '25';
+                    $_SESSION['ISADMIN'] = "0";
+                }
+            }
+            if($error=="")
+            {				
+                
+                if($isAdmin==="1"){
+                    $_SESSION['ADMIN_ID']       = $rs->fields['id'];
+                    $_SESSION['ADMIN_USER']     = $rs->fields['username'];
+                    $_SESSION['USERNAME']       = $rs->fields['username'];
+                    $_SESSION['ADMIN_PASS']     = $rs->fields['pass'];
+                    $_SESSION['ADMIN_GENDER']   = $rs->fields['gender'];
+                    $_SESSION['ADMIN_FNAME']    = $rs->fields['fname'];
+                    $_SESSION['ADMIN_LNAME']    = $rs->fields['lname'];
+                    $_SESSION['ADMIN_EMAIL']    = $rs->fields['email'];
+                    $_SESSION['ADMIN_MOBILE']   = $rs->fields['mobile'];
+                    $_SESSION['ISADMIN']        = "1"; //check is Admin or NOT
+                    $_SESSION['ADMIN_LOGIN']    = "1"; //nessary for checking in admin page
+                    $_SESSION['LOGIN']          = "1"; //nessary for checking in front page
+                }else{
+                    $_SESSION['ID']         = $rs->fields['id'];
+                    $_SESSION['PASS']       = $rs->fields['pass'];
+                    $_SESSION['USER_NAME']  = $rs->fields['username'];
+                    $_SESSION['VERIFIED']   = $rs->fields['verified'];
+                    $_SESSION['FNAME']      = $rs->fields['fname'];
+                    $_SESSION['LNAME']      = $rs->fields['lname'];
+                    $_SESSION['EMAIL']      = $rs->fields['email'];
+                    $_SESSION['MOBILE']     = $rs->fields['mobile'];
+                    $_SESSION['LOGIN']      = "1";
+                }
+                    
+                
+                create_remember();
+            }
+            else
+            {
+                destroy_remember($username);
+                return $error;
+            }
+        }
+    }else{
+        $error = '29';
+        return $error;
+    }
+
 }
 
 function insert_get_user_list($var){
