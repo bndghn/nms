@@ -217,12 +217,14 @@ function insert_get_user_list($var){
 function insert_get_user_group_list($gvar){
     global $conn;
     if(!isset($gvar['isCustomer']) ){
-        $add_sql    = "`isCustomer` = 0 ";
+        $add_sql    = "";
+    }elseif($gvar['isCustomer'] === "0"){
+        $add_sql    = "WHERE `isCustomer` = 0 ";
     }else{
-        $add_sql    = "`isCustomer` = 1 ";
+        $add_sql    = "WHERE `isCustomer` = 1 ";
     }
     
-    $query = "SELECT * FROM `user_group` WHERE ".$add_sql;
+    $query = "SELECT * FROM `user_group` ".$add_sql;
     $result = $conn->execute($query);
     $userGroups = $result->getAll();
     
