@@ -8,8 +8,22 @@ verify_login_admin();
 // define var
 $error      =   "";
 $message    =   "";
-
+//get error from other pages
+(isset($_GET['tsError']) ? $tsErrorNumber = intval($_GET['tsError']) : $tsErrorNumber = "");
+ if ($tsErrorNumber!=""){
+     if($tsErrorNumber==1){
+         $tsError = "شما مجاز به ویرایش گروه های اصلی نیستید!";
+     }elseif($tsErrorNumber==2){
+         $tsError = "به دلیل مشکلات فنی، امکان ویرایش گروه میسر نیست!";
+     }
+     if(isset($tsError)){
+         STemplate::assign('tsError',$tsError);
+     }
+ }
  
+
+
+(isset($_POST['isSubmit']) ? $submit = $_POST['isSubmit'] : $submit = "");
 
 
 (isset($_GET['delete']) ? $isDelete = $_GET['delete'] : $isDelete = "");
@@ -31,7 +45,7 @@ if ($isDelete !=""){
 
 
 
-(isset($_POST['isSubmit']) ? $submit = $_POST['isSubmit'] : $submit = "");
+
 
 if ($submit === "1"){
     (isset($_POST['category']) ? $catname = $_POST['category'] : $catname = "");
@@ -43,29 +57,10 @@ if ($submit === "1"){
     if($catname==="")
     {
 
-        $error = "حتما باید نام کاربری خودتان را وارد نمایید.";
+        $error = "حتما باید نام گروه کاربری را وارد نمایید.";
 
     }
-    
-    
-    
-    
-    
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     if($error===""){
         $catname    = $conn->qStr($catname);
         $descript   = $conn->qStr($descript);
@@ -82,6 +77,8 @@ if ($submit === "1"){
 
 
 }
+
+
 
     //load nessary template for loading
     STemplate::assign('message',$message);

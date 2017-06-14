@@ -34,7 +34,9 @@
 							
 
 						</div>
-
+                      
+                       
+                        
 						<!-- panel content -->
 						<div class="panel-body">
                                 
@@ -59,28 +61,28 @@
 
                                         
 
-                                        <div class="row">
-                                            <div class="form-group">
-                                                <div class="col-md-6 col-sm-6">
-                                                    
-                                                    <label class="switch switch-success switch-round">
-                                                        <span> گروه مشتری؟</span>
-                                                        <input name="iscostumer" type="checkbox" checked="">
-                                                        <span class="switch-label" data-on="بله" data-off="خیر"></span>
-                                                        
-                                                    </label>
-                                                </div>
-                                                <div class="col-md-6 col-sm-6">
-                                                    <label class="switch switch-info switch-round">
-                                                        <span>وضعیت : </span>
-                                                        
-                                                        <input name="status" type="checkbox" checked="">
-                                                        <span class="switch-label"  data-on="فعال" data-off="غیرفعال"></span>
-                                                       
-                                                    </label>
-                                                </div>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <div class="col-md-6 col-sm-6">
+
+                                                <label class="switch switch-success switch-round">
+                                                    <span> گروه مشتری؟</span>
+                                                    <input name="iscostumer" type="checkbox" checked="">
+                                                    <span class="switch-label" data-on="بله" data-off="خیر"></span>
+
+                                                </label>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6">
+                                                <label class="switch switch-info switch-round">
+                                                    <span>وضعیت : </span>
+
+                                                    <input name="status" type="checkbox" checked="">
+                                                    <span class="switch-label"  data-on="فعال" data-off="غیرفعال"></span>
+
+                                                </label>
                                             </div>
                                         </div>
+                                    </div>
 
                                       
 
@@ -111,6 +113,19 @@
                         </div>
 						<!-- /panel content -->
 
+                    
+                  
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
 						<!-- panel footer -->
 						<div class="panel-footer">
 
@@ -122,6 +137,7 @@
 					</div>
 					<!-- /PANEL -->
                 </div>
+                        
                 <div class="col-md-6">
                     <div class="panel panel-default">
                         <div class="panel-body">
@@ -151,13 +167,13 @@
                                                         
                                                         <th class=" text-center">گروه کاربری</th>
                                                         <th class="width-50 text-center">وضعیت</th>
-                                                        <th class="width-100 text-center">عملیات</th>
+                                                        <th class="width-200 text-center">عملیات</th>
                                                         
                                                     </tr>
                                                 </thead>
 
                                                 <tbody>
-                                                    {insert name=get_user_group_list value=gvar assign=groupList}
+                                                    {insert name=get_user_group_list isCustomer="0" value=gvar assign=groupList}
                                                     {foreach from=$groupList item=group}
                                                     <tr class="odd gradeX ">
                                                         
@@ -172,8 +188,13 @@
                                                         <td class="text-center  align-middle">
                                                            
                                                            {if {$group['id']} eq 1 or {$group['id']} eq 2 or {$group['id']} eq 3}
-                                                            <a href="#" class="btn btn-danger btn-xs disabled"><i class="fa fa-times white"></i> حذف </a>
+                                                           <a href="#" class="btn btn-default btn-xs disabled"><i class="fa fa-edit white"></i> ویرایش </a>
+                                                            
+                                                             
+                                                               <a href="#" class="btn btn-danger btn-xs disabled"><i class="fa fa-times white"></i> حذف </a>
                                                            {else}
+                                                            <a href="{$adminurl}/users.group.edit.php?id={$group['id']}" data-target="#ugEdit{$group['id']}" data-toggle="modal" class="btn btn-default btn-xs"><i class="fa fa-edit white"></i> ویرایش </a>
+                                                            
                                                             <a href="{$adminurl}/users.group.php?delete={$group['id']}" class="btn btn-danger btn-xs" onclick="{literal} return confirm('آیا از حذف این گروه مطمئن هستید؟!');{/literal}"><i class="fa fa-times white"></i> حذف </a>
                                                             {/if}
 
@@ -195,19 +216,21 @@
                                                         <th class="text-center">گروه مشتریان</th>
                                                         
                                                         <th class="width-50 text-center">وضعیت</th>
-                                                        <th class="width-100 text-center">عملیات</th>
+                                                        <th class="width-200 text-center">عملیات</th>
                                                         
                                                     </tr>
                                                 </thead>
 
                                                 <tbody>
                                                      
-                                                    {insert name=get_user_group_list isCustomer=1 value=gvar assign=cgList}
+                                                    {insert name=get_user_group_list isCustomer="1" value=gvar assign=cgList}
                                                     {foreach from=$cgList item=cGroup}
                                                     <tr class="odd gradeX ">
                                                         
                                                         <td class="text-center align-middle">
+                                                          
                                                            {$cGroup['category']}
+                                                          
                                                         </td>
                                                        
                                                         <td class="align-middle text-center">
@@ -217,7 +240,7 @@
                                                         
                                                         <td class="text-center  align-middle">
                                                            
-                                                             
+                                                             <a href="{$adminurl}/users.group.edit.php?id={$cGroup['id']}" data-target="#ugEdit{$cGroup['id']}" data-toggle="modal" class="btn btn-default btn-xs"><i class="fa fa-edit white"></i> ویرایش </a>
                                                             <a href="{$adminurl}/users.group.php?delete={$cGroup['id']}" class="btn btn-danger btn-xs" onclick="{literal} return confirm('آیا از حذف این گروه مطمئن هستید؟!');{/literal}"><i class="fa fa-times white"></i> حذف </a>
                                                            
                                                             
@@ -245,13 +268,13 @@
             </section>
         </div>
         
+        
        
       
      
     
    
   
- 
 
 
 
@@ -264,85 +287,25 @@
 
 
 
+{insert name=get_user_group_list value=gvar assign=groupListEdit}
+{foreach from=$groupListEdit item=glEdit}
 
 
-   <!--
-                                                               <img src="http://localhost/nms/assets/images/male.png">
-                                                               <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-times
-                                                                   
-                                                                white"></i> حذف </a>
-                                                                
-                                                                
-                                                                
-                                                                  <div class="row">
-                                            <div class="form-group">
-                                                <div class="col-md-6 col-sm-6">
-                                                    <label>استان *</label>
-                                                    <select name="contact[position]" class="form-control pointer required">
-                                                        <option value="">--- Select ---</option>
-                                                        <option value="0">کاربر عادی</option>
-                                                        <option value="3">کارمند</option>
-                                                        <option value="5">مدیر</option>
-                                                        
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-6 col-sm-6">
-                                                    <label>شهر *</label>
-                                                    <select name="contact[position]" class="form-control pointer required">
-                                                        <option value="">--- Select ---</option>
-                                                        <option value="0">کاربر عادی</option>
-                                                        <option value="3">کارمند</option>
-                                                        <option value="5">مدیر</option>
-                                                        
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                                          
-                                                          <div class="row">
-                                            <div class="form-group">
-                                                <div class="col-md-12 col-sm-12">
-                                                    <label>
-                                                        آدرس پروفایل
-                                                        <small class="text-muted">- اختیاری</small>
-                                                    </label>
-                                                    <input type="text" name="contact[website]" placeholder="http://" class="form-control">
-                                                </div>
-                                            </div>
-                                        </div>
 
-                                        <div class="row">
-                                            <div class="form-group">
-                                                <div class="col-md-12">
-                                                    <label>
-                                                        تصویر پروفایل 
-                                                        <small class="text-muted">- اختیاری</small>
-                                                    </label>
+<div class="modal fade" id="ugEdit{$glEdit['id']}" role="basic" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
 
-                                                  custom file upload 
-                                                    <div class="fancy-file-upload fancy-file-primary">
-                                                        <i class="fa fa-upload"></i>
-                                                        <input type="file" class="form-control" name="contact[attachment]" onchange="jQuery(this).next('input').val(this.value);" />
-                                                        <input type="text" class="form-control" placeholder="no file selected" readonly="" />
-                                                        <span class="button">Choose File</span>
-                                                    </div>
-                                                    <small class="text-muted block">Max file size: 10Mb (zip/pdf/jpg/png)</small>
+            <div class="text-center">
+                <img src="{$assets}/images/loaders/7.gif" alt="" />
+            </div>
 
-                                                </div>
-                                            </div>
-                                        </div>
-                                                          
-                                                          
-                                                          <div class="row">
-                                            <div class="form-group">
-                                                <div class="col-md-6 col-sm-6">
-                                                    <label>{$lang53} *</label>
-                                                    <input type="email" name="contact[email]" value="" class="form-control required">
-                                                </div>
-                                                <div class="col-md-6 col-sm-6">
-                                                    <label>{$lang54} *</label>
-                                                    <input type="text" name="contact[phone]" value="" class="form-control required">
-                                                </div>
-                                            </div>
-                                        </div>
-                                                           -->
+        </div>
+    </div>
+</div>
+
+
+{/foreach}
+
+
+
