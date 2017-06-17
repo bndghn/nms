@@ -20,111 +20,201 @@
 
 
 				<div id="content" class="padding-20">
-                
+               
+                 <div id="panel-ui-tan-l2" class="panel panel-default">
+
+								<div class="panel-heading">
+
+									<span class="elipsis"><!-- panel title -->
+										<strong>فهرست مشتریان</strong>
+									</span>
+                                    <div class="pull-right">
+                                        <form method="get" action="#" class="fancy-form">
+                                            <i class="fa fa-user"></i>
+
+                                            <input type="tel" class="form-control" placeholder="{$lang45}">
+
+                                            <!-- tooltip - optional, bootstrap tooltip can be used instead -->
+                                            <span class="fancy-tooltip top-right"> <!-- positions: .top-left | .top-right -->
+                                                <em> {$lang46}</em>
+                                            </span>
+                                        </form>
+                                    </div>
+								</div>
+
+								<!-- panel content -->
+								<div class="panel-body">
+
+									<div class="row tabs nomargin">
+
+										<!-- tabs -->
+										<div class="col-md-2 col-sm-2 nopadding-right nopadding-left">
+											<ul class="nav nav-tabs nav-stacked">
+												<li class="active">
+													<a href="#active_user" data-toggle="tab">
+														<span class="badge badge-warning pull-right">3</span>
+														مشتریان فعال
+													</a>
+												</li>
+												<li>
+													<a href="#deactive_user" data-toggle="tab">
+														مشتریان غیرفعال
+													</a>
+												</li>
+												
+											</ul>
+										</div>
+
+										<!-- tabs content -->
+										<div class="col-md-10 col-sm-10 nopadding-right nopadding-left">
+											<div class="tab-content">
+												<div id="active_user" class="tab-pane active">
+													
+													
+													  <div class="table-responsive">
+                                                            <table class="table table-striped table-bordered table-hover" id="datatable_sample">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th class="table-checkbox text-center width-20">
+                                                                            <input type="checkbox" class="group-checkable" data-set="#datatable_sample .checkboxes"/>
+                                                                        </th>
+                                                                        
+                                                                        <th class="width-100 text-center">{$lang12}</th>
+                                                                        <th class="width-150 text-center">{$lang30}</th>
+                                                                        <th class="width-130 text-center">نوع مشتری</th>
+                                                                        <th class="text-center">{$lang38}</th>
+                                                                    </tr>
+                                                                </thead>
+
+                                                                <tbody>
+                                                                    {insert name=get_user_list value=var customer=1 assign=usersList}
+                                                                    {if $usersList ne null}
+                                                                    {foreach from=$usersList item=user}
+                                                                    <tr class="odd gradeX {if $user['status'] eq "0"}warning {elseif $user['status'] eq "2"}danger{/if}">
+                                                                    <td class="text-center">
+                                                                        <input type="checkbox" class="checkboxes" value="1"/>
+                                                                    </td>
+
+                                                                    <td class="align-middle text-center">
+                                                                         {$user['username']|stripslashes}
+                                                                    </td>
+                                                                    <td class="align-middle text-center">
+                                                                        {$user['fname']|stripslashes} {$user['lname']|stripslashes}
+                                                                    </td>
+                                                                    <td class="align-middle text-center">
+                                                                         {$user['category']|stripslashes|farsidigit}
+                                                                    </td>
+
+
+                                                                    <td class="text-center  align-middle">
+                                                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-edit white"></i> {$lang35} </a>
+                                                                        <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-times white"></i> {$lang34} </a>
+
+
+                                                                        <a href="#" data-toggle="popover" class="btn btn-3d btn-xs btn-blue" title="{$lang39} {$user['fname']} {$user['lname']}" data-content="<label>{$lang40}:</label> {$user['last_ip']|farsidigit}<br/><label>{$lang41}:</label> {$user['last_login']|jdate_format:"%Y/%m/%d"|farsidigit}<br/><label>{$lang32}:</label> {$user['joined']|jdate_format:"%Y/%m/%d"|farsidigit}">
+                                                                            <i class="fa fa-user" aria-hidden="true"></i>
+                                                                            پروفایل
+                                                                        </a>
+
+                                                                    </td>
+                                                                </tr>
+
+
+
+                                                                    {/foreach}
+                                                                    {else}
+                                                                    <tr>
+                                                                        <td colspan="5"><p class="text-center">متاسفانه کاربری یافت نشد!</p></td>
+                                                                    </tr>
+                                                                    {/if}
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+													
+													
+												</div>
+
+												<div id="deactive_user" class="tab-pane">
+													  <div class="table-responsive">
+                                                            <table class="table table-striped table-bordered table-hover" id="datatable_sample">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th class="table-checkbox text-center width-20">
+                                                                            <input type="checkbox" class="group-checkable" data-set="#datatable_sample .checkboxes"/>
+                                                                        </th>
+                                                                        
+                                                                        <th class="width-100 text-center">{$lang12}</th>
+                                                                        <th class="width-150 text-center">{$lang30}</th>
+                                                                        <th class="width-130 text-center">نوع مشتری</th>
+                                                                        <th class="text-center">{$lang38}</th>
+                                                                    </tr>
+                                                                </thead>
+
+                                                    <tbody>
+                                                        {insert name=get_user_list value=var customer=1 assign=usersList}
+                                                        {if $usersList ne null}
+                                                        {foreach from=$usersList item=user}
+                                                        <tr class="odd gradeX {if $user['status'] eq "0"}warning {elseif $user['status'] eq "2"}danger{/if}">
+                                                            <td class="text-center">
+                                                                <input type="checkbox" class="checkboxes" value="1"/>
+                                                            </td>
+                                                            
+                                                            <td class="align-middle text-center">
+                                                                 {$user['username']|stripslashes}
+                                                            </td>
+                                                            <td class="align-middle text-center">
+                                                                {$user['fname']|stripslashes} {$user['lname']|stripslashes}
+                                                            </td>
+                                                            <td class="align-middle text-center">
+                                                                 {$user['category']|stripslashes|farsidigit}
+                                                            </td>
+
+
+                                                            <td class="text-center  align-middle">
+                                                                <a href="#" class="btn btn-default btn-xs"><i class="fa fa-edit white"></i> {$lang35} </a>
+                                                                <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-times white"></i> {$lang34} </a>
+
+                                                               
+                                                                <a href="#" data-toggle="popover" class="btn btn-3d btn-xs btn-blue" title="{$lang39} {$user['fname']} {$user['lname']}" data-content="<label>{$lang40}:</label> {$user['last_ip']|farsidigit}<br/><label>{$lang41}:</label> {$user['last_login']|jdate_format:"%Y/%m/%d"|farsidigit}<br/><label>{$lang32}:</label> {$user['joined']|jdate_format:"%Y/%m/%d"|farsidigit}">
+                                                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                                                    پروفایل
+                                                                </a>
+
+                                                            </td>
+                                                        </tr>
+
+
+
+                                                        {/foreach}
+                                                        {else}
+                                                        <tr>
+                                                            <td colspan="5"><p class="text-center">متاسفانه کاربری یافت نشد!</p></td>
+                                                        </tr>
+                                                        {/if}
+
+                                                </tbody>
+                                            </table>
+                                        </div>    
+                                    </div>
+
+												
+											</div>
+										</div>
+
+									</div>
+
+								</div>
+								<!-- /panel content -->
+                                <div class="panel-footer clearfix">
+
+                                  <a href="{$adminurl}/users.add.php?type=customer" data-target="#addUser" data-toggle="modal" class="btn btn-purple pull-right btn-sm nomargin-top nomargin-bottom"><i class="fa fa-edit white"></i>ثبت مشتری جدید</a>
+
+                                </div>
+							</div>   
                     
-					<div id="panel-2" class="panel panel-default">
-						<div class="panel-heading">
-							<span class="title elipsis">
-								<strong>{$lang10}</strong> <!-- panel title -->
-							</span>
-
-							
-                            <div class="pull-right">
-                                <form method="get" action="#" class="fancy-form">
-                                    <i class="fa fa-user"></i>
-
-                                    <input type="tel" class="form-control" placeholder="{$lang45}">
-
-                                    <!-- tooltip - optional, bootstrap tooltip can be used instead -->
-                                    <span class="fancy-tooltip top-right"> <!-- positions: .top-left | .top-right -->
-                                        <em> {$lang46}</em>
-                                    </span>
-                                </form>
-                            </div>
-
-						</div>
-
-						<!-- panel content -->
-						<div class="panel-body">
-                            <div class="table-responsive">
-							<table class="table table-striped table-bordered table-hover" id="datatable_sample">
-                                <thead>
-                                    <tr>
-                                        <th class="table-checkbox text-center width-20">
-                                            <input type="checkbox" class="group-checkable" data-set="#datatable_sample .checkboxes"/>
-                                        </th>
-                                        <th class="width-30 text-center">{$lang31}</th>
-                                        <th class="width-100 text-center">{$lang12}</th>
-                                        <th class="width-150 text-center">{$lang30}</th>
-                                        <th class="width-100 text-center">{$lang15}</th>
-                                        <th class="text-center">{$lang38}</th>
-                                    </tr>
-                                </thead>
-
-	<tbody>
-        {insert name=get_user_list value=var assign=usersList}
-        {foreach from=$usersList item=user}
-        <tr class="odd gradeX {if $user['status'] eq "0"}warning {elseif $user['status'] eq "2"}danger{/if}">
-			<td class="text-center">
-				<input type="checkbox" class="checkboxes" value="1"/>
-			</td>
-            <td class="text-center align-middle">
-                {if $user['gender'] eq "0"}
-                <img src="{$assets}/images/male.png"/>
-                {else}
-                <img src="{$assets}/images/female.png"/>
-                {/if}
-			</td>
-			<td class="align-middle text-center">
-				 {$user['username']|stripslashes}
-			</td>
-			<td class="align-middle text-center">
-				{$user['fname']|stripslashes} {$user['lname']|stripslashes}
-			</td>
-			<td class="align-middle text-center">
-				 {$user['mobile']|stripslashes|farsidigit}
-			</td>
-            
-			
-			<td class="text-center  align-middle">
-				<a href="#" class="btn btn-default btn-xs"><i class="fa fa-edit white"></i> {$lang35} </a>
-				<a href="#" class="btn btn-danger btn-xs"><i class="fa fa-times white"></i> {$lang34} </a>
                     
-                <a class="btn btn-3d btn-xs  btn-teal" href="{$user['email']|stripslashes}">
-                <i class="fa fa-envelope" aria-hidden="true"></i>
-                {$lang33}</a>
-                <a class="btn btn-3d btn-xs btn-aqua" href="{$adminurl}/sms.php?number={$user['mobile']|stripslashes}">
-                <i class="fa fa-comments" aria-hidden="true"></i>
-                {$lang37}</a>
-                <a href="#" data-toggle="popover" class="btn btn-3d btn-xs btn-blue" title="{$lang39} {$user['fname']} {$user['lname']}" data-content="<label>{$lang40}:</label> {$user['last_ip']|farsidigit}<br/><label>{$lang41}:</label> {$user['last_login']|jdate_format:"%Y/%m/%d"|farsidigit}<br/><label>{$lang32}:</label> {$user['joined']|jdate_format:"%Y/%m/%d"|farsidigit}">
-                    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-                    {$lang39}
-                </a>
-                
-			</td>
-		</tr>
-        
-        
-        
-        {/foreach}
-		
-	</tbody>
-</table>
-</div>
-
-						</div>
-						<!-- /panel content -->
-
-						<!-- panel footer -->
-						<div class="panel-footer clearfix">
-
-                            <a class="btn btn-purple pull-right btn-sm nomargin-top nomargin-bottom" href="{$adminurl}/user.add.php">{$lang48}</a>
-
-						</div>
-						<!-- /panel footer -->
-
-					</div>
-					<!-- /PANEL -->
+                    
                     
                     <div class="row">
                     
@@ -166,7 +256,7 @@
                                 </thead>
 
                                 <tbody>
-                                    {insert name=get_user_list value=var user_group=5 assign=adminList}
+                                    {insert name=get_user_list value=var user_group=1 assign=adminList}
                                     {foreach from=$adminList item=admin}
                                     <tr class="odd gradeX {if $admin['status'] eq "0"}warning {elseif $admin['status'] eq "2"}danger{/if}">
                                         
@@ -206,7 +296,7 @@
 
                             <!-- panel footer -->
                             <div class="panel-footer clearfix">
-                                <a class="btn btn-purple pull-right btn-sm nomargin-top nomargin-bottom" href="{$adminurl}/user.add.php?ugroup=5">{$lang49}</a>
+                                <a class="btn btn-purple pull-right btn-sm nomargin-top nomargin-bottom" href="{$adminurl}/users.add.php?ugroup=5">{$lang49}</a>
                                 
                             </div>
                             <!-- /panel footer -->
@@ -259,7 +349,8 @@
                                         </thead>
 
                                         <tbody>
-                                            {insert name=get_user_list value=var user_group=3 assign=employerList}
+                                            {insert name=get_user_list value=var user_group=0 assign=employerList}
+                                            {if $employerList ne null}
                                             {foreach from=$employerList item=employer}
                                             <tr class="odd gradeX {if $employer['status'] eq "0"}warning {elseif $employer['status'] eq "2"}danger{/if}">
 
@@ -288,7 +379,11 @@
 
 
                                             {/foreach}
-
+                                            {else}
+                                            <tr>
+                                                <td colspan="3"><p class="text-center">متاسفانه کاربری یافت نشد!</p></td>
+                                            </tr>
+                                            {/if}
                                         </tbody>
                                     </table>
                                     </div>
@@ -298,7 +393,7 @@
 
                                 <!-- panel footer -->
                                 <div class="panel-footer clearfix">
-                                    <a class="btn btn-purple pull-right btn-sm nomargin-top nomargin-bottom" href="{$adminurl}/user.add.php?ugroup=3">{$lang50}</a>
+                                    <a class="btn btn-purple pull-right btn-sm nomargin-top nomargin-bottom" href="{$adminurl}/users.add.php?ugroup=3">{$lang50}</a>
 
                                 </div>
                                 <!-- /panel footer -->
@@ -316,4 +411,14 @@
         </div>
         
 
+<div class="modal fade" id="addUser" role="basic" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
 
+            <div class="text-center">
+                <img src="{$assets}/images/loaders/7.gif" alt="" />
+            </div>
+
+        </div>
+    </div>
+</div>
