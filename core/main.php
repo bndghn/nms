@@ -192,11 +192,21 @@ function loginByCookie($isAdmin="0"){
 function insert_get_user_list($var){
     global $conn,$config;
     if(!isset($var['user_group']) ){
-        $add_sql    = "`user_group` = 0 ";
+        $add_sql    = " ";
+    }elseif($var['user_group']=="0"){
+        //$ugroup = intval($var['user_group']);
+        $add_sql    = " AND NOT users.user_group = 1 ";
     }else{
         $ugroup = intval($var['user_group']);
-        $add_sql    = "`user_group` = $ugroup ";
+        $add_sql    = " AND users.user_group = $ugroup ";
     }
+    
+    if(!isset($var['customer']) ){
+        $add_sql    .= "AND user_group.isCustomer=0";
+    }else{
+        $add_sql    .= "AND user_group.isCustomer=1";
+    }
+    
     if(!isset($var['start'])){
         $limit = intval($config['limit_users']);
         $add_sql    .= " LIMIT 0,". $limit;
@@ -205,12 +215,20 @@ function insert_get_user_list($var){
         $start  = intval($var['limit_start']);
         $add_sql    .= " LIMIT ".$start.",". $limit;
     }
-    $query  = "SELECT * FROM `users` WHERE ".$add_sql;
+    
+    
+    $query ="SELECT users.*, user_group.* FROM `users`,`user_group` WHERE user_group.id= users.user_group ".$add_sql;
+    
     //echo $query;
     $result = $conn->execute($query);
-    $users = $result->getAll();
+    if(!$users = $result->getArray()){
+        echo $conn->errorMsg();
+        return false;
+    }else{
+        return $users;
+    }
     
-    return $users;
+    
     
 }
 
@@ -230,3 +248,26 @@ function insert_get_user_group_list($gvar){
     
     return $userGroups;
 }
+
+function generatePass($characters) {
+    $possible = '123456789@_#abcdefgikmlnoz';
+    $code = '';
+    $i = 0;
+    while ($i < $characters) {
+        $code .= substr($possible, mt_rand(0, strlen($possible)-1), 1);
+        $i++;
+    }
+    return $code;
+}
+
+
+function verify_valid_email($emailtocheck){
+    if(!preg_match("/^[_\.0-9a-zA-Z-]+@([0-9a-zA-Z][0-9a-zA-Z-]+\.)+[a-zA-Z]{2,6}$/i", $emailtocheck)) {
+        return false;
+    }
+    else{
+        return true;
+    }
+}
+
+
