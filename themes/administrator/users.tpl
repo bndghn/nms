@@ -28,6 +28,14 @@
 									<span class="elipsis"><!-- panel title -->
 										<strong>فهرست مشتریان</strong>
 									</span>
+                                   
+                                    {if $error ne ""}
+                                        <div class="alert alert-mini alert-success nomargin noradius noborder">
+                                            <button class="close" data-dismiss="alert">×</button>
+                                            <p><strong>خطا! </strong> {$error}</p>
+                                        </div>
+                                    {/if}
+                                    
                                     <div class="pull-right">
                                         <form method="get" action="#" class="fancy-form">
                                             <i class="fa fa-user"></i>
@@ -296,7 +304,7 @@
 
                             <!-- panel footer -->
                             <div class="panel-footer clearfix">
-                                <a class="btn btn-purple pull-right btn-sm nomargin-top nomargin-bottom" href="{$adminurl}/users.add.php?ugroup=5">{$lang49}</a>
+                                <a class="btn btn-purple pull-right btn-sm nomargin-top nomargin-bottom" href="{$adminurl}/users.add.php?ugroup=5" data-target="#addUser" data-toggle="modal" class="btn btn-purple pull-right btn-sm nomargin-top nomargin-bottom">{$lang49}</a>
                                 
                             </div>
                             <!-- /panel footer -->
@@ -393,7 +401,7 @@
 
                                 <!-- panel footer -->
                                 <div class="panel-footer clearfix">
-                                    <a class="btn btn-purple pull-right btn-sm nomargin-top nomargin-bottom" href="{$adminurl}/users.add.php?ugroup=3">{$lang50}</a>
+                                    <a class="btn btn-purple pull-right btn-sm nomargin-top nomargin-bottom" href="{$adminurl}/users.add.php?ugroup=3" data-target="#addUser" data-toggle="modal" class="btn btn-purple pull-right btn-sm nomargin-top nomargin-bottom">{$lang50}</a>
 
                                 </div>
                                 <!-- /panel footer -->
