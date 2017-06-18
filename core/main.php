@@ -270,4 +270,12 @@ function verify_valid_email($emailtocheck){
     }
 }
 
-
+function check_tel($tel){
+   if ( ! preg_match("/^09(0[1-9]|1[0-9]|2[1-9]|3[1-9]|9[0-9])-?[0-9]{3}-?[0-9]{4}$/",$tel)){
+         
+        return false;
+    }
+    else{
+        return true;    
+    }   
+}
