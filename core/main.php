@@ -200,6 +200,13 @@ function insert_get_user_list($var){
         $ugroup = intval($var['user_group']);
         $add_sql    = " AND users.user_group = $ugroup ";
     }
+    if(!isset($var['verified'])){
+        $add_sql    .= "";
+    }elseif($var['verified']=="0"){
+        $add_sql    = " AND users.verified = 0 ";
+    }else{
+        $add_sql    = " AND users.verified = 1 ";
+    }
     
     if(!isset($var['customer']) ){
         $add_sql    .= "AND user_group.isCustomer=0";
