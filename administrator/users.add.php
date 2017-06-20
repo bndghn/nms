@@ -95,7 +95,7 @@ if ($submit === 1){
 STemplate::assign('message',$message);
 STemplate::assign('error',$error);
 
-STemplate::display('administrator/header.tpl');
+//STemplate::display('administrator/header.tpl');
 STemplate::display('administrator/users.add.tpl');
-STemplate::display('administrator/footer.tpl'); /* Load form users file */
+//STemplate::display('administrator/footer.tpl'); /* Load form users file */
 ?>
