@@ -6,7 +6,13 @@
 /* CHANGE MAIN FONT
  ************************************************* **/
 body{
-    	font-family:'sans', Arial, sans-serif;
+    font-family:'sans', Arial, sans-serif;
+    padding-right: 0!important;
+}
+body.modal-open{
+    padding-right: 0!important;
+    overflow-y:scroll;
+    position: fixed;
 }
 
 /** RTL DEFAULTS
