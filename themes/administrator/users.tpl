@@ -257,6 +257,7 @@
 
                                 <tbody>
                                     {insert name=get_user_list value=var user_group=1 assign=adminList}
+                                    {if $adminList ne null}
                                     {foreach from=$adminList item=admin}
                                     <tr class="odd gradeX {if $admin['status'] eq "0"}warning {elseif $admin['status'] eq "2"}danger{/if}">
                                         
@@ -285,6 +286,11 @@
 
 
                                     {/foreach}
+                                    {else}
+                                    <tr>
+                                        <td colspan="3"><p class="text-center">متاسفانه کاربری یافت نشد!</p></td>
+                                    </tr>
+                                    {/if}
 
                                 </tbody>
                             </table>
@@ -344,7 +350,7 @@
                                             <tr>
 
                                                 <th class="width-100 text-center">{$lang12}</th>
-                                                <th class="width-150 text-center">{$lang30}</th>
+                                                <th class="width-150 text-center">گروه کاربری</th>
                                                 <th class="text-center">{$lang38}</th>
                                             </tr>
                                         </thead>
@@ -360,7 +366,7 @@
                                                      {$employer['username']|stripslashes}
                                                 </td>
                                                 <td class="align-middle text-center">
-                                                    {$employer['fname']|stripslashes} {$employer['lname']|stripslashes}
+                                                    {$employer['category']|stripslashes}
                                                 </td>
 
                                                 <td class="text-center  align-middle">
