@@ -208,7 +208,7 @@
 								<!-- /panel content -->
                                 <div class="panel-footer clearfix">
 
-                                  <a href="{$adminurl}/users.add.php?type=customer" data-target="#addUser" data-toggle="modal" class="btn btn-purple pull-right btn-sm nomargin-top nomargin-bottom"><i class="fa fa-edit white"></i>ثبت مشتری جدید</a>
+                                  <a href="{$adminurl}/users.add.php?type=customer" data-target="#addCustomer" data-toggle="modal" class="btn btn-purple pull-right btn-sm nomargin-top nomargin-bottom"><i class="fa fa-edit white"></i>ثبت مشتری جدید</a>
 
                                 </div>
 							</div>   
@@ -296,7 +296,8 @@
 
                             <!-- panel footer -->
                             <div class="panel-footer clearfix">
-                                <a class="btn btn-purple pull-right btn-sm nomargin-top nomargin-bottom" href="{$adminurl}/users.add.php?ugroup=5">{$lang49}</a>
+                               
+                                <a href="{$adminurl}/users.add.php" data-target="#addUser" data-toggle="modal" class="btn btn-purple pull-right btn-sm nomargin-top nomargin-bottom"><i class="fa fa-edit white"></i>{$lang49}</a>
                                 
                             </div>
                             <!-- /panel footer -->
@@ -393,7 +394,7 @@
 
                                 <!-- panel footer -->
                                 <div class="panel-footer clearfix">
-                                    <a class="btn btn-purple pull-right btn-sm nomargin-top nomargin-bottom" href="{$adminurl}/users.add.php?ugroup=3">{$lang50}</a>
+                                    <a href="{$adminurl}/users.add.php" data-target="#addUser" data-toggle="modal" class="btn btn-purple pull-right btn-sm nomargin-top nomargin-bottom"><i class="fa fa-edit white"></i>{$lang50}</a>
 
                                 </div>
                                 <!-- /panel footer -->
@@ -411,6 +412,17 @@
         </div>
         
 
+<div class="modal fade" id="addCustomer" role="basic" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="text-center">
+                <img src="{$assets}/images/loaders/7.gif" alt="" />
+            </div>
+
+        </div>
+    </div>
+</div>
 <div class="modal fade" id="addUser" role="basic" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -422,3 +434,4 @@
         </div>
     </div>
 </div>
+
