@@ -323,9 +323,9 @@ function verifyUserData($type,$value){
         
     }elseif($type === "username"){
         
-        if(!preg_match("/^[a-zA-Z0-9]*$/i",$value){ return false; } else {return true;}
+        if(!preg_match("/^[a-zA-Z0-9]*$/i",$value)){ return false; } else {return true;}
            
-    }elseif($type === "codemeli"){
+     }elseif($type === "codemeli"){
         
         if (strlen($value) == 10){
             if($value=='1111111111' || $value=='0000000000' || $value=='2222222222' || $value=='3333333333' || $value=='4444444444' ||              $value=='5555555555' || $value=='6666666666' || $value=='7777777777' || $value=='8888888888' || $value=='9999999999' ){
