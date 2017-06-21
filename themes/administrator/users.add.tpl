@@ -18,7 +18,7 @@
                                    
                                     <select class="form-control select" name="usergroup">
                                        
-                                        <option value>--نوع کاربری را انتخاب کنید--</option>
+                                        <option value="0">--نوع کاربری را انتخاب کنید--</option>
                                         {if $type eq "customer"}
                                               {insert name=get_user_group_list isCustomer="1" value=gvar assign=groupList}
                                                 {foreach from=$groupList item=group}
