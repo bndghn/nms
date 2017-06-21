@@ -54,15 +54,16 @@ if ($tsErrorNumber!=""){
             $tsError = "تعداد شماره های تلفن همراه باید ۱۱ رقم باشد! ";
             break;
             
-        /* ***** for others error in other page *****    
+          
         case 11:
-            $tsError = ;
+            $tsError = "شماره تلفن همراه به درستی وارد نشده است.";
             break;
             
         case 12:
-            $tsError = ;
+            $tsError ="شماره تلفن همراه تکراری است و کاربر قبلا ثبت شده است." ;
             break;
-            
+        
+        /* ***** for others error in other page *****  
         case 13:
             $tsError = ;
             break;

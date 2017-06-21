@@ -61,9 +61,9 @@ if ($submit === 1){
             if(strlen($mobile) != 11){
                 $error = "10";
             }elseif(!verifyUserData("mobile",$mobile)){
-                $error = "شماره تلفن همراه به درستی وارد نشده است.";
+                $error = "11";
             }elseif(!verify_user_unique("mobile",$mobile)){
-                $error = "شماره تلفن همراه تکراری است و کاربر قبلا ثبت شده است.";
+                $error = "12";
             }
         }
     }
