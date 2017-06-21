@@ -290,7 +290,7 @@ function insert_get_user_group_list($gvar){
     return $userGroups;
 }
 
-function generatePass(integer $characters, $type="mixed") {
+function generatePass($characters, $type="mixed") {
     if($type === "mixed"){
         $possible = '123456789@_#abcdefghijklmnopqrstuvwxyz';
     }elseif($type === "number"){
@@ -356,10 +356,11 @@ function verify_user_unique($field,$value)
 {
     global $config,$conn;
     $cValue = $conn->qStr($value);
-	$query = "select count(*) as total from `users` WHERE  `$field` = $cValue  limit 1";
+	$query = "SELECT count(*) as `total` FROM `users` WHERE  `$field` = $cValue  limit 1";
 	$executequery = $conn->execute($query);
-	$totalemails = $executequery->fields[total];
-	if ($totalemails >= 1)
+    //echo $conn->errorMsg();
+	$total = $executequery->fields['total'];
+	if ($total >= 1)
 	{
 		return false;
 	}
