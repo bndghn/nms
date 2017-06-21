@@ -302,12 +302,41 @@ function generatePass($characters) {
 }
 
 
-function verify_valid_email($emailtocheck){
-    if(!preg_match("/^[_\.0-9a-zA-Z-]+@([0-9a-zA-Z][0-9a-zA-Z-]+\.)+[a-zA-Z]{2,6}$/i", $emailtocheck)) {
-        return false;
-    }
+//for check email mobile and codeMelli foramt
+function verifyContact($type,$value){
+    if($type === "email"){
+        
+        if(!preg_match("/^[_\.0-9a-zA-Z-]+@([0-9a-zA-Z][0-9a-zA-Z-]+\.)+[a-zA-Z]{2,6}$/i", $value))
+        {return false;}else{return true;}
+        
+    }elseif($type === "mobile"){
+        
+        if ( ! preg_match("/^09(0[1-9]|1[0-9]|2[1-9]|3[1-9]|9[0-9])-?[0-9]{3}-?[0-9]{4}$/",$value))
+        {return false;}else{return true;}  
+    }elseif($type === "codemeli"){
+        
+        if (strlen($value) == 10){
+            if($value=='1111111111' || $value=='0000000000' || $value=='2222222222' || $value=='3333333333' || $value=='4444444444' ||              $value=='5555555555' || $value=='6666666666' || $value=='7777777777' || $value=='8888888888' || $value=='9999999999' ){
+                return false;
+            }
+        $c = intval(substr($value,9,1));
+        $n = intval(substr($value,0,1))*10 +
+        intval(substr($value,1,1))*9 + intval(substr($value,2,1))*8 +  intval(substr($value,3,1))*7 + intval(substr($value,4,1))*6 + intval(substr($value,5,1))*5 + intval(substr($value,6,1))*4 + intval(substr($value,7,1))*3 + intval(substr($value,8,1))*2;
+        $r = $n - intval ($n/11)*11;
+            if (($r == 0 && $r == $c) || ($r == 1 && $c == 1) || ($r > 1 && $c == 11 - $r)){
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
+        
+        
+    }// end check codeMelli
     else{
-        return true;
+        //when dont send any type
+        return false;
     }
 }
 
