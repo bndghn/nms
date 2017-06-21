@@ -1,4 +1,4 @@
-<!-- 
+            <!-- 
 				ASIDE 
 				Keep it outside of #wrapper (responsive purpose)
 			-->
@@ -6,21 +6,21 @@
 				
 				<nav id="sideNav"><!-- MAIN MENU -->
 					<ul class="nav nav-list">
-						<li class="active"><!-- dashboard -->
+						<li {if $section eq "dashboard"}class="active" {/if}><!-- dashboard -->
                             <!-- warning - url used by default by ajax (if eneabled) -->
 							<a class="dashboard" href="{$adminurl}/dashboard.php">
 								<i class="main-icon fa fa-dashboard"></i> <span>{$lang7}</span>
 							</a>
 						</li>
-                        <li>
+                        <li {if $section eq "users_manager"}class="active"{/if}>
 							<a href="#">
 								<i class="fa fa-menu-arrow pull-right"></i>
-								<i class="main-icon fa fa-users"></i> <span>{$lang6}</span>
+								<i class="main-icon fa fa-users "></i> <span>{$lang6}</span>
 							</a>
 							<ul><!-- submenus -->
-								<li><a href="{$adminurl}/users.php">فهرست کاربران</a></li>
-								<li><a href="{$adminurl}/users.group.php">{$lang20}</a></li>
-								<li><a href="{$adminurl}/users.acl">{$lang21}</a></li>
+								<li {if $page eq "users"}class="active"{/if}><a href="{$adminurl}/users.php" >فهرست کاربران</a></li>
+								<li {if $page eq "usersgroup"}class="active"{/if}><a href="{$adminurl}/users.group.php">{$lang20}</a></li>
+								<li {if $page eq "usersacl"}class="active"{/if}><a href="{$adminurl}/users.acl">{$lang21}</a></li>
 							</ul>
 						</li>
 						

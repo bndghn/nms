@@ -15,6 +15,10 @@ $message    =   "";
 STemplate::assign('message',$message);
 STemplate::assign('error',$error);
 
+//Select active menu
+STemplate::assign('section',"users_manager");
+STemplate::assign('page',"users");
+
 
 STemplate::display('administrator/header.tpl');
 STemplate::display('administrator/users.tpl');

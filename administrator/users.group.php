@@ -80,13 +80,17 @@ if ($submit === "1"){
 
 
 
-    //load nessary template for loading
-    STemplate::assign('message',$message);
-    STemplate::assign('error',$error);
+//load nessary template for loading
+STemplate::assign('message',$message);
+STemplate::assign('error',$error);
 
-    STemplate::display('administrator/header.tpl');
-    STemplate::display('administrator/users.group.tpl');
-    STemplate::display('administrator/footer.tpl'); /* Load form users file */
+//Select active menu
+STemplate::assign('section',"users_manager");
+STemplate::assign('page',"usersgroup");
+
+STemplate::display('administrator/header.tpl');
+STemplate::display('administrator/users.group.tpl');
+STemplate::display('administrator/footer.tpl'); /* Load form users file */
 
 
 
