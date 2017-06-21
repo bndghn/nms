@@ -311,4 +311,21 @@ function verify_valid_email($emailtocheck){
     }
 }
 
+function verify_user_unique($field,$value)
+{
+    global $config,$conn;
+    $cValue = $conn->qStr($value);
+	$query = "select count(*) as total from `users` WHERE  `$field` = $cValue  limit 1";
+	$executequery = $conn->execute($query);
+	$totalemails = $executequery->fields[total];
+	if ($totalemails >= 1)
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+}
+
 
