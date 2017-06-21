@@ -8,6 +8,86 @@ verify_login_admin();
 $error      =   "";
 $message    =   "";
 
+//get error from other pages
+(isset($_GET['tsError']) ? $tsErrorNumber = intval($_GET['tsError']) : $tsErrorNumber = "");
+ 
+if ($tsErrorNumber!=""){
+     
+    switch($tsErrorNumber){
+        case 1:
+            $tsError = "حتما باید نام کاربری را وارد نمایید.";
+            break;
+             
+        case 2:
+            $tsError = "نام کاربری فقط می تواند  متشکل از کارکترهای لاتین و اعداد باشد.";
+            break;
+             
+        case 3:
+            $tsError = "این نام کاربری توسط فرد دیگری ثبت شده و قابل استفاده نمی باشد.";
+            break;
+            
+        case 4:
+            $tsError = "نام کاربری باید بیش از 4 کارکتر باشد.";
+            break;
+            
+        case 5:
+            $tsError = "نام کاربری نباید بیشتر از ۱۲ کارکتر باشد.";
+            break;
+        
+        case 6:
+            $tsError = "گروه کاربری انتخاب نشده است.";
+            break;
+            
+        case 7:
+            $tsError =  "پست الکترونیک یا موبایل مشتری حتما باید وارد شود.";
+            break;
+            
+        case 8:
+            $tsError = "پست الکترونیک به درستی وارد نشده است.";
+            break;
+            
+        case 9:
+            $tsError = "ایمیل تکراری است و کاربر قبلا ثبت شده است.";
+            break;
+            
+        case 10:
+            $tsError = "تعداد شماره های تلفن همراه باید ۱۱ رقم باشد! ";
+            break;
+            
+        /* ***** for others error in other page *****    
+        case 11:
+            $tsError = ;
+            break;
+            
+        case 12:
+            $tsError = ;
+            break;
+            
+        case 13:
+            $tsError = ;
+            break;
+            
+        case 14:
+            $tsError = ;
+            break;
+            
+        case 15:
+            $tsError = ;
+            break;
+            
+        case 16:
+            $tsError = ;
+            break;
+            
+        */////////
+    }
+    
+     
+     
+     if(isset($tsError)){
+         STemplate::assign('tsError',$tsError);
+     }
+ }
 
 
 
