@@ -56,7 +56,7 @@
                                  
                                 <div class="col-sm-12">
                                  <label>پست الکترونیکی</label>
-                                  <input type="text" class="form-control ltr" id="" placeholder="پست الکترونیک" name="email">
+                                  <input type="text" class="form-control ltr"  placeholder=" پست الکترونیک" name="email">
                                 </div>
                               </div> 
 
