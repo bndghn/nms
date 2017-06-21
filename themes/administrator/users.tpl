@@ -52,12 +52,19 @@
 											<ul class="nav nav-tabs nav-stacked">
 												<li class="active">
 													<a href="#active_user" data-toggle="tab">
-														<span class="badge badge-warning pull-right">3</span>
+														<span class="badge badge-warning pull-right">
+                                                        {insert name=get_users_count value=var  customer=1 verified=1 assign=customerConutVerified}
+                                                        {$customerConutVerified}
+                                                        </span>
 														مشتریان فعال
 													</a>
 												</li>
 												<li>
 													<a href="#deactive_user" data-toggle="tab">
+                                                        <span class="badge badge-warning pull-right">
+                                                        {insert name=get_users_count value=var  customer=1 verified=0 assign=notVerified}
+                                                        {$notVerified}
+                                                        </span>
 														مشتریان غیرفعال
 													</a>
 												</li>
@@ -87,7 +94,7 @@
                                                                 </thead>
 
                                                                 <tbody>
-                                                                    {insert name=get_user_list value=var customer=1 assign=usersList}
+                                                                    {insert name=get_user_list value=var customer=1 verified=1 assign=usersList}
                                                                     {if $usersList ne null}
                                                                     {foreach from=$usersList item=user}
                                                                     <tr class="odd gradeX {if $user['status'] eq "0"}warning {elseif $user['status'] eq "2"}danger{/if}">
@@ -152,22 +159,22 @@
                                                                 </thead>
 
                                                     <tbody>
-                                                        {insert name=get_user_list value=var customer=1 assign=usersList}
-                                                        {if $usersList ne null}
-                                                        {foreach from=$usersList item=user}
-                                                        <tr class="odd gradeX {if $user['status'] eq "0"}warning {elseif $user['status'] eq "2"}danger{/if}">
+                                                        {insert name=get_user_list value=var customer=1 verified=0 assign=usersListNV}
+                                                        {if $usersListNV ne null}
+                                                        {foreach from=$usersListNV item=usernv}
+                                                        <tr class="odd gradeX {if $usernv['status'] eq "0"}warning {elseif $usernv['status'] eq "2"}danger{/if}">
                                                             <td class="text-center">
                                                                 <input type="checkbox" class="checkboxes" value="1"/>
                                                             </td>
                                                             
                                                             <td class="align-middle text-center">
-                                                                 {$user['username']|stripslashes}
+                                                                 {$usernv['username']|stripslashes}
                                                             </td>
                                                             <td class="align-middle text-center">
-                                                                {$user['fname']|stripslashes} {$user['lname']|stripslashes}
+                                                                {$usernv['fname']|stripslashes} {$usernv['lname']|stripslashes}
                                                             </td>
                                                             <td class="align-middle text-center">
-                                                                 {$user['category']|stripslashes|farsidigit}
+                                                                 {$usernv['category']|stripslashes|farsidigit}
                                                             </td>
 
 
@@ -176,7 +183,7 @@
                                                                 <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-times white"></i> {$lang34} </a>
 
                                                                
-                                                                <a href="#" data-toggle="popover" class="btn btn-3d btn-xs btn-blue" title="{$lang39} {$user['fname']} {$user['lname']}" data-content="<label>{$lang40}:</label> {$user['last_ip']|farsidigit}<br/><label>{$lang41}:</label> {$user['last_login']|jdate_format:"%Y/%m/%d"|farsidigit}<br/><label>{$lang32}:</label> {$user['joined']|jdate_format:"%Y/%m/%d"|farsidigit}">
+                                                                <a href="#" data-toggle="popover" class="btn btn-3d btn-xs btn-blue" title="{$lang39} {$usernv['fname']} {$usernv['lname']}" data-content="<label>{$lang40}:</label> {$usernv['last_ip']|farsidigit}<br/><label>{$lang41}:</label> {$usernv['last_login']|jdate_format:"%Y/%m/%d"|farsidigit}<br/><label>{$lang32}:</label> {$usernv['joined']|jdate_format:"%Y/%m/%d"|farsidigit}">
                                                                     <i class="fa fa-user" aria-hidden="true"></i>
                                                                     پروفایل
                                                                 </a>
