@@ -189,6 +189,40 @@ function loginByCookie($isAdmin="0"){
 
 }
 
+function insert_get_users_count($var){
+    global $conn;
+    if(!isset($var['user_group']) ){
+        $add_sql    = " ";
+    }elseif($var['user_group']=="0"){
+        //$ugroup = intval($var['user_group']);
+        $add_sql    = " NOT users.user_group = 1 ";
+    }else{
+        $ugroup = intval($var['user_group']);
+        $add_sql    = "  users.user_group = $ugroup ";
+    }
+    if(!isset($var['verified'])){
+        $add_sql    .= "";
+    }else{
+        $verify = intVal($var['verified']);
+        $add_sql    .= " AND users.verified = $verify ";
+    }
+    
+    if(!isset($var['customer']) ){
+        $add_sql    .= "AND user_group.isCustomer=0";
+    }else{
+        $add_sql    .= "AND user_group.isCustomer=1";
+    }
+    
+     $query ="SELECT count(*) as total  FROM `users`,`user_group` WHERE user_group.id= users.user_group ".$add_sql;
+    //echo $query;
+    $result = $conn->execute($query);
+    $total = $result->fields['total'];
+    return $total;
+    
+    
+}
+
+
 function insert_get_user_list($var){
     global $conn,$config;
     if(!isset($var['user_group']) ){
