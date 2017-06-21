@@ -290,7 +290,7 @@ function insert_get_user_group_list($gvar){
     return $userGroups;
 }
 
-function generatePass($characters, $type="mixed") {
+function generatePass(integer $characters, $type="mixed") {
     if($type === "mixed"){
         $possible = '123456789@_#abcdefghijklmnopqrstuvwxyz';
     }elseif($type === "number"){
@@ -303,7 +303,7 @@ function generatePass($characters, $type="mixed") {
     
     $code = '';
     $i = 0;
-    while ($i < $characters) {
+    while ($i < (int)$characters) {
         $code .= substr($possible, mt_rand(0, strlen($possible)-1), 1);
         $i++;
     }
@@ -311,17 +311,20 @@ function generatePass($characters, $type="mixed") {
 }
 
 
-//for check email mobile and codeMelli foramt
-function verifyContact($type,$value){
+//for check email mobile username and codeMelli foramt
+function verifyUserData($type,$value){
     if($type === "email"){
         
-        if(!preg_match("/^[_\.0-9a-zA-Z-]+@([0-9a-zA-Z][0-9a-zA-Z-]+\.)+[a-zA-Z]{2,6}$/i", $value))
-        {return false;}else{return true;}
+        if(!preg_match("/^[_\.0-9a-zA-Z-]+@([0-9a-zA-Z][0-9a-zA-Z-]+\.)+[a-zA-Z]{2,6}$/i", $value)){return false;}else{return true;}
         
     }elseif($type === "mobile"){
         
-        if ( ! preg_match("/^09(0[1-9]|1[0-9]|2[1-9]|3[1-9]|9[0-9])-?[0-9]{3}-?[0-9]{4}$/",$value))
-        {return false;}else{return true;}  
+        if ( ! preg_match("/^09(0[1-9]|1[0-9]|2[1-9]|3[1-9]|9[0-9])-?[0-9]{3}-?[0-9]{4}$/",$value)){return false;}else{return true;} 
+        
+    }elseif($type === "username"){
+        
+        if(!preg_match("/^[a-zA-Z0-9]*$/i",$value){ return false; } else {return true;}
+           
     }elseif($type === "codemeli"){
         
         if (strlen($value) == 10){
