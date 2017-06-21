@@ -290,8 +290,17 @@ function insert_get_user_group_list($gvar){
     return $userGroups;
 }
 
-function generatePass($characters) {
-    $possible = '123456789@_#abcdefgikmlnoz';
+function generatePass($characters, $type="mixed") {
+    if($type === "mixed"){
+        $possible = '123456789@_#abcdefghijklmnopqrstuvwxyz';
+    }elseif($type === "number"){
+        $possible = '1234567890';
+    }elseif($type === "numchar"){
+        $possible = '1234567890abcdefghijklmnopqrstuvwxyz';
+    }elseif($type === "char"){
+        $possible = 'abcdefghijklmnopqrstuvwxyz';
+    }
+    
     $code = '';
     $i = 0;
     while ($i < $characters) {
