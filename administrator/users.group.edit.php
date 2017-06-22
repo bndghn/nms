@@ -9,12 +9,12 @@ verify_login_admin();
 $error      =   "";
 $message    =   "";
 
-(isset($_GET['id']) ? $userID = $_GET['id'] : $userID = "");
+(isset($_GET['id']) ? $uGroupID = $_GET['id'] : $uGroupID = "");
 
 
-if($userID!=""){
-    $userID = intval($userID);
-    $query="SELECT * FROM `user_group` WHERE `id`=$userID Limit 1";
+if($uGroupID!=""){
+    $uGroupID = intval($uGroupID);
+    $query="SELECT * FROM `user_group` WHERE `id`=$uGroupID Limit 1";
     $excuteGUser=$conn->EXECUTE($query);
     $gUser=$excuteGUser->getArray();
     STemplate::assign('gUser',$gUser['0']);
