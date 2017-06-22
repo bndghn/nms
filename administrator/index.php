@@ -72,7 +72,7 @@ else
             }else{
                 
                 // get username and pass from db
-                $getID      = $result->fields['id'];
+                $getID      = $result->fields['userid'];
                 $getUname   = $result->fields['username'];
                 $getPass    = $result->fields['pass'];
                 $getAdmin   = intval($result->fields['admin']);

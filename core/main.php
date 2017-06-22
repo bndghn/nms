@@ -75,7 +75,7 @@ function verify_login_admin()
 function adminIsValid(){
     global $config,$conn;
     $adminID = intval($_SESSION['ADMIN_ID']);
-    $sql = "SELECT `admin` FROM `users` WHERE id=".$adminID;
+    $sql = "SELECT `admin` FROM `users` WHERE userid=".$adminID;
     $rs=$conn->execute($sql);
     if($rs->fields['admin'] === "0"){
         $_SESSION['ISADMIN'] = 0;
@@ -149,7 +149,7 @@ function loginByCookie($isAdmin="0"){
             {				
                 
                 if($isAdmin==="1"){
-                    $_SESSION['ADMIN_ID']       = $rs->fields['id'];
+                    $_SESSION['ADMIN_ID']       = $rs->fields['userid'];
                     $_SESSION['ADMIN_USER']     = $rs->fields['username'];
                     $_SESSION['USERNAME']       = $rs->fields['username'];
                     $_SESSION['ADMIN_PASS']     = $rs->fields['pass'];
@@ -162,7 +162,7 @@ function loginByCookie($isAdmin="0"){
                     $_SESSION['ADMIN_LOGIN']    = "1"; //nessary for checking in admin page
                     $_SESSION['LOGIN']          = "1"; //nessary for checking in front page
                 }else{
-                    $_SESSION['ID']         = $rs->fields['id'];
+                    $_SESSION['ID']         = $rs->fields['userid'];
                     $_SESSION['PASS']       = $rs->fields['pass'];
                     $_SESSION['USER_NAME']  = $rs->fields['username'];
                     $_SESSION['VERIFIED']   = $rs->fields['verified'];
