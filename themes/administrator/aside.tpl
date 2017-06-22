@@ -40,7 +40,7 @@
                         <li>
 							<a href="#">
 								<i class="fa fa-menu-arrow pull-right"></i>
-								<i class="main-icon fa fa-user"></i> <span>{$lang18}</span>
+								<i class="main-icon fa fa-shopping-cart"></i> <span>مدیریت فروشگاه</span>
 							</a>
 							<ul><!-- submenus -->
 								<li><a href="tables-bootstrap.html">Bootstrap Tables</a></li>
