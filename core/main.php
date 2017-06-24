@@ -308,9 +308,9 @@ function generatePass($characters, $type="mixed") {
     if($type === "mixed"){
         $possible = '123456789@_#abcdefghijklmnopqrstuvwxyz';
     }elseif($type === "number"){
-        $possible = '1234567890';
+        $possible = '123456789';
     }elseif($type === "numchar"){
-        $possible = '1234567890abcdefghijklmnopqrstuvwxyz';
+        $possible = '123456789abcdefghijklmnopqrstuvwxyz';
     }elseif($type === "char"){
         $possible = 'abcdefghijklmnopqrstuvwxyz';
     }
