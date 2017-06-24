@@ -222,6 +222,18 @@ function insert_get_users_count($var){
     
 }
 
+function insert_get_user($var){
+    global $conn,$config;
+    $uID = intval($var['userid']);
+    $query = "SELECT users.*, user_group.* FROM `users`,`user_group` WHERE user_group.id= users.user_group AND users.userid=$uID";
+    $result = $conn->execute($query);
+    if(!$user = $result->getArray()){
+        echo $conn->errorMsg();
+        return false;
+    }else{
+        return $user['0'];
+    }
+}
 
 function insert_get_user_list($var){
     global $conn,$config;
@@ -243,9 +255,10 @@ function insert_get_user_list($var){
     }
     
     if(!isset($var['customer']) ){
-        $add_sql    .= "AND user_group.isCustomer=0";
+        $add_sql    .= "";
     }else{
-        $add_sql    .= "AND user_group.isCustomer=1";
+        $isCustomer = intval($var['customer']);
+        $add_sql    .= "AND user_group.isCustomer=$isCustomer";
     }
     
     if(!isset($var['start'])){
