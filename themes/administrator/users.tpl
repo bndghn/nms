@@ -114,7 +114,8 @@
 
 
                                                                     <td class="text-center  align-middle">
-                                                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-edit white"></i> {$lang35} </a>
+                                                                        
+                                                                        <a href="{$adminurl}/users.edit.php?id={$user['userid']}" class="btn btn-default btn-xs" data-target="#uEdit{$user['userid']}" data-toggle="modal"><i class="fa fa-edit white"></i> {$lang35} </a>
                                                                         <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-times white"></i> {$lang34} </a>
 
 
@@ -152,8 +153,9 @@
                                                                         </th>
                                                                         
                                                                         <th class="width-100 text-center">{$lang12}</th>
-                                                                        <th class="width-150 text-center">{$lang30}</th>
-                                                                        <th class="width-130 text-center">نوع مشتری</th>
+                                                                        <th class="width-150 text-center">ایمیل</th>
+                                                                        <th class="width-100 text-center">تلفن همراه</th>
+                                                                        <th class="width-100 text-center">رمز عبور</th>
                                                                         <th class="text-center">{$lang38}</th>
                                                                     </tr>
                                                                 </thead>
@@ -171,22 +173,19 @@
                                                                  {$usernv['username']|stripslashes}
                                                             </td>
                                                             <td class="align-middle text-center">
-                                                                {$usernv['fname']|stripslashes} {$usernv['lname']|stripslashes}
+                                                                {$usernv['email']|stripslashes}
                                                             </td>
                                                             <td class="align-middle text-center">
-                                                                 {$usernv['category']|stripslashes|farsidigit}
+                                                                {$usernv['mobile']|farsidigit}
+                                                            </td>
+                                                            <td class="align-middle text-center">
+                                                                 {$usernv['firstPass']|stripslashes|farsidigit}
                                                             </td>
 
 
                                                             <td class="text-center  align-middle">
                                                                 <a href="#" class="btn btn-default btn-xs"><i class="fa fa-edit white"></i> {$lang35} </a>
                                                                 <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-times white"></i> {$lang34} </a>
-
-                                                               
-                                                                <a href="#" data-toggle="popover" class="btn btn-3d btn-xs btn-blue" title="{$lang39} {$usernv['fname']} {$usernv['lname']}" data-content="<label>{$lang40}:</label> {$usernv['last_ip']|farsidigit}<br/><label>{$lang41}:</label> {$usernv['last_login']|jdate_format:"%Y/%m/%d"|farsidigit}<br/><label>{$lang32}:</label> {$usernv['joined']|jdate_format:"%Y/%m/%d"|farsidigit}">
-                                                                    <i class="fa fa-user" aria-hidden="true"></i>
-                                                                    پروفایل
-                                                                </a>
 
                                                             </td>
                                                         </tr>
@@ -363,7 +362,7 @@
                                         </thead>
 
                                         <tbody>
-                                            {insert name=get_user_list value=var user_group=0 assign=employerList}
+                                            {insert name=get_user_list value=var user_group=0 customer=0 assign=employerList}
                                             {if $employerList ne null}
                                             {foreach from=$employerList item=employer}
                                             <tr class="odd gradeX {if $employer['status'] eq "0"}warning {elseif $employer['status'] eq "2"}danger{/if}">
@@ -448,3 +447,22 @@
     </div>
 </div>
 
+{insert name=get_user_list value=var assign=usersEdit}
+{foreach from=$usersEdit item=userEdit}
+
+
+
+<div class="modal fade" id="uEdit{$userEdit['userid']}" role="basic" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="text-center">
+                <img src="{$assets}/images/loaders/7.gif" alt="" />
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+{/foreach}
