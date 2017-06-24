@@ -250,9 +250,16 @@ function insert_get_user_list($var){
     if(!isset($var['verified'])){
         $add_sql    .= "";
     }elseif($var['verified']=="0"){
-        $add_sql    = " AND users.verified = 0 ";
+        $add_sql    .= " AND users.verified = 0 ";
     }else{
-        $add_sql    = " AND users.verified = 1 ";
+        $add_sql    .= " AND users.verified = 1 ";
+    }
+    
+    if(!isset($var['status'])){
+        $add_sql    .= " AND users.user_status != '2'";
+    }else{
+        $uStatus = intval($var['status']);
+        $add_sql    .= " AND users.user_status = '$uStatus' ";
     }
     
     if(!isset($var['customer']) ){
