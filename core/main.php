@@ -90,6 +90,7 @@ function adminIsValid(){
     }
 }
 
+
 function create_remember(){
     
     $key = md5(sha1($_SESSION['USERNAME'] . get_last_ip()));
@@ -381,6 +382,26 @@ function verify_user_unique($field,$value)
 	{
 		return true;
 	}
+}
+
+function isUserChange($uid, $field, $value){
+    global $config,$conn;
+    $cValue = $conn->qStr($value);
+    $query = "SELECT count(*) as `total` FROM `users` WHERE `userid`=$uid AND  `$field` = $cValue  limit 1";
+    if(!$executequery = $conn->execute($query))echo $conn->errorMsg();
+    $total = $executequery->fields['total'];
+   // echo $query."for $field and total = $total </br>";
+    
+    
+    if ($total === 0)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+    
 }
 
 

@@ -4,7 +4,7 @@
         <div class="col-md-12 col-sm-12 padding-20">
             <form  action="{$adminurl}/users.edit.php" method="post" enctype="multipart/form-data">
                 <fieldset>
-                    
+                    {if $user['verified'] eq "1"}
                     <div class="row">
                         <div class="form-group">
                             <div class="col-md-6 col-sm-6">
@@ -17,6 +17,7 @@
                             </div>
                         </div>
                     </div>
+                    {/if}
                     
                     <div class="row">
                         <div class="form-group">
@@ -38,37 +39,49 @@
                             <div class="col-md-6 col-sm-12">
                                 <label>گروه کاربری</label>
                                 <select class="form-control select" name="usergroup">
-                                       
-                                    <option value="0">--نوع کاربری را انتخاب کنید--</option>
-                                    {if $user['isCustomer'] eq "1"}
-                                          {insert name=get_user_group_list isCustomer="1" value=gvar assign=groupList}
-                                            {foreach from=$groupList item=group}
-                                                {if $group['status'] eq "0"} 
-                                                    {continue} 
-                                                {/if} 
-                                                <option value="{$group['id']}">{$group['category']}</option>                                               
-                                            {/foreach}
-                                    {else}
-                                        {insert name=get_user_group_list isCustomer="0" value=gvar assign=groupList}
+                                    
+                                      {insert name=get_user_group_list  value=gvar assign=groupList}
                                         {foreach from=$groupList item=group}
+                                           
+                                            {if $user['isCustomer'] eq "1"}
+                                               
+                                                {if $group['isCustomer'] eq "0"} 
+                                                    {continue} 
+                                                {/if}
+                                                
+                                            {else}
+                                                {if $group['isCustomer'] eq "1"} 
+                                                    {continue} 
+                                                {/if}
+                                            {/if}
+                                            
+                                            
                                             {if $group['status'] eq "0"} 
                                                 {continue} 
                                             {/if} 
-                                            <option value="{$group['id']}">{$group['category']}</option>                                               
+                                            <option value="{$group['id']}" {if $user['user_group'] eq $group['id']} selected {/if}>
+                                            
+                                                {$group['category']}
+                                                
+                                            </option>                                               
                                         {/foreach}
-                                    {/if}
+                                   
+                                      
+                                   
 
                                 </select>
                             </div>
                             
                             <div class="col-md-6 col-sm-6">
-                            <label class="switch switch-info switch-round">
-                                <span>وضعیت : </span>
-                              
-                                <span class="switch-label"  data-on="فعال" data-off="غیرفعال"></span>
+                                <label>وضعیت کاربر</label>
+                                    <select class="form-control select" name="status">
 
-                            </label>
-                        </div>
+                                       
+                                        <option value="1" {if $user['user_status'] eq "1"} selected {/if}>پویا</option>     
+                                        <option value="0" {if $user['user_status'] eq "0"} selected {/if}>مسدود</option>
+                                        <option value="2" {if $user['user_status'] eq "2"} selected {/if}>حذف موقت</option>    
+                                    </select>
+                            </div>
                             
                         </div>
                     </div>
@@ -80,7 +93,7 @@
                   <div class="row">
                         <div class="col-md-12">
                           <input type="hidden" name="isSubmit" value="1"/>
-                          <input type="hidden" name="id" value=""/>
+                          <input type="hidden" name="userid" value="{$user['userid']}"/>
                           <button type="submit" class="btn btn-success btn btn-3d btn-teal  btn-block margin-top-30">ویرایش کاربر</button>
                         </div>
                     </div>

@@ -53,12 +53,9 @@ if ($submit === "1"){
     (isset($_POST['iscostumer']) ? $iscostum = 1 : $iscostum = 0);
     (isset($_POST['status']) ? $status = 1 : $status = 0);
     
- 
     if($catname==="")
     {
-
         $error = "حتما باید نام گروه کاربری را وارد نمایید.";
-
     }
 
     if($error===""){

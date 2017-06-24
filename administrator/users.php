@@ -63,11 +63,11 @@ if ($tsErrorNumber!=""){
             $tsError ="شماره تلفن همراه تکراری است و کاربر قبلا ثبت شده است." ;
             break;
         
-        /* ***** for others error in other page *****  
+        
         case 13:
-            $tsError = ;
+            $tsError = "نام و نام خانوادگی به درستی وارد نشده است . " ;
             break;
-            
+            /* ***** for others error in other page *****  
         case 14:
             $tsError = ;
             break;

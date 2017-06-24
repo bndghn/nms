@@ -97,7 +97,8 @@
                                                                     {insert name=get_user_list value=var customer=1 verified=1 assign=usersList}
                                                                     {if $usersList ne null}
                                                                     {foreach from=$usersList item=user}
-                                                                    <tr class="odd gradeX {if $user['status'] eq "0"}warning {elseif $user['status'] eq "2"}danger{/if}">
+                                                                    {if $user['user_status'] eq "2"} {continue} {/if}
+                                                                    <tr class="odd gradeX {if $user['user_status'] eq "0"}warning {/if}">
                                                                     <td class="text-center">
                                                                         <input type="checkbox" class="checkboxes" value="1"/>
                                                                     </td>
@@ -184,7 +185,8 @@
 
 
                                                             <td class="text-center  align-middle">
-                                                                <a href="#" class="btn btn-default btn-xs"><i class="fa fa-edit white"></i> {$lang35} </a>
+                                                                <a href="{$adminurl}/users.edit.php?id={$usernv['userid']}" class="btn btn-default btn-xs" data-target="#uEdit{$usernv['userid']}" data-toggle="modal"><i class="fa fa-edit white"></i> {$lang35} </a>
+                                                                
                                                                 <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-times white"></i> {$lang34} </a>
 
                                                             </td>
@@ -276,7 +278,9 @@
                                         </td>
 
                                         <td class="text-center  align-middle">
-                                            <a href="#" class="btn btn-default btn-xs"><i class="fa fa-edit white"></i> {$lang35} </a>
+                                            
+                                            <a href="{$adminurl}/users.edit.php?id={$admin['userid']}" class="btn btn-default btn-xs" data-target="#uEdit{$admin['userid']}" data-toggle="modal"><i class="fa fa-edit white"></i> {$lang35} </a>
+                                            
                                             <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-times white"></i> {$lang34} </a>
 
                                             
@@ -376,7 +380,7 @@
                                                 </td>
 
                                                 <td class="text-center  align-middle">
-                                                    <a href="#" class="btn btn-default btn-xs"><i class="fa fa-edit white"></i> {$lang35} </a>
+                                                    <a href="{$adminurl}/users.edit.php?id={$employer['userid']}" class="btn btn-default btn-xs" data-target="#uEdit{$employer['userid']}" data-toggle="modal"><i class="fa fa-edit white"></i> {$lang35} </a>
                                                     <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-times white"></i> {$lang34} </a>
 
 

@@ -9,15 +9,7 @@ verify_login_admin();
 $error      =   "";
 $message    =   "";
 
-//check wich usergroup must user add it.
-(isset($_GET['type']) ? $type = $_GET['type'] : $type = "");
 
-if ($type != ""){
-    STemplate::assign('type',$type);
-   
-}else{
-     STemplate::assign('type',"");
-}
 
 (isset($_POST['isSubmit']) ? $submit = intval($_POST['isSubmit']) : $submit = 0);
 
@@ -108,23 +100,6 @@ if ($submit === 1){
         header("location:".$config['adminurl']."/users.php?tsError=".$error);
    
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 //load nessary template for loading
 STemplate::assign('message',$message);
