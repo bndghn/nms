@@ -184,7 +184,8 @@
 
 
                                                             <td class="text-center  align-middle">
-                                                                <a href="#" class="btn btn-default btn-xs"><i class="fa fa-edit white"></i> {$lang35} </a>
+                                                                <a href="{$adminurl}/users.edit.php?id={$usernv['userid']}" class="btn btn-default btn-xs" data-target="#uEdit{$usernv['userid']}" data-toggle="modal"><i class="fa fa-edit white"></i> {$lang35} </a>
+                                                                
                                                                 <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-times white"></i> {$lang34} </a>
 
                                                             </td>
@@ -276,7 +277,9 @@
                                         </td>
 
                                         <td class="text-center  align-middle">
-                                            <a href="#" class="btn btn-default btn-xs"><i class="fa fa-edit white"></i> {$lang35} </a>
+                                            
+                                            <a href="{$adminurl}/users.edit.php?id={$admin['userid']}" class="btn btn-default btn-xs" data-target="#uEdit{$admin['userid']}" data-toggle="modal"><i class="fa fa-edit white"></i> {$lang35} </a>
+                                            
                                             <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-times white"></i> {$lang34} </a>
 
                                             
@@ -376,7 +379,7 @@
                                                 </td>
 
                                                 <td class="text-center  align-middle">
-                                                    <a href="#" class="btn btn-default btn-xs"><i class="fa fa-edit white"></i> {$lang35} </a>
+                                                    <a href="{$adminurl}/users.edit.php?id={$employer['userid']}" class="btn btn-default btn-xs" data-target="#uEdit{$employer['userid']}" data-toggle="modal"><i class="fa fa-edit white"></i> {$lang35} </a>
                                                     <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-times white"></i> {$lang34} </a>
 
 
