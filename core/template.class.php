@@ -5,13 +5,13 @@ class STemplate {
    function STemplate() {
         global $Smarty;
         if (!isset($Smarty)) {
-            $Smarty = new Smarty;
+            $Smarty = new SmartyBC;
         }
     }
 
     function create() {
         global $Smarty;
-        $Smarty = new Smarty();
+        $Smarty = new SmartyBC();
         $Smarty->compile_check = true;
         $Smarty->debugging = false;
         $Smarty->template_dir = dirname(__FILE__) . "/../themes";
