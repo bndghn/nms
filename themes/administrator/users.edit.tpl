@@ -4,7 +4,7 @@
         <div class="col-md-12 col-sm-12 padding-20">
             <form  action="{$adminurl}/users.edit.php" method="post" enctype="multipart/form-data">
                 <fieldset>
-                    
+                    {if $user['verified'] eq "1"}
                     <div class="row">
                         <div class="form-group">
                             <div class="col-md-6 col-sm-6">
@@ -17,6 +17,7 @@
                             </div>
                         </div>
                     </div>
+                    {/if}
                     
                     <div class="row">
                         <div class="form-group">
@@ -40,23 +41,35 @@
                                 <select class="form-control select" name="usergroup">
                                        
                                     <option value="0">--نوع کاربری را انتخاب کنید--</option>
-                                    {if $user['isCustomer'] eq "1"}
-                                          {insert name=get_user_group_list isCustomer="1" value=gvar assign=groupList}
-                                            {foreach from=$groupList item=group}
-                                                {if $group['status'] eq "0"} 
-                                                    {continue} 
-                                                {/if} 
-                                                <option value="{$group['id']}">{$group['category']}</option>                                               
-                                            {/foreach}
-                                    {else}
-                                        {insert name=get_user_group_list isCustomer="0" value=gvar assign=groupList}
+                                   
+                                      {insert name=get_user_group_list  value=gvar assign=groupList}
                                         {foreach from=$groupList item=group}
+                                           
+                                            {if $user['isCustomer'] eq "1"}
+                                               
+                                                {if $group['isCustomer'] eq "0"} 
+                                                    {continue} 
+                                                {/if}
+                                                
+                                            {else}
+                                                {if $group['isCustomer'] eq "1"} 
+                                                    {continue} 
+                                                {/if}
+                                            {/if}
+                                            
+                                            
                                             {if $group['status'] eq "0"} 
                                                 {continue} 
                                             {/if} 
-                                            <option value="{$group['id']}">{$group['category']}</option>                                               
+                                            <option value="{$group['id']}" {if $user['user_group'] eq $group['id']} selected {/if}>
+                                            
+                                                {$group['category']}
+                                                
+                                            </option>                                               
                                         {/foreach}
-                                    {/if}
+                                   
+                                      
+                                   
 
                                 </select>
                             </div>
