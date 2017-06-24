@@ -97,7 +97,8 @@
                                                                     {insert name=get_user_list value=var customer=1 verified=1 assign=usersList}
                                                                     {if $usersList ne null}
                                                                     {foreach from=$usersList item=user}
-                                                                    <tr class="odd gradeX {if $user['status'] eq "0"}warning {elseif $user['status'] eq "2"}danger{/if}">
+                                                                    {if $user['user_status'] eq "2"} {continue} {/if}
+                                                                    <tr class="odd gradeX {if $user['user_status'] eq "0"}warning {/if}">
                                                                     <td class="text-center">
                                                                         <input type="checkbox" class="checkboxes" value="1"/>
                                                                     </td>

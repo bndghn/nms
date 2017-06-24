@@ -39,9 +39,7 @@
                             <div class="col-md-6 col-sm-12">
                                 <label>گروه کاربری</label>
                                 <select class="form-control select" name="usergroup">
-                                       
-                                    <option value="0">--نوع کاربری را انتخاب کنید--</option>
-                                   
+                                    
                                       {insert name=get_user_group_list  value=gvar assign=groupList}
                                         {foreach from=$groupList item=group}
                                            
@@ -75,13 +73,15 @@
                             </div>
                             
                             <div class="col-md-6 col-sm-6">
-                            <label class="switch switch-info switch-round">
-                                <span>وضعیت : </span>
-                              
-                                <span class="switch-label"  data-on="فعال" data-off="غیرفعال"></span>
+                                <label>وضعیت کاربر</label>
+                                    <select class="form-control select" name="status">
 
-                            </label>
-                        </div>
+                                       
+                                        <option value="1" {if $user['user_status'] eq "1"} selected {/if}>پویا</option>     
+                                        <option value="0" {if $user['user_status'] eq "0"} selected {/if}>مسدود</option>
+                                        <option value="2" {if $user['user_status'] eq "2"} selected {/if}>حذف موقت</option>    
+                                    </select>
+                            </div>
                             
                         </div>
                     </div>
@@ -93,7 +93,7 @@
                   <div class="row">
                         <div class="col-md-12">
                           <input type="hidden" name="isSubmit" value="1"/>
-                          <input type="hidden" name="id" value=""/>
+                          <input type="hidden" name="userid" value="{$user['userid']}"/>
                           <button type="submit" class="btn btn-success btn btn-3d btn-teal  btn-block margin-top-30">ویرایش کاربر</button>
                         </div>
                     </div>
