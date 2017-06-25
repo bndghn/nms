@@ -53,9 +53,9 @@
 								<i class="main-icon fa fa-shopping-cart"></i> <span>مدیریت فروشگاه</span>
 							</a>
 							<ul><!-- submenus -->
-								<li><a href="tables-bootstrap.html">Bootstrap Tables</a></li>
-								<li><a href="tables-jqgrid.html">jQuery Grid</a></li>
-								<li><a href="tables-footable.html">jQuery Footable</a></li>
+								<li><a href="{$adminurl}/shop.categories.php">افزودن دسته بندی کالا</a></li>
+								<li><a href="tables-jqgrid.html">فهرست دسته بندی کالا</a></li>
+								<li><a href="tables-footable.html">مدیریت انبار کالا</a></li>
 								<li>
 									<a href="#">
 										<i class="fa fa-menu-arrow pull-right"></i>
