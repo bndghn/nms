@@ -117,7 +117,8 @@
                                                                     <td class="text-center  align-middle">
                                                                         
                                                                         <a href="{$adminurl}/users.edit.php?id={$user['userid']}" class="btn btn-default btn-xs" data-target="#uEdit{$user['userid']}" data-toggle="modal"><i class="fa fa-edit white"></i> {$lang35} </a>
-                                                                        <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-times white"></i> {$lang34} </a>
+                                                                        
+                                                                        <a href="{$adminurl}/users.delete.php?id={$user['userid']}" onclick="{literal} return confirm('آیا از حذف این کاربر مطمئن هستید؟!');{/literal}" class="btn btn-danger btn-xs"><i class="fa fa-times white"></i> {$lang34} </a>
 
 
                                                                         <a href="#" data-toggle="popover" class="btn btn-3d btn-xs btn-blue" title="{$lang39} {$user['fname']} {$user['lname']}" data-content="<label>{$lang40}:</label> {$user['last_ip']|farsidigit}<br/><label>{$lang41}:</label> {$user['last_login']|jdate_format:"%Y/%m/%d"|farsidigit}<br/><label>{$lang32}:</label> {$user['joined']|jdate_format:"%Y/%m/%d"|farsidigit}">
@@ -165,7 +166,7 @@
                                                         {insert name=get_user_list value=var customer=1 verified=0 assign=usersListNV}
                                                         {if $usersListNV ne null}
                                                         {foreach from=$usersListNV item=usernv}
-                                                        <tr class="odd gradeX {if $usernv['status'] eq "0"}warning {elseif $usernv['status'] eq "2"}danger{/if}">
+                                                        <tr class="odd gradeX {if $usernv['user_status'] eq "0"}warning{/if}">
                                                             <td class="text-center">
                                                                 <input type="checkbox" class="checkboxes" value="1"/>
                                                             </td>
@@ -187,7 +188,7 @@
                                                             <td class="text-center  align-middle">
                                                                 <a href="{$adminurl}/users.edit.php?id={$usernv['userid']}" class="btn btn-default btn-xs" data-target="#uEdit{$usernv['userid']}" data-toggle="modal"><i class="fa fa-edit white"></i> {$lang35} </a>
                                                                 
-                                                                <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-times white"></i> {$lang34} </a>
+                                                                <a href="{$adminurl}/users.delete.php?id={$usernv['userid']}" onclick="{literal} return confirm('آیا از حذف این کاربر مطمئن هستید؟!');{/literal}" class="btn btn-danger btn-xs"><i class="fa fa-times white"></i> {$lang34} </a>
 
                                                             </td>
                                                         </tr>
@@ -281,7 +282,7 @@
                                             
                                             <a href="{$adminurl}/users.edit.php?id={$admin['userid']}" class="btn btn-default btn-xs" data-target="#uEdit{$admin['userid']}" data-toggle="modal"><i class="fa fa-edit white"></i> {$lang35} </a>
                                             
-                                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-times white"></i> {$lang34} </a>
+                                            <a href="{$adminurl}/users.delete.php?id={$admin['userid']}" onclick="{literal} return confirm('آیا از حذف این کاربر مطمئن هستید؟!');{/literal}" class="btn btn-danger btn-xs"><i class="fa fa-times white"></i> {$lang34} </a>
 
                                             
                                             
@@ -381,7 +382,9 @@
 
                                                 <td class="text-center  align-middle">
                                                     <a href="{$adminurl}/users.edit.php?id={$employer['userid']}" class="btn btn-default btn-xs" data-target="#uEdit{$employer['userid']}" data-toggle="modal"><i class="fa fa-edit white"></i> {$lang35} </a>
-                                                    <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-times white"></i> {$lang34} </a>
+
+
+                                                    <a href="{$adminurl}/users.delete.php?id={$employer['userid']}" class="btn btn-danger btn-xs"><i class="fa fa-times white" onclick="{literal} return confirm('آیا از حذف این کاربر مطمئن هستید؟!');{/literal}"></i> {$lang34} </a>
 
 
 

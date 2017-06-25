@@ -24,7 +24,17 @@
 							</ul>
 						</li>
 						
-                        
+                        <li {if $section eq "settings"}class="active"{/if}>
+							<a href="#">
+								<i class="fa fa-menu-arrow pull-right"></i>
+								<i class="main-icon fa fa-gear "></i> <span>تنظیمات</span>
+							</a>
+							<ul><!-- submenus -->
+								<li {if $page eq "setting_basic"}class="active"{/if}><a href="{$adminurl}/setting.php" >تنظیمات سامانه</a></li>
+								<li {if $page eq "setting_seo"}class="active"{/if}><a href="{$adminurl}/setting.seo.php">تنظیمات سئو</a></li>
+								<li {if $page eq "setting_store"}class="active"{/if}><a href="{$adminurl}/setting.store.php">تنظیمات فروشگاه</a></li>
+							</ul>
+						</li>
                         
                         
 						

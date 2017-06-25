@@ -9,6 +9,14 @@ verify_login_admin();
 $error      =   "";
 $message    =   "";
 
+//check wich usergroup when we want add new user
+(isset($_GET['type']) ? $type = $_GET['type'] : $type = "");
+if ($type != ""){
+    STemplate::assign('type',$type);
+   
+}else{
+     STemplate::assign('type',"");
+}
 
 
 (isset($_POST['isSubmit']) ? $submit = intval($_POST['isSubmit']) : $submit = 0);
@@ -88,8 +96,8 @@ if ($submit === 1){
         
         
         
-       $query=" INSERT INTO `users`(`username`, `email`, `mobile`,`user_group`, `firstPass` , `pass`) VALUES ($username,$email,$mobile,$usergroup,$firstPass, '$mdPass') ";
-        echo $query;
+       $query=" INSERT INTO `users`(`username`, `email`, `mobile`,`user_group`, `firstPass` , `pass` , `joined`) VALUES ($username,$email,$mobile,$usergroup,$firstPass, '$mdPass', '".time()."') ";
+       // echo $query;
        if($conn->EXECUTE($query)){
            header("location: ".$config['adminurl']."/users.php");
        } 

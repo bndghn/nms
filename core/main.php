@@ -81,7 +81,7 @@ function adminIsValid(){
         $_SESSION['ISADMIN'] = 0;
         $_SESSION['ADMIN_LOGIN'] = 0;
         return false;
-    }elseif($rs->fields['status'] === "0"){
+    }elseif($rs->fields['userstatus'] === "0"){
         $_SESSION['ADMIN_LOGIN'] = 0;
         $_SESSION['LOGIN'] = 0;
         return false;
@@ -136,7 +136,7 @@ function loginByCookie($isAdmin="0"){
             {
                 $error = '26';
             }
-            elseif($rs->fields['status'] === "0")
+            elseif($rs->fields['user_status'] === "0")
             {
                 $error = '57';
             }
@@ -214,7 +214,7 @@ function insert_get_users_count($var){
         $add_sql    .= "AND user_group.isCustomer=1";
     }
     
-     $query ="SELECT count(*) as total  FROM `users`,`user_group` WHERE user_group.id= users.user_group ".$add_sql;
+     $query ="SELECT count(*) as total  FROM `users`,`user_group` WHERE  users.user_status !=2 AND user_group.id= users.user_group ".$add_sql;
     //echo $query;
     $result = $conn->execute($query);
     $total = $result->fields['total'];
@@ -250,9 +250,16 @@ function insert_get_user_list($var){
     if(!isset($var['verified'])){
         $add_sql    .= "";
     }elseif($var['verified']=="0"){
-        $add_sql    = " AND users.verified = 0 ";
+        $add_sql    .= " AND users.verified = 0 ";
     }else{
-        $add_sql    = " AND users.verified = 1 ";
+        $add_sql    .= " AND users.verified = 1 ";
+    }
+    
+    if(!isset($var['status'])){
+        $add_sql    .= " AND users.user_status != '2'";
+    }else{
+        $uStatus = intval($var['status']);
+        $add_sql    .= " AND users.user_status = '$uStatus' ";
     }
     
     if(!isset($var['customer']) ){
@@ -308,9 +315,9 @@ function generatePass($characters, $type="mixed") {
     if($type === "mixed"){
         $possible = '123456789@_#abcdefghijklmnopqrstuvwxyz';
     }elseif($type === "number"){
-        $possible = '1234567890';
+        $possible = '123456789';
     }elseif($type === "numchar"){
-        $possible = '1234567890abcdefghijklmnopqrstuvwxyz';
+        $possible = '123456789abcdefghijklmnopqrstuvwxyz';
     }elseif($type === "char"){
         $possible = 'abcdefghijklmnopqrstuvwxyz';
     }

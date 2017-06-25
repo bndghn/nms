@@ -67,11 +67,11 @@ if ($tsErrorNumber!=""){
         case 13:
             $tsError = "نام و نام خانوادگی به درستی وارد نشده است . " ;
             break;
-            /* ***** for others error in other page *****  
+             
         case 14:
-            $tsError = ;
+            $tsError = "مدیر اصلی نمی تواند حذف شود.";
             break;
-            
+            /* ***** for others error in other page ***** 
         case 15:
             $tsError = ;
             break;
