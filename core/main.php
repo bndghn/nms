@@ -81,7 +81,7 @@ function adminIsValid(){
         $_SESSION['ISADMIN'] = 0;
         $_SESSION['ADMIN_LOGIN'] = 0;
         return false;
-    }elseif($rs->fields['status'] === "0"){
+    }elseif($rs->fields['userstatus'] === "0"){
         $_SESSION['ADMIN_LOGIN'] = 0;
         $_SESSION['LOGIN'] = 0;
         return false;
@@ -136,7 +136,7 @@ function loginByCookie($isAdmin="0"){
             {
                 $error = '26';
             }
-            elseif($rs->fields['status'] === "0")
+            elseif($rs->fields['user_status'] === "0")
             {
                 $error = '57';
             }
