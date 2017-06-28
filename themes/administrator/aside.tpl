@@ -53,11 +53,13 @@
 								<i class="main-icon fa fa-shopping-cart"></i> <span>مدیریت فروشگاه</span>
 							</a>
 							<ul><!-- submenus -->
+
 								<li><a href="{$adminurl}/shop.catalog.php">فهرست محصولات</a></li>
 								<li><a href="{$adminurl}/shop.categories.php">دسته‌بندی محصولات</a></li>
 								<li><a href="{$adminurl}/shop.packages.php">بسته‌بندی محصولات</a></li>
 								<li><a href="{$adminurl}/shop.orders.php">فهرست سفارشات</a></li>
 								
+
 							</ul>
 						</li>
                         
