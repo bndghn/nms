@@ -32,7 +32,7 @@
 							<ul><!-- submenus -->
 								<li {if $page eq "setting_basic"}class="active"{/if}><a href="{$adminurl}/setting.php" >تنظیمات سامانه</a></li>
 								<li {if $page eq "setting_seo"}class="active"{/if}><a href="{$adminurl}/setting.seo.php">تنظیمات سئو</a></li>
-								<li {if $page eq "setting_store"}class="active"{/if}><a href="{$adminurl}/setting.store.php">تنظیمات فروشگاه</a></li>
+								<li {if $page eq "setting_store"}class="active"{/if}><a href="{$adminurl}/setting.shop.php">تنظیمات فروشگاه</a></li>
 							</ul>
 						</li>
                         
@@ -53,20 +53,11 @@
 								<i class="main-icon fa fa-shopping-cart"></i> <span>مدیریت فروشگاه</span>
 							</a>
 							<ul><!-- submenus -->
-								<li><a href="tables-bootstrap.html">Bootstrap Tables</a></li>
-								<li><a href="tables-jqgrid.html">jQuery Grid</a></li>
-								<li><a href="tables-footable.html">jQuery Footable</a></li>
-								<li>
-									<a href="#">
-										<i class="fa fa-menu-arrow pull-right"></i>
-										Datatables
-									</a>
-									<ul>
-										<li><a href="tables-datatable-managed.html">Managed Datatables</a></li>
-										<li><a href="tables-datatable-editable.html">Editable Datatables</a></li>
-										<li><a href="tables-datatable-advanced.html">Advanced Datatables</a></li>
-									</ul>
-								</li>
+								<li><a href="{$adminurl}/shop.catalog.php">فهرست محصولات</a></li>
+								<li><a href="{$adminurl}/shop.categories.php">دسته‌بندی محصولات</a></li>
+								<li><a href="{$adminurl}/shop.packages.php">بسته‌بندی محصولات</a></li>
+								<li><a href="{$adminurl}/shop.orders.php">فهرست سفارشات</a></li>
+								
 							</ul>
 						</li>
                         
