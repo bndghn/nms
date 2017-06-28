@@ -412,3 +412,19 @@ function isUserChange($uid, $field, $value){
 }
 
 
+function insert_get_shop_category_list($gvar){
+    global $conn;
+    if(!isset($gvar['cat_status']) ){
+        $add_sql    = "";
+    }elseif($gvar['cat_status'] === "0"){
+        $add_sql    = "WHERE `cat_status` = 0 ";
+    }else{
+        $add_sql    = "WHERE `cat_status` = 1 ";
+    }
+    
+    $query = "SELECT * FROM `shop_category` ".$add_sql;
+    $result = $conn->execute($query);
+    $shopcat = $result->getAll();
+    
+    return $shopcat;
+}
