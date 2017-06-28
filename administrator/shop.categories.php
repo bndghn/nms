@@ -37,10 +37,12 @@ if ($submit === 1){
     (isset($_POST['catname']) ? $catname = $_POST['catname'] : $catname = "");
     (isset($_POST['cat_desc']) ? $cat_desc = $_POST['cat_desc'] : $cat_desc = "");
   //  (isset($_POST['pntid']) ? $pntid =intval($_POST['pntid']) : $pntid = 0);
+  
     (isset($_POST['order']) ? $order =intval($_POST['order']) : $order = 0);
     (isset($_POST['cat_status']) ? $status = "1" : $status = "0");
-   //  $status =intval($_POST['cat_status']);
     $pntid =intval($_POST['pntid']);
+   //  $status =intval($_POST['cat_status']);
+   
    
     
     if($catname === "" )
@@ -48,17 +50,13 @@ if ($submit === 1){
         $error = "حتما باید نام دسته بندی کالا را وارد نمایید.";
     } 
     
-/*    if($status === "" )
-    {
-        $error = "حتما باید وضعیت موجودی کالا را مشخص نمایید.";
-    } */
-    
-    /*if($pntid ===  )
+    elseif($order === 0)
     {
         $error = "حتما باید شماره سری دسته بندی کالا را وارد نمایید.";
-    }*/
+    }
 
-    if($error === "" ){
+    
+  if($error === "" ){
         $catname    = $conn->qStr($catname);
         $cat_desc   = $conn->qStr($cat_desc);
         
@@ -82,7 +80,21 @@ if ($submit === 1){
 
 
 
+(isset($_POST['isEdit']) ? $edit = intval($_POST['isEdit']) : $edit = 0);
+(isset($_POST['isEdit']) ? $edit = intval($_POST['isEdit']) : $edit = 0);
+(isset($_POST['isEdit']) ? $edit = intval($_POST['isEdit']) : $edit = 0);
 
+if($edit===1){
+  (isset($_POST['catid']) ? $catid = intval($_POST['catid']) : $catid = 0);
+  (isset($_POST['order']) ? $order = intval($_POST['order']) : $order = 0);
+    $query = "UPDATE `shop_category` SET `order` = $order WHERE `catid` = $catid";
+            
+    if($conn->EXECUTE($query)){
+        header("location: ".$config['adminurl']."/shop.categories.php");
+     }else{
+        echo $conn->errorMsg();
+    }
+}
 
 
 
