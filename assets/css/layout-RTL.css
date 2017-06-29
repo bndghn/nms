@@ -12,7 +12,7 @@ body{
 body.modal-open{
     padding-right: 0!important;
     overflow-y:scroll;
-    position: fixed;
+    /*position: fixed;*/
 }
 
 /** RTL DEFAULTS
