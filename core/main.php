@@ -416,7 +416,7 @@ function insert_get_shop_category_list($gvar){
     global $conn;
   
     if(!isset($gvar['parent_id'])){
-      $add_sql    = "pntid = 0 ";
+      $add_sql    = "pntid = pntid ";
     }else{
       $pid = intval($gvar['parent_id']);
       $add_sql = "pntid = $pid ";
@@ -456,3 +456,19 @@ function insert_ishaveChild_shop_cat($var){
 	}
  
 }
+
+
+function insert_get_shop_cat($gvar){
+    global $conn;
+    $CatID = intval($gvar['catid']);
+    $query = "SELECT *  FROM `shop_category` WHERE `catid`= $CatID";
+    $result = $conn->execute($query);
+  
+    if(!$category = $result->getArray()){
+        echo $conn->errorMsg();
+        return false;
+    }else{
+        return $category['0'];
+    }
+}
+
