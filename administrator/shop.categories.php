@@ -107,8 +107,8 @@ STemplate::assign('error',$error);
 
 
 //Select active menu
-STemplate::assign('section',"users_manager");
-STemplate::assign('page',"users");
+STemplate::assign('section',"shop");
+STemplate::assign('page',"shop_categories");
 
 
 STemplate::display('administrator/header.tpl');

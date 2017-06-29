@@ -40,7 +40,7 @@
                     <div class="panel-body">
 
                         {if $error ne ""}
-                        <div class="alert alert-mini alert-success nomargin noradius noborder">
+                        <div class="alert alert-mini alert-danger nomargin noradius noborder">
                             <button class="close" data-dismiss="alert">×</button>
                             <p><strong>خطا! </strong> {$error}</p>
                         </div>
@@ -62,19 +62,21 @@
 
                             <div class="row">
                                 <div class="form-group">
-                                   {insert name=get_shop_category_list  value=gvar assign=shop_list cat_status=1 parnet_id=0 }
+                                  
                                    
                                     
                                   <div class="col-md-6 col-sm-6">
                                       <label> دسته مادر *</label>    
-                                    {if $shop_list ne null }
+                                   
                                        <div class="fancy-form fancy-form-select">
                                        
                                         <select class="form-control select" name="pntid" value="{$shop_cat['catid']}">
                                           <option value="0">هیچکدام</option>
-                                           {foreach from=$shop_list  item=shop_cat }
+                                           {insert name=get_shop_category_list  value=gvar assign=shop_add_cats cat_status=1 parent_id=0 }
+                                           {if $shop_add_cats ne null }
+                                           {foreach from=$shop_add_cats  item=shop_cat_add }
                                               
-                                              <option value={$shop_cat['catid']}> {$shop_cat['cat_name']}</option>
+                                              <option value="{$shop_cat_add['catid']}"> {$shop_cat_add['cat_name']}</option>
                                               
                                                
                                             {/foreach}
@@ -172,8 +174,8 @@
                                     </thead>
 
                                     <tbody>
-                                        {insert name=get_shop_category_list value=gvar assign=shop_list parent_id=0}
-                                        {foreach from=$shop_list item=shop_cat }
+                                        {insert name=get_shop_category_list value=gvar assign=shop_cat_list parent_id=0}
+                                        {foreach from=$shop_cat_list item=shop_cat }
                                       <tr class="odd gradeX  ">
 
 
@@ -198,8 +200,9 @@
                                             </td>
 
                                             <td class="text-center  align-middle">
-                                               <a href="{$adminurl}/shop.categories.edit.php?id{$shop_cat['catid']}" data-target="#ShopCEdit{$shop_cat['catid']}" data-toggle="modal" class="btn btn-default btn-xs "><i class="fa fa-edit white"></i> ویرایش </a>
-                                               <a href="{$adminurl}/shop.categories.php?delete={$shop_cat['catid']}"  class="btn btn-danger btn-xs " onclick="{literal} return confirm('آیا از حذف این دسته بندی مطمئن هستید؟!');{/literal}"><i class="fa fa-times white"></i> حذف </a>
+                                               <a href="{$adminurl}/shop.categories.edit.php?catid={$shop_cat['catid']}" data-target="#Edit{$shop_cat['catid']}" data-toggle="modal" class="btn btn-default btn-xs  "><i class="fa fa-edit white"></i> ویرایش </a>
+                                               
+                                               <a href="{$adminurl}/shop.categories.php?delete={$shop_cat['catid']}"  class="btn btn-danger btn-xs disabled " onclick="{literal} return confirm('آیا از حذف این دسته بندی مطمئن هستید؟!');{/literal}"><i class="fa fa-times white"></i> حذف </a>
                                             </td>
                                             
                                         </tr>
@@ -224,7 +227,8 @@
                                           <td class="align-middle text-center">
                                                 {if $child['cat_status'] eq 0 }غیرفعال{else}فعال{/if}</td>
                                           <td class="text-center  align-middle">
-                                               <a href="{$adminurl}/shop.categories.edit.php?id{$child['catid']}" data-target="#ShopCEdit{$child['catid']}" data-toggle="modal" class="btn btn-default btn-xs "><i class="fa fa-edit white"></i> ویرایش </a>
+                                               <a href="{$adminurl}/shop.categories.edit.php?catid={$child['catid']}" data-target="#Edit{$child['catid']}" data-toggle="modal" class="btn btn-default btn-xs "><i class="fa fa-edit white"></i> ویرایش </a>
+                                               
                                                <a href="{$adminurl}/shop.categories.php?delete={$child['catid']}"  class="btn btn-danger btn-xs " onclick="{literal} return confirm('آیا از حذف این دسته بندی مطمئن هستید؟!');{/literal}"><i class="fa fa-times white"></i> حذف </a>
                                             </td>
                                         </tr>
@@ -248,12 +252,12 @@
 
 
 
-{insert name=get_shop_category_list value=gvar assign=shop_list}
-{foreach from=$shop_list item=ShopEditor}
+{insert name=get_shop_category_list value=gvar assign=edit_cat}
+{foreach from=$edit_cat item=CatEditor}
 
 
 
-<div class="modal fade" id="ShopCEdit{$ShopEditor['id']}" role="basic" aria-hidden="true">
+<div class="modal fade" id="Edit{$CatEditor['catid']}" role="basic" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
 
