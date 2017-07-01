@@ -412,3 +412,63 @@ function isUserChange($uid, $field, $value){
 }
 
 
+function insert_get_shop_category_list($gvar){
+    global $conn;
+  
+    if(!isset($gvar['parent_id'])){
+      $add_sql    = "pntid = pntid ";
+    }else{
+      $pid = intval($gvar['parent_id']);
+      $add_sql = "pntid = $pid ";
+    }
+    if(!isset($gvar['cat_status']) ){
+        $add_sql    .= "";
+    }elseif($gvar['cat_status'] === "0"){
+        $add_sql    .= "AND`cat_status` = 0 ";
+    }else{
+        $add_sql    .= "AND `cat_status` = 1 ";
+    }
+    
+    
+    $query = "SELECT * FROM `shop_category` WHERE ".$add_sql." ORDER BY `order` ASC ";
+    $result = $conn->execute($query);
+    $shopcat = $result->getAll();
+    
+    return $shopcat;
+}
+
+function insert_ishaveChild_shop_cat($var){
+  global $conn;
+  $catid = intval($var['catid']);
+  $query = "SELECT count(*) as `total` FROM `shop_category` WHERE pntid = $catid";
+  if(!$executequery = $conn->execute($query))echo $conn->errorMsg();
+    $total = $executequery->fields['total'];
+    //echo $query." for  total = $total </br>";
+    
+    
+    if ((int)$total === 0)
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+ 
+}
+
+
+function insert_get_shop_cat($gvar){
+    global $conn;
+    $CatID = intval($gvar['catid']);
+    $query = "SELECT *  FROM `shop_category` WHERE `catid`= $CatID";
+    $result = $conn->execute($query);
+  
+    if(!$category = $result->getArray()){
+        echo $conn->errorMsg();
+        return false;
+    }else{
+        return $category['0'];
+    }
+}
+

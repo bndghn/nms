@@ -12,7 +12,7 @@ body{
 body.modal-open{
     padding-right: 0!important;
     overflow-y:scroll;
-    position: fixed;
+    /*position: fixed;*/
 }
 
 /** RTL DEFAULTS
@@ -381,6 +381,13 @@ ul.side-nav li.list-toggle:after {
 
 /**	Forms [essentials.css]
 *************************************************** **/
+.inlineForm{
+  margin: 0;
+}
+.inlineForm input{
+  text-align: center;
+}
+
 .radio i, 
 .checkbox i {
 	left:auto;
