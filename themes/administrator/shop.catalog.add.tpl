@@ -1,19 +1,15 @@
-<!-- WRAPPER -->
-<div id="wrapper" class="clearfix">
-    {include file='administrator/aside.tpl'}
-    {include file='administrator/top_head.tpl'}
-    <section id="middle">
-        <!-- page title -->
-        <header id="page-header">
-            <h1>فروشگاه</h1>
-            <ol class="breadcrumb">
-                <li><a href="#">محصولات</a></li>
-                <li class="active">افزودن محصولات</li>
-            </ol>
-        </header>
-        <!-- /page title -->
-        <div id="content" class="padding-20">
-         <div class="row">
+{extends file="administrator/main.tpl"}
+ 
+        
+{block name = "mTitle"} فروشگاه{/block}
+{block name = "sTitle"}افزودن محصول{/block}
+{block name = "pTitle"}کالای جدید{/block}
+{block name="css"}
+<link href="{$assets}/plugins/jstree/themes/default/style.min.css" rel="stylesheet" type="text/css" />     
+{/block}
+      
+{block name = "main"}
+          
            <div class="col-md-12 col-sm-12">
              <div class="panel panel-default">
                <div class="panel-body">
@@ -27,7 +23,7 @@
                      </li>
                      <li class="">
                        <a href="#jtab2_nobg" data-toggle="tab">
-                           توضیحات محصول
+                           توضیحات و تصاویر محصول
                        </a>
                      </li>
                       <li class="">
@@ -36,9 +32,16 @@
                        </a>
                      </li>
                    </ul>
-                    <form  action="{$adminurl}/shop.catalog.add.php" method="POST" >
+                    <form  action="{$adminurl}/shop.catalog.add.php" method="POST" enctype="multipart/form-data">
                    <div class="tab-content transparent">
-                      
+                     <p class="text-center">لطفا اطلاعات محصول را در فرم زیر به دقت وارد نمایید.</p>
+                       {if $error ne ""}
+                          <div class="alert alert-mini alert-danger nomargin noradius noborder">
+                              <button class="close" data-dismiss="alert">×</button>
+                              <p><strong>خطا! </strong> {$error}</p>
+                          </div>
+                       {/if}
+                        <hr/>
                          <div id="jtab1_nobg" class="tab-pane active">
                            
                             <div class="row">
@@ -81,9 +84,9 @@
                                        <div class="col-md-12 col-sm-12">
                                           <label> وضعیت سفارش </label>
                                           <select class="form-control select" name="stock_status" value="">
-                                             <option value="0">کالا تولید شده موجود است</option>
-                                             <option value="1">انتظار برای تولید کالا</option>
-                                             <option value="2">کالا موجود نیست و تولید نمی شود</option>
+                                             <option value="0">عدم ثبت سفارش</option>
+                                             <option value="1">فروش عادی</option>
+                                             <option value="2">ثبت سفارش جهت تولید</option>
                                           </select>
                                        </div>
                                     </div>
@@ -134,7 +137,7 @@
                                     <div class="form-group">
                                        <div class="col-md-12 col-sm-12">
                                           <label>  ابعاد کالا  </label>
-                                          <input type="text" name="pro_size" value="" placeholder="طول * عرض * ارتفاع" class="form-control required">
+                                          <input type="text" name="pro_size" value="" placeholder="ابعاد محصول را وارد نمایید. " class="form-control required">
                                        </div>
                                     </div>
                                  </div>
@@ -156,7 +159,39 @@
                                     <div class="form-group">
                                       <div class="col-md-12 col-sm-12">
                                           <label>دسته بندی محصول</label>
-
+                                          {insert name=get_shop_category_list  value=gvar assign=shop_catalog_cats cat_status=1 parent_id=0 }
+                                          {if $shop_catalog_cats ne null }
+                                          
+                                          <div class="categories">
+                                         <div id="catgry">
+                                          <ul class="tree">
+                                           {foreach from=$shop_catalog_cats  item=shop_cate }
+                                             {insert name=ishaveChild_shop_cat value=var catid=$shop_cate['catid'] assign=ischild}
+                                       
+                                            <li {if $ischild}class="has"{/if}>
+                                              <input type="checkbox" value="{$shop_cate['catid']}" name="shop_cat[]"/> 
+                                               <label>{$shop_cate['cat_name']}</label>
+                                               {if $ischild}
+                                               {insert name=get_shop_category_list  value=gvar assign=cats_child cat_status=1 parent_id=$shop_cate['catid'] }
+                                               <ul>
+                                                 {foreach from=$cats_child  item=child }
+                                                 <li>
+                                                  <input type="checkbox" value="{$child['catid']}" name="shop_cat[]"/> 
+                                                  <label>{$child['cat_name']}</label>
+                                                 </li>
+                                                 {/foreach}
+                                               </ul>
+                                               {/if}
+                                               </li>
+                                             
+                                           {/foreach}
+                                            </ul>
+                                            </div>
+                                          </div>
+                                           {/if}            
+                                          
+                                            
+                                          
                                           
                                           
                                        </div>                                
@@ -179,76 +214,152 @@
                                 <div class="row">
                                     <div class="form-group">
                                       <div class="col-md-12 col-sm-12">
-                                        <label>  توضیحات مختصر  </label>  
-                                        <textarea name="pro_short_desc" rows="2" placeholder="توضیحات مختصر درباره کالای مورد نظر وارد شود" class="form-control"></textarea>
-                                      </div>
-                                    </div>
-                                 </div>
-                              
-                                 <div class="row">
-                                    <div class="form-group">
-                                      <div class="col-md-12 col-sm-12">
-                                        <label>  توضیحات کامل </label>  
-                                        <textarea name="pro_desc" rows="6" placeholder="توضیحات کامل درباره کالای مورد نظر وارد شود"  class="form-control"></textarea>
+                                        <label> توضیحات مختصر  - meta Description</label>  
+                                         <textarea name="pro_short_desc" rows="4" placeholder="توضیحات مختصر درباره کالای مورد نظر وارد شود" class="form-control"></textarea>
+                                       
                                       </div>
                                     </div>
                                  </div>
                                  
-                                 <div class="row">
-                                    <div class="form-group">
-                                      <div class="col-md-12 col-sm-12">
-                                        <label>  مشخصات ظاهری کالا </label>  
-                                        <textarea name="pro_attributes" rows="4" placeholder="مشخصات ظاهری کالای مورد نظر وارد شود" class="form-control"></textarea>
-                                      </div>
-                                    </div>
+                                <div class="row">
+                                  <div class="form-group">
+                                     <div class="col-md-12 col-sm-12">
+                                        <label> کلمات کلیدی - meta Key Words</label>
+                                        <input type="text" name="pro_metakey" value="" class="form-control required">
+                                     </div>
+                                  </div>
                                  </div>
-                                  
+                                
+                                 
+                                 
+                                 
+                                
                                  
                                </fieldset>
                               </div>
                               
                               <div class="col-md-6">
                                <fieldset>
-                                 <div class="row">
-                                    <div class="form-group">
-                                      <div class="col-md-12 col-sm-12">
-                                        
-                                        <img src="https://www.w3schools.com/w3images/fjords.jpg" class="img-thumbnail" alt="Cinque Terre" width="304" height="236">
-                                        
-                                        </div>
-                                    </div>
-                                 </div>
+                                 
+                                 
+                                 
+                                 
                                         
                                 <div class="row">
                                     <div class="form-group">
-                                        <div class="col-md-12">
+                                        <div class="col-md-6">
                                             <label>
-                                                تصویر کالا 
+                                                تصویر اصلی  
+                                                <small class="text-muted">- اجباری</small>
+                                            </label>
+
+                                            <!-- custom file upload -->
+                                            <div class="fancy-file-upload fancy-file-primary">
+                                                <i class="fa fa-upload"></i>
+                                                <input type="file" class="form-control" name="pro_pic_main" onchange="jQuery(this).next('input').val(this.value);" />
+                                                <input type="text" class="form-control" placeholder="" readonly="" />
+                                                <span class="button">انتخاب فایل</span>
+                                            </div>
+                                           
+
+                                        </div>
+                                    
+                                
+                                   
+                                 
+                                    
+                                        <div class="col-md-6">
+                                            <label>
+                                                 تصویر بندانگشتی  
                                                 <small class="text-muted">- اختیاری</small>
                                             </label>
 
                                             <!-- custom file upload -->
                                             <div class="fancy-file-upload fancy-file-primary">
                                                 <i class="fa fa-upload"></i>
-                                                <input type="file" class="form-control" name="contact[attachment]" onchange="jQuery(this).next('input').val(this.value);" />
-                                                <input type="text" class="form-control" placeholder="هنوز عکسی انتخاب نشده" readonly="" />
+                                                <input type="file" class="form-control" name="pro_pic_mini" onchange="jQuery(this).next('input').val(this.value);" />
+                                                <input type="text" class="form-control" placeholder="" readonly="" />
                                                 <span class="button">انتخاب فایل</span>
                                             </div>
-                                            <small class="text-muted block">حداکثر حجم عکس : 10 مگابایت (jpg/png)</small>
+                                            
 
                                         </div>
                                     </div>
                                 </div>
+                                 
+                                 <div class="row">
+                                    <div class="form-group">
+                                      <div class="col-md-12 col-sm-12">
+                                        <label>  مشخصات ظاهری کالا </label>
+                                        <textarea name="pro_attributes" rows="4" placeholder="مشخصات ظاهری کالای مورد نظر وارد شود" class="form-control"></textarea>
+                                      </div>
+                                    </div>
+                                 </div>
                                         
                                         
                                       
                                </fieldset>
                               </div>
+                              
+                              <div class="col-md-12">
+                                
+                                 <div class="row">
+                                    <div class="form-group">
+                                      <div class="col-md-12 col-sm-12">
+                                        <label>  توضیحات کامل </label>  
+                                      
+                                        
+                                        <textarea rows="7" class="form-control summernote" data-height="300" data-lang="fa-IR" name="pro_desc" placeholder="توضیحات کامل درباره کالای مورد نظر وارد شود" ></textarea>
+                                        
+                                      </div>
+                                    </div>
+                                 </div>
+                                
+                              </div>
                          </div>
                          </div>
 
                          <div id="jtab3_nobg" class="tab-pane ">
-                            3
+                           <div class="row">
+                            <div class="col-md-6">
+                              <fieldset>
+                       
+                                <div class="row">
+                                  <div class="form-group">
+                                     <div class="col-md-12 col-sm-12">
+                                        <label>  بهای کالا برای مشتریان طلایی </label>
+                                        <input type="text" name="price" value="" placeholder="بهای کالا برای مشتریان طلایی در این قسمت وارد شود" class="form-control required">
+                                       </div>
+                                    </div>
+                                 </div>
+                                
+                                 <div class="row">
+                                  <div class="form-group">
+                                     <div class="col-md-12 col-sm-12">
+                                        <label>  بهای کالا برای مشتریان نقره ای </label>
+                                        <input type="text" name="price" value="" placeholder="بهای کالا برای مشتریان نقره ای در این قسمت وارد شود" class="form-control required">
+                                       </div>
+                                    </div>
+                                 </div>
+                                
+                                 <div class="row">
+                                  <div class="form-group">
+                                     <div class="col-md-12 col-sm-12">
+                                        <label>  بهای کالا برای مشتریان برنزی </label>
+                                        <input type="text" name="price" value="" placeholder="بهای کالا برای مشتریان برنزی در این قسمت وارد شود" class="form-control required">
+                                       </div>
+                                    </div>
+                                 </div>
+                                 
+                                 
+                              
+                              
+                              
+                              
+                              
+                              </fieldset>
+                            </div>
+                           </div>
                          </div>
                          
                          <hr/>
@@ -268,33 +379,12 @@
               </div>
             </div>
           </div>
-          </div>
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
+          
+{/block}
          
 
 
 
+{block name="script"}
 
-
-
-
-
-
-
-
-    </section>
-</div>
+{/block}
