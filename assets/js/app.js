@@ -1324,26 +1324,26 @@
 
 					_container_1.each(function() {
 
-						var _lang = jQuery(this).attr('data-lang') || 'en-US';
+						var _lang = jQuery(this).attr('data-lang') || 'fa-IR';
 
-						if(_lang != 'en-US') { // Language!
+						if(_lang != 'fa-IR') { // Language!
 						alert(_lang);
 							loadScript(plugin_path + 'editor.summernote/lang/summernote-'+_lang+'.js');
 						}
 
 						jQuery(this).summernote({
 							height: jQuery(this).attr('data-height') || 200,
-							lang: 	jQuery(this).attr('data-lang') || 'en-US', // default: 'en-US'
+							lang: 	jQuery(this).attr('data-lang') || 'fa-IR', // default: 'en-US'
 							toolbar: [
 							/*	[groupname, 	[button list]]	*/
 								['style', 		['style']],
 								['fontsize', 	['fontsize']],
 								['style', 		['bold', 'italic', 'underline','strikethrough', 'clear']],
 								['color', 		['color']],
-								['para', 		['ul', 'ol', 'paragraph']],
-								['table', 		['table']],
-								['media', 		['link', 'picture', 'video']],
-								['misc', 		['codeview', 'fullscreen', 'help']]
+								['para', 		[ 'paragraph']],
+								
+								['media', 		['link', 'picture']],
+								['misc', 		['codeview']]
 							]
 						});
 					});
