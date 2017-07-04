@@ -79,18 +79,7 @@
                                     </div>
                                  </div>
                                  
-                                 <div class="row">
-                                    <div class="form-group">
-                                       <div class="col-md-12 col-sm-12">
-                                          <label> وضعیت سفارش </label>
-                                          <select class="form-control select" name="stock_status" value="">
-                                             <option value="0">عدم ثبت سفارش</option>
-                                             <option value="1">فروش عادی</option>
-                                             <option value="2">ثبت سفارش جهت تولید</option>
-                                          </select>
-                                       </div>
-                                    </div>
-                                 </div>
+                                 
 
                                  <div class="row">
                                     <div class="form-group">
@@ -141,14 +130,7 @@
                                        </div>
                                     </div>
                                  </div>
-                                 <div class="row">
-                                    <div class="form-group">
-                                       <div class="col-md-12 col-sm-12">
-                                          <label>  موعد تحویل (بر حسب روز) </label>
-                                          <input type="text" name="Delivery_time" value="" placeholder="زمان آماده شدن محصول برای تحویل" class="form-control required">
-                                       </div>
-                                    </div>
-                                 </div>
+                                 
                               </fieldset>
                                 
                                 
@@ -162,43 +144,53 @@
                                           {insert name=get_shop_category_list  value=gvar assign=shop_catalog_cats cat_status=1 parent_id=0 }
                                           {if $shop_catalog_cats ne null }
                                           
-                                          <div class="categories">
-                                         <div id="catgry">
-                                          <ul class="tree">
-                                           {foreach from=$shop_catalog_cats  item=shop_cate }
-                                             {insert name=ishaveChild_shop_cat value=var catid=$shop_cate['catid'] assign=ischild}
-                                       
-                                            <li {if $ischild}class="has"{/if}>
-                                              <input type="checkbox" value="{$shop_cate['catid']}" name="shop_cat[]"/> 
-                                               <label>{$shop_cate['cat_name']}</label>
-                                               {if $ischild}
-                                               {insert name=get_shop_category_list  value=gvar assign=cats_child cat_status=1 parent_id=$shop_cate['catid'] }
-                                               <ul>
+                                          
+                                            <select name="pro_cat" class="form-control select">
+                                                <option value="0">-- انتخاب یک دسته بندی </option>
+                                            {foreach from=$shop_catalog_cats  item=shop_cate }
+                                                {insert name=ishaveChild_shop_cat value=var catid=$shop_cate['catid'] assign=ischild}
+                                                <option value="{$shop_cate['catid']}" class="optionGroup">{$shop_cate['cat_name']}</option>
+                                                {if $ischild}
+                                                 {insert name=get_shop_category_list  value=gvar assign=cats_child cat_status=1 parent_id=$shop_cate['catid'] }
+                                                 
                                                  {foreach from=$cats_child  item=child }
-                                                 <li>
-                                                  <input type="checkbox" value="{$child['catid']}" name="shop_cat[]"/> 
-                                                  <label>{$child['cat_name']}</label>
-                                                 </li>
+                                                 <option value="{$child['catid']}" class="optionChild">← {$child['cat_name']}</option>
                                                  {/foreach}
-                                               </ul>
-                                               {/if}
-                                               </li>
-                                             
-                                           {/foreach}
-                                            </ul>
-                                            </div>
-                                          </div>
-                                           {/if}            
-                                          
+                                                 
+                                                {/if}
                                             
-                                          
+                                            {/foreach}
+                                            </select>
+                                         
+                                           {/if}            
                                           
                                           
                                        </div>                                
                                     </div>
                                    </div>
+                                   
                                   
+                                  <div class="row">
+                                    <div class="form-group">
+                                       <div class="col-md-12 col-sm-12">
+                                          <label> وضعیت سفارش </label>
+                                          <select class="form-control select" name="stock_status" value="">
+                                             <option value="0">عدم ثبت سفارش</option>
+                                             <option value="1">فروش عادی</option>
+                                             <option value="2">ثبت سفارش جهت تولید</option>
+                                          </select>
+                                       </div>
+                                    </div>
+                                 </div>
                                   
+                                  <div class="row">
+                                    <div class="form-group">
+                                       <div class="col-md-12 col-sm-12">
+                                          <label>  موعد تحویل (بر حسب روز) </label>
+                                          <input type="text" name="Delivery_time" value="" placeholder="زمان آماده شدن محصول برای تحویل" class="form-control required">
+                                       </div>
+                                    </div>
+                                 </div>
                                   
                                 </fieldset>
                               </div>

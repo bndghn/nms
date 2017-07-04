@@ -18,6 +18,7 @@ if ($submit === 1){
     (isset($_POST['pro_name']) ? $pro_name = $_POST['pro_name'] : $pro_name = "");
     (isset($_POST['sku']) ? $sku = $_POST['sku'] : $sku = "");
     $gender =intval($_POST['gender']);
+    $pro_cat = intval($_POST['pro_cat']);
     $pro_status =intval($_POST['pro_status']);
     (isset($_POST['pro_count']) ? $pro_count =intval($_POST['pro_count']) : $pro_count = 0);
     $p_c_unit =intval($_POST['pro_count_unit']);
@@ -59,6 +60,10 @@ if ($submit === 1){
         $error = "حتما باید وضعیت سفارش کالا را وارد نمایید.";
     }
     
+    elseif($pro_cat === 0){
+        $error = "دسته بندی کالا را باید حتما مشخص کنید.";
+    }
+    
 
     
   if($error === "" ){
@@ -71,10 +76,11 @@ if ($submit === 1){
      $p_s_desc = $conn->qStr($p_s_desc);
      $pro_metakey = $conn->qStr($pro_metakey);
      $pro_attributes = $conn->qStr($pro_attributes);
+     $pro_cat_parent = intval(get_shop_cat_parent($pro_cat));
       
        
         
-        $query=" INSERT INTO `shop_product`(`pro_name`, `sku`, `gender`, `pro_status` , `pro_count`, `pro_count_unit`, `pro_weight`, `pro_size`, `Delivery_time`, `stock_status`,`pro_pic_main`, `pro_pic_mini`, `pro_desc`, `pro_short_desc`, `pro_metakey`, `pro_attributes`) VALUES ($pro_name,$sku,$gender,$pro_status,$pro_count,$p_c_unit,$pro_weight,$pro_size,$Delivery_time,$stock_status,$p_p_main,$p_p_mini,$pro_desc,$p_s_desc,$pro_metakey,$pro_attributes)";
+        $query=" INSERT INTO `shop_product`(`pro_name`, `pro_catid`,`pro_cat_pntid`, `sku`, `gender`, `pro_status` , `pro_count`, `pro_count_unit`, `pro_weight`, `pro_size`, `Delivery_time`, `stock_status`,`pro_pic_main`, `pro_pic_mini`, `pro_desc`, `pro_short_desc`, `pro_metakey`, `pro_attributes`) VALUES ( $pro_name , $pro_cat , $pro_cat_parent, $sku , $gender , $pro_status , $pro_count , $p_c_unit , $pro_weight , $pro_size , $Delivery_time , $stock_status , $p_p_main , $p_p_mini , $pro_desc , $p_s_desc , $pro_metakey , $pro_attributes)";
         
              echo $query;  
        if($conn->EXECUTE($query)){
