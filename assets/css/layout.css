@@ -1887,7 +1887,17 @@ ul.bullet-list li h3 {
 	}
 }
 
+/** SELECT OPTION 
+**************************************************************** **/
 
+.optionGroup {
+    font-weight: bold;
+    font-style: italic;
+}
+    
+.optionChild {
+    padding-left: 15px;
+}
 
 
 /** Item Box
