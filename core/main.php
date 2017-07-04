@@ -472,3 +472,11 @@ function insert_get_shop_cat($gvar){
     }
 }
 
+function get_shop_cat_parent($catid){
+     global $conn;
+    $CatID = intval($catid);
+    $query = "SELECT *  FROM `shop_category` WHERE `catid`= $CatID";
+    $result = $conn->execute($query);
+    $parent = $result->fields['pntid'];
+    return $parent;
+}
