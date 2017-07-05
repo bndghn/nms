@@ -2,8 +2,8 @@
  
         
 {block name = "mTitle"} فروشگاه{/block}
-{block name = "sTitle"}افزودن محصول{/block}
-{block name = "pTitle"}کالای جدید{/block}
+{block name = "sTitle"}فهرست محصولات{/block}
+{block name = "pTitle"}افزودن محصول جدید{/block}
 {block name="css"}
 <link href="{$assets}/plugins/jstree/themes/default/style.min.css" rel="stylesheet" type="text/css" />     
 {/block}
