@@ -19,7 +19,7 @@ if ($submit === 1){
     (isset($_POST['sku']) ? $sku = $_POST['sku'] : $sku = "");
     $gender =intval($_POST['gender']);
     $pro_cat = intval($_POST['pro_cat']);
-    $pro_status =intval($_POST['pro_status']);
+    (isset($_POST['pro_status']) ? $pro_status = 1 : $pro_status = 0);
     (isset($_POST['pro_count']) ? $pro_count =intval($_POST['pro_count']) : $pro_count = 0);
     $p_c_unit =intval($_POST['pro_count_unit']);
     (isset($_POST['pro_weight']) ? $pro_weight =intval($_POST['pro_weight']) : $pro_weight = 0);
@@ -80,7 +80,7 @@ if ($submit === 1){
       
        
         
-        $query=" INSERT INTO `shop_product`(`pro_name`, `pro_catid`,`pro_cat_pntid`, `sku`, `gender`, `pro_status` , `pro_count`, `pro_count_unit`, `pro_weight`, `pro_size`, `Delivery_time`, `stock_status`,`pro_pic_main`, `pro_pic_mini`, `pro_desc`, `pro_short_desc`, `pro_metakey`, `pro_attributes`) VALUES ( $pro_name , $pro_cat , $pro_cat_parent, $sku , $gender , $pro_status , $pro_count , $p_c_unit , $pro_weight , $pro_size , $Delivery_time , $stock_status , $p_p_main , $p_p_mini , $pro_desc , $p_s_desc , $pro_metakey , $pro_attributes)";
+        $query=" INSERT INTO `shop_product`(`pro_name`, `pro_catid`,`pro_cat_pntid`, `sku`, `gender`, `pro_status` , `pro_count`, `pro_count_unit`, `pro_weight`, `pro_size`, `Delivery_time`, `stock_status`,`pro_pic_main`, `pro_pic_mini`, `pro_desc`, `pro_short_desc`, `pro_metakey`, `pro_attributes`,`date_created`) VALUES ( $pro_name , $pro_cat , $pro_cat_parent, $sku , $gender , $pro_status , $pro_count , $p_c_unit , $pro_weight , $pro_size , $Delivery_time , $stock_status , $p_p_main , $p_p_mini , $pro_desc , $p_s_desc , $pro_metakey , $pro_attributes , '".time()."')";
         
              echo $query;  
        if($conn->EXECUTE($query)){
