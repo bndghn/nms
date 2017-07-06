@@ -25,6 +25,7 @@ if ($isSubmit === "1"){
     (isset($_POST['lname']) ? $lname = $_POST['lname'] : $lname = "");
     (isset($_POST['email']) ? $email = $_POST['email'] : $email = "");
     (isset($_POST['mobile']) ? $mobile = $_POST['mobile'] : $mobile = "");
+  
     $user_id =intval($_POST['userid']);
     $status =intval($_POST['status']);
     $usergroup =intval($_POST['usergroup']);

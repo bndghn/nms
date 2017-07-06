@@ -9,9 +9,9 @@ verify_login_admin();
 $error      =   "";
 $message    =   "";
 
-(isset($_GET['id']) ? $userID = intval($_GET['id']) : $userID = "");
+(isset($_GET['id']) ? $userID = intval($_GET['id']) : $userID = 0);
 
-if($userID !=""){
+if($userID !=0){
     
     $user = insert_get_user(array('value' => 'var', 'userid' =>  $userID ));
     if($user['userid'] === "1"){

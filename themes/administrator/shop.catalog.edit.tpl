@@ -92,7 +92,11 @@
                                        <div class="col-md-12 col-sm-12">
                                          <label class="switch switch-success switch-round">
                                           <span>وضعیت کالا : </span>
-                                          <input name="pro_status" type="checkbox" checked="">
+                                             {if $pro_edits['pro_status'] eq "1"}
+                                                <input name="pro_status" type="checkbox" checked=""> 
+                                             {else}
+                                                <input name="pro_status" type="checkbox" >
+                                             {/if}  
                                           <span class="switch-label"  data-on="فعال" data-off="غیرفعال"></span>
                                          </label>
                                        </div>
