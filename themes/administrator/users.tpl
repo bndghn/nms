@@ -217,7 +217,7 @@
 								<!-- /panel content -->
                                 <div class="panel-footer clearfix">
 
-                                  <a href="{$adminurl}/users.add.php?type=customer" data-target="#addCustomer" data-toggle="modal" class="btn btn-purple pull-right btn-sm nomargin-top nomargin-bottom"><i class="fa fa-edit white"></i>ثبت مشتری جدید</a>
+                                  <a href="{$adminurl}/users.add.php?type=customer" data-target="#addCustomer" data-toggle="modal" class="btn btn-purple pull-right btn-sm nomargin-top nomargin-bottom"><i class="fa fa-plus white"></i>ثبت مشتری جدید</a>
 
                                 </div>
 							</div>   
@@ -314,7 +314,7 @@
                             <!-- panel footer -->
                             <div class="panel-footer clearfix">
                                
-                                <a href="{$adminurl}/users.add.php" data-target="#addUser" data-toggle="modal" class="btn btn-purple pull-right btn-sm nomargin-top nomargin-bottom"><i class="fa fa-edit white"></i>{$lang49}</a>
+                                <a href="{$adminurl}/users.add.php" data-target="#addUser" data-toggle="modal" class="btn btn-purple pull-right btn-sm nomargin-top nomargin-bottom"><i class="fa fa-plus white"></i>{$lang49}</a>
                                 
                             </div>
                             <!-- /panel footer -->
@@ -413,7 +413,7 @@
 
                                 <!-- panel footer -->
                                 <div class="panel-footer clearfix">
-                                    <a href="{$adminurl}/users.add.php" data-target="#addUser" data-toggle="modal" class="btn btn-purple pull-right btn-sm nomargin-top nomargin-bottom"><i class="fa fa-edit white"></i>{$lang50}</a>
+                                    <a href="{$adminurl}/users.add.php" data-target="#addUser" data-toggle="modal" class="btn btn-purple pull-right btn-sm nomargin-top nomargin-bottom"><i class="fa fa-plus white"></i>{$lang50}</a>
 
                                 </div>
                                 <!-- /panel footer -->
@@ -456,9 +456,6 @@
 
 {insert name=get_user_list value=var assign=usersEdit}
 {foreach from=$usersEdit item=userEdit}
-
-
-
 <div class="modal fade" id="uEdit{$userEdit['userid']}" role="basic" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -470,6 +467,4 @@
         </div>
     </div>
 </div>
-
-
 {/foreach}

@@ -480,3 +480,162 @@ function get_shop_cat_parent($catid){
     $parent = $result->fields['pntid'];
     return $parent;
 }
+
+function insert_get_pro_count($var){
+    global $conn;
+//    $var=intval($var['stock_status']);
+  if($var['pro_status']=="1"){ 
+    $add_sql = " `pro_status`=1 ";
+  }
+  elseif($var['pro_status']=="0"){ 
+    $add_sql = " `pro_status`=0 "; 
+  }
+  
+  if(!isset($var['stock_status'])){
+      $add_sql .= "";    
+    }
+  elseif($var['stock_status']=="0"){
+      $add_sql .= " AND `stock_status`=0";
+    }  
+  elseif($var['stock_status']=="1"){
+      $add_sql .= " AND `stock_status`=1";
+    }
+  elseif($var['stock_status']=="2"){
+      $add_sql .= " AND `stock_status`=2";
+    }
+    
+ 
+    
+  $query ="SELECT count(*) as total  FROM `shop_product` WHERE  ".$add_sql;
+    //echo $query;
+    $result = $conn->execute($query);
+    $total = $result->fields['total'];
+    return $total;
+}
+
+
+function insert_get_product_list($gvar){
+    global $conn;
+  //$gvar=intval($gvar['stock_status']);
+    
+  if(!isset($gvar['stock_status'])){
+    
+   $add_sql = " 'stock_status' = 'stock_status' " ;
+  }
+  elseif($gvar['stock_status']==1){ 
+    
+    $add_sql = " `stock_status`=1";
+  
+  }
+  elseif($gvar['stock_status']==2){
+    
+    $add_sql = " `stock_status`=2"; 
+
+  }
+  elseif($gvar['stock_status']==0){ 
+    
+    $add_sql = " `stock_status`=0"; 
+   
+  }
+    
+  if($gvar['pro_status']== 1 ){ 
+    
+    $add_sql .= " AND  `pro_status`=1";
+  
+  }
+  elseif($gvar['pro_status']== 0 ){ 
+    
+    $add_sql .= " AND  `pro_status`=0"; 
+   
+  }
+  
+    //echo $query;
+  
+    echo $conn->errorMsg();
+  
+    $query ="SELECT * FROM `shop_product` WHERE ".$add_sql;
+    $result = $conn->execute($query);
+    $produc = $result->getAll();
+    return $produc;
+}
+/***************/
+// i made this func for get list of products to catalog edit and its diferent by the other one
+function insert_product_list($var){
+  
+  
+  global $conn;
+  $proid = intval($var['proid']);
+  $query = "SELECT *  FROM `shop_product` WHERE `proid`= $proid";
+  $result = $conn->execute($query);
+  
+    if(!$product = $result->getArray()){
+        echo $conn->errorMsg();
+        return false;
+    }else{
+        return $product['0'];
+    }
+}
+
+
+
+function insert_get_product_cat($var){
+    global $conn,$config;
+  
+  if(!isset($var['stock_status'])){
+    $add_sql = " 'stock_status' = 'stock_status' ";    
+    }
+  elseif($var['stock_status']==1){
+    
+    $add_sql = " shop_product.stock_status=1"; 
+  }elseif($var['stock_status']==2){
+      
+   $add_sql = " shop_product.stock_status=2"; 
+    
+  }elseif($var['stock_status']==0){
+   $add_sql = " shop_product.stock_status=0"; 
+  }
+  
+  if($var['pro_status']=="1"){ 
+    
+    $add_sql .= " AND  shop_product.pro_status=1 ";
+  
+  }
+  elseif($var['pro_status']=="0"){ 
+    
+    $add_sql .= " AND shop_product.pro_status=0 "; 
+   
+  }
+    //echo $query;
+   $query ="SELECT shop_product.*, shop_category.* FROM `shop_product`,`shop_category` WHERE shop_product.pro_catid= shop_category.catid AND".$add_sql;
+    $result = $conn->execute($query);
+    $pro_Cat = $result->getAll();
+    return $pro_Cat;  
+}
+
+
+
+/************* products price ******/
+function insert_get_product_ugroup_prc($gvar){
+  global $conn;
+
+  if($gvar['id']=="5" ){
+    $add_sql = " AND `id`=5 ";
+  }
+  elseif($gvar['id']=="6" ){
+    $add_sql = " AND `id`=6 ";
+  }
+  elseif($gvar['id']=="7" ){
+    $add_sql = " AND `id`=7 ";
+  }
+  
+  $query = "SELECT * FROM `user_group` WHERE `isCustomer`=1 AND `status`=1 ".$add_sql;
+  $result = $conn->execute($query);
+  
+ if(!$userGroups = $result->getArray()){
+      echo $conn->errorMsg();
+      return false;
+  }else{
+    return $userGroups['0'];
+  }
+  
+}

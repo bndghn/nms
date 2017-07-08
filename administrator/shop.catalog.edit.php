@@ -1,3 +1,4 @@
+
 <?php
 
 include('../core/config.php');
@@ -6,14 +7,30 @@ include('../core/config.php');
 verify_login_admin();
     
 // define var
-$error      =   "";
-$message    =   "";
+$error = "";
+$message = "";
+
+STemplate::assign('section',"shop");
+STemplate::assign('page',"shop_catalog");
+  
+(isset($_GET['proid']) ? $proid =intval($_GET['proid']) : $proid = 0 );
+
+
+if($proid > 0){
+  
+  STemplate::assign('proid',$proid);
+  STemplate::display('administrator/shop.catalog.edit.tpl');
+
+}
 
 
 
-(isset($_POST['isSubmit']) ? $submit = intval($_POST['isSubmit']) : $submit = 0);
 
-if ($submit === 1){
+
+
+(isset($_POST['isSubmit']) ? $isSubmit = intval($_POST['isSubmit']) : $isSubmit = 0);
+
+if ($isSubmit === 1){
   
     (isset($_POST['pro_name']) ? $pro_name = $_POST['pro_name'] : $pro_name = "");
     (isset($_POST['sku']) ? $sku = $_POST['sku'] : $sku = "");
@@ -33,7 +50,8 @@ if ($submit === 1){
     (isset($_POST['pro_metakey']) ? $pro_metakey = $_POST['pro_metakey'] : $pro_metakey = "");
     (isset($_POST['pro_attributes']) ? $pro_attributes = $_POST['pro_attributes'] : $pro_attributes = "");
    
-    
+     $proid =intval($_POST['proid']);
+  
     if($pro_name === "" )
     {
         $error = "حتما باید نام کالا را وارد نمایید.";
@@ -80,57 +98,21 @@ if ($submit === 1){
       
        
         
-        $query=" INSERT INTO `shop_product`(`pro_name`, `pro_catid`,`pro_cat_pntid`, `sku`, `gender`, `pro_status` , `pro_count`, `pro_count_unit`, `pro_weight`, `pro_size`, `Delivery_time`, `stock_status`,`pro_pic_main`, `pro_pic_mini`, `pro_desc`, `pro_short_desc`, `pro_metakey`, `pro_attributes`,`date_created`) VALUES ( $pro_name , $pro_cat , $pro_cat_parent, $sku , $gender , $pro_status , $pro_count , $p_c_unit , $pro_weight , $pro_size , $Delivery_time , $stock_status , $p_p_main , $p_p_mini , $pro_desc , $p_s_desc , $pro_metakey , $pro_attributes , '".time()."')";
-        
+        $query="UPDATE `shop_product` SET `pro_name`=$pro_name, `pro_catid`=$pro_cat, `pro_cat_pntid`=$pro_cat_parent, `sku`=$sku, `gender`=$gender, `date_update`=".time().", `pro_status`=$pro_status, `pro_count`=$pro_count, `pro_count_unit`=$p_c_unit, `pro_weight`=$pro_weight, `pro_size`=$pro_size, `Delivery_time`=$Delivery_time, `stock_status`=$stock_status, `pro_pic_main`=$p_p_main, `pro_pic_mini`=$p_p_mini, `pro_desc`=$pro_desc, `pro_short_desc`=$p_s_desc, `pro_metakey`=$pro_metakey, `pro_attributes`=$pro_attributes WHERE `proid`=$proid";
              echo $query;  
        if($conn->EXECUTE($query)){
-           header("location: ".$config['adminurl']."/shop.catalog.add.php");
+           header("location: ".$config['adminurl']."/shop.catalog.php");
        } 
         else{
            $error=$conn->errorMsg(); 
         }
 
+    }else{
+        header("location: ".$config['adminurl']."/shop.catalog.edit.php?tsError=$error");
     }
-
-
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//load nessary template for loading
-STemplate::assign('message',$message);
-STemplate::assign('error',$error);
-
-
-//Select active menu
-STemplate::assign('section',"shop");
-STemplate::assign('page',"shop_catalog");
-
-STemplate::display('administrator/shop.catalog.add.tpl');
+      //load nessary template for loading
+    STemplate::assign('message',$message);
+    STemplate::assign('error',$error);
 ?>

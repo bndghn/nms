@@ -51,16 +51,13 @@ if ($isSubmit === "1"){
         }
       
         if($pntid !=0){
-            
             $addSQL .=" , `pntid` = $pntid";
         }
         if($cat_desc !=""){
             $qdesc = $conn->qStr($cat_desc);
             $addSQL .=" , `catdesc` = $qdesc";
         }
-
         //$quName = $conn->qStr($username);
-
         $query = "UPDATE `shop_category` SET " .$addSQL. ", `cat_status` = $status WHERE `catid` = $CatID";
 
         if($conn->EXECUTE($query)){
@@ -68,7 +65,6 @@ if ($isSubmit === "1"){
          }else{
             echo $conn->errorMsg();
         }
-
     }else{
         header("location: ".$config['adminurl']."/shop.categories.php?tsError=$error");
     }
