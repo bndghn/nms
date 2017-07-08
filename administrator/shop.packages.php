@@ -34,7 +34,7 @@ if ($isDelete !=""){
 if ($submit === 1){
     (isset($_POST['pck_title']) ? $pckname = $_POST['pck_title'] : $pckname = "");
     (isset($_POST['pck_description']) ? $pck_desc = $_POST['pck_description'] : $pck_desc = "");
-    (isset($_POST['pck_status']) ? $pck_status = "1" : $pck_status = "0");
+    (isset($_POST['pck_status']) ? $pck_status = 1 : $pck_status = 0);
 
     if($pckname === "" )
     {

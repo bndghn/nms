@@ -36,21 +36,20 @@
                     <!-- required [php action request] -->
                     <div class="row">
                       <div class="form-group">
-                        <div class="col-md-12 col-sm-12">
+                        <div class="col-md-6 col-sm-6">
                           <label> عنوان بسته بندی  *</label>
                           <input type="text" name="pck_title" value="" class="form-control required">
                         </div>
-                      </div>
-                    </div>
-
-                    <div class="row">
+                      
+                    <span>وضعیت :  </span>
                        <div class="col-md-6 col-sm-6">
                           <label class="switch switch-success switch-round"> 
-                          <span>وضعیت </span>
+                          
                           <input name="pck_status" type="checkbox" checked="">
                           <span class="switch-label"  data-on="فعال" data-off="غیرفعال"> </span>
                           </label>
                         </div>
+                      </div>
                     </div>
 
                     <div class="row">

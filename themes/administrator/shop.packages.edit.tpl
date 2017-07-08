@@ -5,7 +5,7 @@
     <div id="panel-2" class="panel panel-default">
       <div class="panel-heading">
         <span class="title elipsis">
-          <strong>افزودن بسته بندی کالا </strong> <!-- panel title -->
+          <strong>ویرایش بسته بندی کالا </strong> <!-- panel title -->
         </span>
       </div>
 <!-- panel content -->
@@ -49,7 +49,8 @@
 
             <div class="row">
               <div class="col-md-12">
-                <input type="hidden" name="isSubmit" value="1"/>
+                <input type="hidden" name="isSubmit" value="1">
+                <input type="hidden" name="pckid" value="{$edit_pck['pckid']}"/>
                 <button type="submit" class="btn btn-success btn-3d  btn-xlg btn-block margin-top-30 ">
                   ویرایش بسته بندی کالا
                 </button>
