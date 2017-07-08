@@ -78,7 +78,7 @@
                               {insert name=get_pro_count value=var pro_status=0 assign=deactived}
                               {$deactived}
                               </span>
-                              محصولات غیرفعال
+                              کالای غیرفعال
                             </a>
                           </li>
                       </ul>
@@ -118,7 +118,7 @@
                                                      {$products['pro_name']}
                                                 </td>
                                                 <td class="align-middle text-center">
-                                                    {$products['pro_short_desc']}
+                                                    {$products['pro_short_desc']|stripslashes|truncate:15:" ...":true}
                                                 </td>
                                                    
                                                 <td class="align-middle text-center">
@@ -186,7 +186,7 @@
                                              {$delay_pro['pro_name']}
                                         </td>
                                         <td class="align-middle text-center">
-                                            {$delay_pro['pro_short_desc']}
+                                            {$delay_pro['pro_short_desc']|stripslashes|truncate:15:" ...":true}
                                         </td>
                                         
                                         <td class="align-middle text-center">
@@ -248,7 +248,7 @@
                                            {$no_pro['pro_name']}
                                       </td>
                                       <td class="align-middle text-center">
-                                          {$no_pro['pro_short_desc']}
+                                          {$no_pro['pro_short_desc']|stripslashes|truncate:15:" ...":true}
                                       </td>
                                       <td class="align-middle text-center">
                                          {$no_pro['cat_name']}
@@ -310,7 +310,7 @@
                                            {$del_pro['pro_name']}
                                       </td>
                                       <td class="align-middle text-center">
-                                          {$del_pro['pro_short_desc']}
+                                          {$del_pro['pro_short_desc']|stripslashes|truncate:15:" ...":true}
                                       </td>
                                       <td class="align-middle text-center">
                                          {$del_pro['cat_name']}

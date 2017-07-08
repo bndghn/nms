@@ -326,39 +326,36 @@
                             <div class="col-md-6">
                               <fieldset>
                        
-                                <div class="row">
+                                 <div class="row">
                                   <div class="form-group">
+                                    {insert name=get_product_ugroup_prc value=gvar id=5 assign=pro_ugroup}
                                      <div class="col-md-12 col-sm-12">
-                                        <label>  بهای کالا برای مشتریان طلایی </label>
-                                        <input type="text" name="price" value="" placeholder="بهای کالا برای مشتریان طلایی در این قسمت وارد شود" class="form-control required">
+                                        <label>{$pro_ugroup['category']}</label>
+                                        <input type="text" name="price" value="" placeholder="بهای کالا در این قسمت وارد شود" class="form-control required">
                                        </div>
                                     </div>
                                  </div>
                                 
                                  <div class="row">
                                   <div class="form-group">
+                                    {insert name=get_product_ugroup_prc value=gvar id=6 assign=pro_ugroup}
                                      <div class="col-md-12 col-sm-12">
-                                        <label>  بهای کالا برای مشتریان نقره ای </label>
-                                        <input type="text" name="price" value="" placeholder="بهای کالا برای مشتریان نقره ای در این قسمت وارد شود" class="form-control required">
+                                        <label>{$pro_ugroup['category']}</label>
+                                        <input type="text" name="price" value="" placeholder="بهای کالا در این قسمت وارد شود" class="form-control required">
                                        </div>
                                     </div>
                                  </div>
-                                
+                                 
                                  <div class="row">
                                   <div class="form-group">
+                                    {insert name=get_product_ugroup_prc value=gvar id=7 assign=pro_ugroup}
                                      <div class="col-md-12 col-sm-12">
-                                        <label>  بهای کالا برای مشتریان برنزی </label>
-                                        <input type="text" name="price" value="" placeholder="بهای کالا برای مشتریان برنزی در این قسمت وارد شود" class="form-control required">
+                                        <label>{$pro_ugroup['category']}</label>
+                                        <input type="text" name="price" value="" placeholder="بهای کالا در این قسمت وارد شود" class="form-control required">
+                                        
                                        </div>
                                     </div>
                                  </div>
-                                 
-                                 
-                              
-                              
-                              
-                              
-                              
                               </fieldset>
                             </div>
                            </div>

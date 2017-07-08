@@ -611,3 +611,31 @@ function insert_get_product_cat($var){
     $pro_Cat = $result->getAll();
     return $pro_Cat;  
 }
+
+
+
+/************* products price ******/
+function insert_get_product_ugroup_prc($gvar){
+  global $conn;
+
+  if($gvar['id']=="5" ){
+    $add_sql = " AND `id`=5 ";
+  }
+  elseif($gvar['id']=="6" ){
+    $add_sql = " AND `id`=6 ";
+  }
+  elseif($gvar['id']=="7" ){
+    $add_sql = " AND `id`=7 ";
+  }
+  
+  $query = "SELECT * FROM `user_group` WHERE `isCustomer`=1 AND `status`=1 ".$add_sql;
+  $result = $conn->execute($query);
+  
+ if(!$userGroups = $result->getArray()){
+      echo $conn->errorMsg();
+      return false;
+  }else{
+    return $userGroups['0'];
+  }
+  
+}

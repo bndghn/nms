@@ -236,7 +236,7 @@
                                  
                                  
                                  
-                                        
+                              <form action="shop.catalog.upload.php" method="post" enctype="multipart/form-data">    
                                 <div class="row">
                                     <div class="form-group">
                                         <div class="col-md-6">
@@ -251,6 +251,10 @@
                                                 <input type="file" class="form-control" name="pro_pic_main" onchange="jQuery(this).next('input').val(this.value);" />
                                                 <input type="text" class="form-control" placeholder="" readonly="" />
                                                 <span class="button">انتخاب فایل</span>
+                                                
+                                               
+                                                <input type="submit" value="Upload Image" name="submit">
+                                                
                                             </div>
                                            
 
@@ -278,7 +282,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                 
+                             </form>
                                  <div class="row">
                                     <div class="form-group">
                                       <div class="col-md-12 col-sm-12">
@@ -315,40 +319,38 @@
                            <div class="row">
                             <div class="col-md-6">
                               <fieldset>
-                       
+                               
+                             
                                 <div class="row">
                                   <div class="form-group">
+                                    {insert name=get_product_ugroup_prc value=gvar id=5 assign=pro_ugroup}
                                      <div class="col-md-12 col-sm-12">
-                                        <label>  بهای کالا برای مشتریان طلایی </label>
-                                        <input type="text" name="price" value="" placeholder="بهای کالا برای مشتریان طلایی در این قسمت وارد شود" class="form-control required">
+                                        <label>{$pro_ugroup['category']}</label>
+                                        <input type="text" name="price" value="" placeholder="بهای کالا در این قسمت وارد شود" class="form-control required">
                                        </div>
                                     </div>
                                  </div>
                                 
                                  <div class="row">
                                   <div class="form-group">
+                                    {insert name=get_product_ugroup_prc value=gvar id=6 assign=pro_ugroup}
                                      <div class="col-md-12 col-sm-12">
-                                        <label>  بهای کالا برای مشتریان نقره ای </label>
-                                        <input type="text" name="price" value="" placeholder="بهای کالا برای مشتریان نقره ای در این قسمت وارد شود" class="form-control required">
+                                        <label>{$pro_ugroup['category']}</label>
+                                        <input type="text" name="price" value="" placeholder="بهای کالا در این قسمت وارد شود" class="form-control required">
                                        </div>
                                     </div>
                                  </div>
-                                
+                                 
                                  <div class="row">
                                   <div class="form-group">
+                                    {insert name=get_product_ugroup_prc value=gvar id=7 assign=pro_ugroup}
                                      <div class="col-md-12 col-sm-12">
-                                        <label>  بهای کالا برای مشتریان برنزی </label>
-                                        <input type="text" name="price" value="" placeholder="بهای کالا برای مشتریان برنزی در این قسمت وارد شود" class="form-control required">
+                                        <label>{$pro_ugroup['category']}</label>
+                                        <input type="text" name="price" value="" placeholder="بهای کالا در این قسمت وارد شود" class="form-control required">
+                                        
                                        </div>
                                     </div>
                                  </div>
-                                 
-                                 
-                              
-                              
-                              
-                              
-                              
                               </fieldset>
                             </div>
                            </div>
