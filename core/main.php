@@ -480,6 +480,8 @@ function get_shop_cat_parent($catid){
     $parent = $result->fields['pntid'];
     return $parent;
 }
+/******************************/
+/*********** product **********/
 
 function insert_get_pro_count($var){
     global $conn;
@@ -638,4 +640,28 @@ function insert_get_product_ugroup_prc($gvar){
     return $userGroups['0'];
   }
   
+}
+
+/************ package products**************/
+function insert_get_packages($var){
+  global $conn;
+  
+  $query = "SELECT * FROM `shop_packages`";
+  $result = $conn->execute($query);
+  $package = $result->getAll();
+  return $package;
+}
+
+function insert_get_pack_edit($gvar){
+  global $conn;
+  $pckid = intval($gvar['pckid']);
+  $query = "SELECT * FROM `shop_packages` WHERE `pckid`= $pckid";
+  $result = $conn->execute($query);
+
+  if(!$package = $result->getArray()){
+        echo $conn->errorMsg();
+        return false;
+    }else{
+        return $package['0'];
+    }
 }
