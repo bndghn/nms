@@ -189,7 +189,7 @@ function loginByCookie($isAdmin="0"){
     }
 
 }
-
+/**********************************************/
 function insert_get_users_count($var){
     global $conn;
     if(!isset($var['user_group']) ){
@@ -222,7 +222,7 @@ function insert_get_users_count($var){
     
     
 }
-
+/**********************************************/
 function insert_get_user($var){
     global $conn,$config;
     $uID = intval($var['userid']);
@@ -235,7 +235,7 @@ function insert_get_user($var){
         return $user['0'];
     }
 }
-
+/**********************************************/
 function insert_get_user_list($var){
     global $conn,$config;
     if(!isset($var['user_group']) ){
@@ -293,7 +293,7 @@ function insert_get_user_list($var){
     
     
 }
-
+/**********************************************/
 function insert_get_user_group_list($gvar){
     global $conn;
     if(!isset($gvar['isCustomer']) ){
@@ -310,7 +310,7 @@ function insert_get_user_group_list($gvar){
     
     return $userGroups;
 }
-
+/**********************************************/
 function generatePass($characters, $type="mixed") {
     if($type === "mixed"){
         $possible = '123456789@_#abcdefghijklmnopqrstuvwxyz';
@@ -331,7 +331,7 @@ function generatePass($characters, $type="mixed") {
     return $code;
 }
 
-
+/**********************************************/
 //for check email mobile username and codeMelli foramt
 function verifyUserData($type,$value){
     if($type === "email"){
@@ -372,7 +372,7 @@ function verifyUserData($type,$value){
         return false;
     }
 }
-
+/**********************************************/
 function verify_user_unique($field,$value)
 {
     global $config,$conn;
@@ -390,7 +390,7 @@ function verify_user_unique($field,$value)
 		return true;
 	}
 }
-
+/**********************************************/
 function isUserChange($uid, $field, $value){
     global $config,$conn;
     $cValue = $conn->qStr($value);
@@ -411,7 +411,7 @@ function isUserChange($uid, $field, $value){
     
 }
 
-
+/**********************************************/
 function insert_get_shop_category_list($gvar){
     global $conn;
   
@@ -436,7 +436,7 @@ function insert_get_shop_category_list($gvar){
     
     return $shopcat;
 }
-
+/**********************************************/
 function insert_ishaveChild_shop_cat($var){
   global $conn;
   $catid = intval($var['catid']);
@@ -457,7 +457,7 @@ function insert_ishaveChild_shop_cat($var){
  
 }
 
-
+/**********************************************/
 function insert_get_shop_cat($gvar){
     global $conn;
     $CatID = intval($gvar['catid']);
@@ -471,7 +471,7 @@ function insert_get_shop_cat($gvar){
         return $category['0'];
     }
 }
-
+/**********************************************/
 function get_shop_cat_parent($catid){
      global $conn;
     $CatID = intval($catid);
@@ -480,9 +480,9 @@ function get_shop_cat_parent($catid){
     $parent = $result->fields['pntid'];
     return $parent;
 }
-/******************************/
+/**********************************************/
 /*********** product **********/
-
+/**********************************************/
 function insert_get_pro_count($var){
     global $conn;
 //    $var=intval($var['stock_status']);
@@ -515,7 +515,7 @@ function insert_get_pro_count($var){
     return $total;
 }
 
-
+/**********************************************/
 function insert_get_product_list($gvar){
     global $conn;
   //$gvar=intval($gvar['stock_status']);
@@ -560,8 +560,9 @@ function insert_get_product_list($gvar){
     $produc = $result->getAll();
     return $produc;
 }
-/***************/
+/**********************************/
 // i made this func for get list of products to catalog edit and its diferent by the other one
+/*********************************/
 function insert_product_list($var){
   
   
@@ -579,7 +580,7 @@ function insert_product_list($var){
 }
 
 
-
+/**********************************************/
 function insert_get_product_cat($var){
     global $conn,$config;
   
@@ -615,7 +616,7 @@ function insert_get_product_cat($var){
 }
 
 
-
+/**********************************************/
 /************* products price ******/
 function insert_get_product_ugroup_prc($gvar){
   global $conn;
@@ -641,7 +642,7 @@ function insert_get_product_ugroup_prc($gvar){
   }
   
 }
-
+/**********************************************/
 /************ package products**************/
 function insert_get_packages($var){
   global $conn;
@@ -665,3 +666,52 @@ function insert_get_pack_edit($gvar){
         return $package['0'];
     }
 }
+/************favorites category****************/
+/**********************************************/
+function get_fav_cats($userid){
+  global $conn;
+  $uid = intval($userid);
+  $query = "SELECT `fav_cats` FROM `users` WHERE `userid` =$uid ";
+  $result = $conn->execute($query);
+  $fav_string = $result->fields['fav_cats'];
+  $fav_cats = explode(",", $fav_string);
+  
+  return $fav_cats;
+  
+}
+/**********************************************/
+/****************** user address **************/
+/**********************************************/
+function insert_get_state($var){
+  global $conn;
+  
+  $query="SELECT * FROM `states`";
+  $result = $conn->execute($query);
+  $state = $result->getAll();
+  return $state;
+}
+
+
+function insert_get_cities($var){
+ global $conn;
+  $s_id = intval($var['state_id']); 
+  $query="SELECT * FROM `cities` WHERE state_id = $s_id";
+
+  $result = $conn->execute($query);
+  $city = $result->getAll();
+  return $city;
+  
+}
+
+function get_cities($stateid){
+ global $conn;
+  $s_id = intval($stateid); 
+  $query="SELECT * FROM `cities` WHERE state_id = $s_id";
+
+  $result = $conn->execute($query);
+  $city = $result->getAll();
+  return $city;
+  
+}
+/*
+*/

@@ -178,6 +178,7 @@
                                                 <a href="{$adminurl}/users.edit.php?id={$usernv['userid']}" class="btn btn-default btn-xs" data-target="#uEdit{$usernv['userid']}" data-toggle="modal"><i class="fa fa-edit white"></i> {$lang35} </a>
 
                                                 <a href="{$adminurl}/users.delete.php?id={$usernv['userid']}" onclick="{literal} return confirm('آیا از حذف این کاربر مطمئن هستید؟!');{/literal}" class="btn btn-danger btn-xs"><i class="fa fa-times white"></i> {$lang34} </a>
+                                                <a href="{$adminurl}/users.profile.php?id={$usernv['userid']}" class="btn btn-3d btn-xs btn-blue"><i class="fa fa-user" aria-hidden="true"></i>پروفایل</a>
 
                                             </td>
                                         </tr>
@@ -266,7 +267,7 @@
                                             <a href="{$adminurl}/users.delete.php?id={$admin['userid']}" onclick="{literal} return confirm('آیا از حذف این کاربر مطمئن هستید؟!');{/literal}" class="btn btn-danger btn-xs"><i class="fa fa-times white"></i> {$lang34} </a>
 
                                             
-                                             <a href="{$adminurl}/users.profile.php?id={$user['userid']}" class="btn btn-3d btn-xs btn-blue"><i class="fa fa-user" aria-hidden="true"></i>پروفایل</a>
+                                             <a href="{$adminurl}/users.profile.php?id={$admin['userid']}" class="btn btn-3d btn-xs btn-blue"><i class="fa fa-user" aria-hidden="true"></i>پروفایل</a>
                                              
                                             
                                                
@@ -368,7 +369,7 @@
 
 
 
-                                                    <a href="{$adminurl}/users.profile.php?id={$user['userid']}" class="btn btn-3d btn-xs btn-blue"><i class="fa fa-user" aria-hidden="true"></i>پروفایل</a>
+                                                    <a href="{$adminurl}/users.profile.php?id={$employer['userid']}" class="btn btn-3d btn-xs btn-blue"><i class="fa fa-user" aria-hidden="true"></i>پروفایل</a>
 
                                                 </td>
                                             </tr>
