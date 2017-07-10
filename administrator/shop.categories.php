@@ -61,7 +61,6 @@ if ($submit === 1){
         $cat_desc   = $conn->qStr($cat_desc);
         
         $query=' INSERT INTO `shop_category`(`cat_name`, `catdesc`, `pntid`, `cat_status` , `order`) VALUES('.$catname.','.$cat_desc.','.$pntid.','.$status.','.$order.')';
-        
              echo $query;  
        if($conn->EXECUTE($query)){
            header("location: ".$config['adminurl']."/shop.categories.php");
@@ -69,19 +68,9 @@ if ($submit === 1){
         else{
            $error=$conn->errorMsg(); 
         }
-
     }
-
-
 }
 
-
-
-
-
-
-(isset($_POST['isEdit']) ? $edit = intval($_POST['isEdit']) : $edit = 0);
-(isset($_POST['isEdit']) ? $edit = intval($_POST['isEdit']) : $edit = 0);
 (isset($_POST['isEdit']) ? $edit = intval($_POST['isEdit']) : $edit = 0);
 
 if($edit===1){
@@ -95,11 +84,6 @@ if($edit===1){
         echo $conn->errorMsg();
     }
 }
-
-
-
-
-
 
 //load nessary template for loading
 STemplate::assign('message',$message);

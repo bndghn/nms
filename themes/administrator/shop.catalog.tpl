@@ -236,7 +236,8 @@
                                   </thead>
                                   <tbody>
                                       {insert name=get_product_list value=gvar stock_status=0 pro_status=1 assign=pro_Listt}
-                                      {if $pro_List ne null}
+                                      
+                                      {if $pro_Listt ne null}
                                       {insert name=get_product_cat value=var stock_status=0 pro_status=1 assign=pro_cat}
                                       {foreach from=$pro_cat item=no_pro}
 
@@ -362,11 +363,3 @@
     </div>
     </section>
 </div>
-
-
-
-
-
-
-
-
