@@ -78,7 +78,7 @@
                               {insert name=get_pro_count value=var pro_status=0 assign=deactived}
                               {$deactived}
                               </span>
-                              کالای غیرفعال
+                              حذف شده ها
                             </a>
                           </li>
                       </ul>
@@ -261,13 +261,11 @@
                                           <a href="{$adminurl}/shop.catalog.edit.php?proid={$no_pro['proid']}" class="btn btn-default btn-xs"><i class="fa fa-edit white"></i> {$lang35} </a>
 
                                           <a href="{$adminurl}/shop.catalog.delete.php?proid={$no_pro['proid']}" onclick="{literal} return confirm('آیا از حذف این محصول مطمئن هستید؟!');{/literal}" class="btn btn-danger btn-xs"><i class="fa fa-times white"></i> {$lang34} </a>
-
-
+                                          
                                           <a href="#" data-toggle="popover" class="btn btn-3d btn-xs btn-blue" title="{$lang39} " data-content="<label>موجودی انبار:</label>{$no_pro['pro_count']|farsidigit} واحد <br/><label>تعداد سفارش: </label> ">
                                               <i class="fa fa-user" aria-hidden="true"></i>
                                               درباره محصول
                                           </a>
-
                                       </td>
                                   </tr>
                                   {/foreach}
@@ -322,13 +320,10 @@
                                          
                                           <a href="{$adminurl}/shop.catalog.edit.php?proid={$del_pro['proid']}" class="btn btn-default btn-xs"><i class="fa fa-edit white"></i> {$lang35} </a>
 
-                                          <a href="{$adminurl}/shop.catalog.active.php?proid={$del_pro['proid']}" onclick="{literal} return confirm('آیا از فعالسازی این محصول مطمئن هستید؟!');{/literal}" class="btn btn-success btn-xs"><i class="fa fa-plus white"></i> فعالسازی </a>
+                                          <a href="{$adminurl}/shop.catalog.active.php?proid={$del_pro['proid']}" onclick="{literal} return confirm('آیا از فعالسازی این محصول مطمئن هستید؟!');{/literal}" class="btn btn-success btn-xs"><i class="fa fa-plus white"></i> برگرداندن </a>
 
 
-                                          <a href="#" data-toggle="popover" class="btn btn-3d btn-xs btn-blue" title="{$lang39} " data-content="<label>موجودی انبار:</label>{$no_pro['pro_count']|farsidigit} واحد <br/><label>تعداد سفارش: </label> ">
-                                              <i class="fa fa-user" aria-hidden="true"></i>
-                                              درباره محصول
-                                          </a>
+                                          <a href="{$adminurl}/shop.catalog.deleted.php?proid={$del_pro['proid']}" onclick="{literal} return confirm('آیا از حذف این محصول مطمئن هستید؟!');{/literal}" class="btn btn-danger btn-xs"><i class="fa fa-times white"></i> {$lang34} </a>
 
                                       </td>
                                   </tr>

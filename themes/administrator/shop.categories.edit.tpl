@@ -34,7 +34,7 @@
                                    
                                     {foreach from=$edited  item=shop_cat }
 
-                                      <option value="{$shop_cat['catid']}"   {if $edit_cat['pntid'] eq $shop_cat['catid'] }selected{/if}>{$shop_cat['cat_name']}</option>
+                                      <option value="{$shop_cat['catid']}" {if $edit_cat['pntid'] eq $shop_cat['catid'] }selected{/if}>{$shop_cat['cat_name']}</option>
 
                                     {/foreach}
 

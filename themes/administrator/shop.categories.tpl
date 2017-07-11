@@ -198,16 +198,15 @@
                                     <td class="text-center  align-middle">
                                        <a href="{$adminurl}/shop.categories.edit.php?catid={$shop_cat['catid']}" data-target="#Edit{$shop_cat['catid']}" data-toggle="modal" class="btn btn-default btn-xs  "><i class="fa fa-edit white"></i> ویرایش </a>
 
-                                       <a href="{$adminurl}/shop.categories.php?delete={$shop_cat['catid']}"  class="btn btn-danger btn-xs" onclick="{literal} return confirm('آیا از حذف کامل این دسته بندی مطمئن هستید؟!');{/literal}"><i class="fa fa-times white"></i> حذف </a>
+                                       <a href="{$adminurl}/shop.categories.delete.php?catid={$shop_cat['catid']}" data-target="#del{$shop_cat['catid']}" data-toggle="modal"  class="btn btn-danger btn-xs" ><i class="fa fa-times white"></i> حذف </a>
                                     </td>
 
                                 </tr>
                                 {if $ischild}
                                 {insert name=get_shop_category_list value=gvar parent_id=$shop_cat['catid'] assign=child_list}
-
+                                {if $child_list ne Null}
                                 {foreach from=$child_list item=child}
                                 <tr class="prnt{$shop_cat['catid']}">
-
                                   <td class="text-left align-middle">
                                        <span>&nbsp;&nbsp; &larr; {$child['cat_name']}</span> 
                                   </td>
@@ -217,20 +216,20 @@
                                          <input type="hidden" name="catid" value="{$child['catid']}">
                                          <input type="hidden" name="isEdit" value="1">
                                        </form>
-
                                     </td>
 
-                                  <td class="align-middle text-center">
-                                        {if $child['cat_status'] eq 0 }غیرفعال{else}فعال{/if}</td>
+                                  <td class="align-middle text-center">{if $child['cat_status'] eq 0 }غیرفعال{else}فعال{/if}</td>
                                   <td class="text-center  align-middle">
                                        <a href="{$adminurl}/shop.categories.edit.php?catid={$child['catid']}" data-target="#Edit{$child['catid']}" data-toggle="modal" class="btn btn-default btn-xs "><i class="fa fa-edit white"></i> ویرایش </a>
 
-                                       <a href="{$adminurl}/shop.categories.php?delete={$child['catid']}"  class="btn btn-danger btn-xs " onclick="{literal} return confirm('آیا از حذف این دسته بندی مطمئن هستید؟!');{/literal}"><i class="fa fa-times white"></i> حذف </a>
+                                       <a href="{$adminurl}/shop.categories.delete.php?catid={$child['catid']}" data-target="#del{$child['catid']}" data-toggle="modal" class="btn btn-danger btn-xs " ><i class="fa fa-times white"></i> حذف </a>
                                     </td>
                                 </tr>
                                 {/foreach}
                                 {/if}
+                                {/if}
                                 {/foreach}
+                                
                             </tbody>
                         </table>
                      </div>
@@ -265,3 +264,19 @@
 
 
 
+
+
+{insert name=get_shop_category_list value=gvar assign=del_cat}
+{foreach from=$del_cat item=Catdeleter}
+  <div class="modal fade" id="del{$Catdeleter['catid']}" role="basic" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+          <div class="text-center">
+              <img src="{$assets}/images/loaders/7.gif" alt="" />
+          </div>
+
+      </div>
+    </div>
+  </div>
+{/foreach}
