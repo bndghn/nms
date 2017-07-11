@@ -255,7 +255,7 @@
               <thead>
                 <tr>
                     <th class="width-100 text-center">{$lang12}</th>
-                    <th class="width-150 text-center">{$lang30}</th>
+                    <th class="width-130 text-center">{$lang30}</th>
                     <th class="text-center">{$lang38}</th>
                 </tr>
               </thead>
@@ -322,7 +322,7 @@
               <thead>
                 <tr>
                   <th class="width-100 text-center">{$lang12}</th>
-                  <th class="width-150 text-center">گروه کاربری</th>
+                  <th class="width-130 text-center">گروه کاربری</th>
                   <th class="text-center">{$lang38}</th>
                 </tr>
               </thead>
