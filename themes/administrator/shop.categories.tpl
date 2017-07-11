@@ -198,7 +198,7 @@
                                     <td class="text-center  align-middle">
                                        <a href="{$adminurl}/shop.categories.edit.php?catid={$shop_cat['catid']}" data-target="#Edit{$shop_cat['catid']}" data-toggle="modal" class="btn btn-default btn-xs  "><i class="fa fa-edit white"></i> ویرایش </a>
 
-                                       <a href="{$adminurl}/shop.categories.php?delete={$shop_cat['catid']}"  class="btn btn-danger btn-xs" onclick="{literal} return confirm('آیا از حذف این دسته بندی مطمئن هستید؟!');{/literal}"><i class="fa fa-times white"></i> حذف </a>
+                                       <a href="{$adminurl}/shop.categories.php?delete={$shop_cat['catid']}"  class="btn btn-danger btn-xs" onclick="{literal} return confirm('آیا از حذف کامل این دسته بندی مطمئن هستید؟!');{/literal}"><i class="fa fa-times white"></i> حذف </a>
                                     </td>
 
                                 </tr>
