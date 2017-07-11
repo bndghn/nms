@@ -24,7 +24,7 @@
         <fieldset>
             <div class="col-md-12 col-sm-12 padding-20">
           
-              {if $user['verified'] eq "1"}
+              
               <div class="row">
                 <div class="form-group">
                   <div class="col-md-6 col-sm-6">
@@ -37,7 +37,7 @@
                 </div>
               </div>
             </div>
-            {/if}
+           
 
             <div class="row">
               <div class="form-group">

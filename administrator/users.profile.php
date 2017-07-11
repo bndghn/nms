@@ -121,7 +121,7 @@ if ($submit === 1){
                 $addSQL .=" , `user_address` = $qadd";
             }
           if($born_date !=""){
-            $born_date =  date_create_from_format('j-M-Y', 'born_date');
+            //$born_date =  date_create_from_format('j-M-Y', 'born_date');
   
                 $qborn= $conn->qStr($born_date);
                 $addSQL .=" , `born_date` = $qborn";
