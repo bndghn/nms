@@ -206,7 +206,7 @@
                           <!--    <a href="{$adminurl}/users.edit.php?id={$user_del['userid']}" class="btn btn-default btn-xs disabled" data-target="#uEdit{$user_del['userid']}" data-toggle="modal"><i class="fa fa-edit white"></i> {$lang35} </a>      -->
                           <a href="{$adminurl}/users.deleted.php?userid={$user_del['userid']}" onclick="{literal} return confirm('آیا از حذف کامل این کاربر از مجموعه کاربران خود مطمئن هستید؟!');{/literal}" class="btn btn-danger btn-xs"><i class="fa fa-times white"></i> {$lang34} </a>
                        
-                          <a href="{$adminurl}/users.activate.php?userid={$user_del['userid']}" onclick="{literal} return confirm('آیا از فعال کردن این کاربر مطمئن هستید؟!');{/literal}" class="btn btn-success btn-xs"><i class="fa fa-plus white"></i> فعال کردن </a>
+                          <a href="{$adminurl}/users.activate.php?userid={$user_del['userid']}" onclick="{literal} return confirm('آیا از فعال کردن این کاربر مطمئن هستید؟!');{/literal}" class="btn btn-success btn-xs"><i class="fa fa-plus white"></i> برگرداندن </a>
                           <a href="{$adminurl}/users.profile.php?id={$user_del['userid']}" class="btn btn-3d btn-xs btn-blue"><i class="fa fa-user" aria-hidden="true"></i>پروفایل</a>
                       </td>
                     </tr>

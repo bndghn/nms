@@ -23,6 +23,7 @@ if($userID !=""){
 (isset($_POST['isSubmit']) ? $submit = intval($_POST['isSubmit']) : $submit = 0);
 
 if ($submit === 1){
+    (isset($_POST['username']) ? $username = $_POST['username'] : $username = "");
     (isset($_POST['fname']) ? $fname = $_POST['fname'] : $fname = "");
     (isset($_POST['lname']) ? $lname = $_POST['lname'] : $lname = "");
     (isset($_POST['email']) ? $email = $_POST['email'] : $email = "");
@@ -35,14 +36,12 @@ if ($submit === 1){
     $usergroup =intval($_POST['usergroup']);
     $state_id =intval($_POST['state_id']);
     $city_id =intval($_POST['city_id']);
-    $verified =intval($_POST['verified']);
+    (isset($_POST['verified']) ? $verified = 1 : $verified = 0);
   
   
   
-  
-  
-  // `fav_cats`)
-    /*if($username==="" )
+
+    if($username === "" )
     {
         $error = "1";
     }
@@ -57,7 +56,7 @@ if ($submit === 1){
             $error = "5";
         }
         
-    }*/
+    }
         
     if($fname!="" && strlen($fname)<3){ 
         $error = "13";
@@ -97,9 +96,12 @@ if ($submit === 1){
     if(isset($user_id)){
         
         if($error === ""){
-            
-            $addSQL = "";
-                    
+
+            $addSQL = "";      
+            if($username !=""){
+                $q_username = $conn->qStr($username);
+                $addSQL .=" , `username` = $q_username";
+            }
             if($fname !=""){
                 $qfName = $conn->qStr($fname);
                 $addSQL .=" , `fname` = $qfName";
@@ -127,13 +129,8 @@ if ($submit === 1){
                 $addSQL .=" , `born_date` = $qborn";
             }
          
-            
-            
-            //$quName = $conn->qStr($username);
-           
-           
            $query = "UPDATE `users`
-                        SET `user_status`=$status , `verified` = 1 , `user_group`=$usergroup , `gender`=$gender ,`state_id`=$state_id, `city_id`=$city_id ".$addSQL."
+                        SET `username`=$q_username , `user_status`=$status , `verified` = $verified , `user_group`=$usergroup , `gender`=$gender ,`state_id`=$state_id, `city_id`=$city_id ".$addSQL."
                         WHERE `userid` = $user_id";
             if($conn->EXECUTE($query)){
                 header("location: ".$config['adminurl']."/users.php");
