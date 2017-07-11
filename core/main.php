@@ -213,8 +213,14 @@ function insert_get_users_count($var){
     }else{
         $add_sql    .= "AND user_group.isCustomer=1";
     }
+    if(!isset($var['user_status'])){
+      $add_sql  .= " AND users.user_status !=2";
+    }elseif($var['user_status']=="2"){
+      $add_sql  .= " AND users.user_status =2";
+    }
+      
     
-     $query ="SELECT count(*) as total  FROM `users`,`user_group` WHERE  users.user_status !=2 AND user_group.id= users.user_group ".$add_sql;
+     $query ="SELECT count(*) as total  FROM `users`,`user_group` WHERE  user_group.id= users.user_group ".$add_sql;
     //echo $query;
     $result = $conn->execute($query);
     $total = $result->fields['total'];

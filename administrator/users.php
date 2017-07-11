@@ -99,8 +99,5 @@ STemplate::assign('error',$error);
 //Select active menu
 STemplate::assign('section',"users_manager");
 STemplate::assign('page',"users");
-
-
-STemplate::display('administrator/header.tpl');
 STemplate::display('administrator/users.tpl');
-STemplate::display('administrator/footer.tpl'); /* Load form users file */
+/* Load form users file */

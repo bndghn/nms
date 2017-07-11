@@ -57,7 +57,7 @@
 								<li {if $page eq "shop_catalog"}class="active"{/if}><a href="{$adminurl}/shop.catalog.php">فهرست محصولات</a></li>
 								<li {if $page eq "shop_categories"}class="active"{/if}><a href="{$adminurl}/shop.categories.php">دسته‌بندی محصولات</a></li>
 								<li {if $page eq "shop_package"}class="active"{/if}><a href="{$adminurl}/shop.packages.php">بسته‌بندی محصولات</a></li>
-								<li {if $page eq "shop_orders"}class="active"{/if}><a href="{$adminurl}/shop.orders.php">فهرست سفارشات</a></li>
+								<li {if $page eq "shop_orders"}class="active"{/if}><a href="{$adminurl}/shop.orders.php">فهرست سفارش ها</a></li>
 								
 
 							</ul>

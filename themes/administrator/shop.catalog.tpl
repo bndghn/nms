@@ -134,8 +134,8 @@
                                                     <a href="{$adminurl}/shop.catalog.delete.php?proid={$products['proid']}" onclick="{literal} return confirm('آیا از حذف این محصول مطمئن هستید؟!');{/literal}" class="btn btn-danger btn-xs"><i class="fa fa-times white"></i> {$lang34} </a>
 
 
-                                                    <a href="#" data-toggle="popover" class="btn btn-3d btn-xs btn-blue" title="{$lang39} " data-content="<label>{$lang40}:</label> <br/><label>{$lang41}:</label> ">
-                                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                                    <a href="#" data-toggle="popover" class="btn btn-3d btn-xs btn-blue" title="{$lang39} " data-content="<label>موجودی انبار:</label>{$products['pro_count']|farsidigit} واحد <br/><label>تعداد سفارش: </label> ">
+                                                     <i class="fa fa-user" aria-hidden="true"></i>
                                                         درباره محصول
                                                     </a>
                                                 </td>
@@ -201,7 +201,7 @@
                                             <a href="{$adminurl}/shop.catalog.delete.php?proid={$delay_pro['proid']}" onclick="{literal} return confirm('آیا از حذف این محصول مطمئن هستید؟!');{/literal}" class="btn btn-danger btn-xs"><i class="fa fa-times white"></i> {$lang34} </a>
 
 
-                                            <a href="#" data-toggle="popover" class="btn btn-3d btn-xs btn-blue" title="{$lang39} " data-content="<label>{$lang40}:</label> <br/><label>{$lang41}:</label> ">
+                                            <a href="#" data-toggle="popover" class="btn btn-3d btn-xs btn-blue" title="{$lang39} " data-content="<label>موجودی انبار:</label>{$delay_pro['pro_count']|farsidigit} واحد <br/> <label>تعداد سفارش: </label> ">
                                                 <i class="fa fa-user" aria-hidden="true"></i>
                                                 درباره محصول
                                             </a>
@@ -263,7 +263,7 @@
                                           <a href="{$adminurl}/shop.catalog.delete.php?proid={$no_pro['proid']}" onclick="{literal} return confirm('آیا از حذف این محصول مطمئن هستید؟!');{/literal}" class="btn btn-danger btn-xs"><i class="fa fa-times white"></i> {$lang34} </a>
 
 
-                                          <a href="#" data-toggle="popover" class="btn btn-3d btn-xs btn-blue" title="{$lang39} " data-content="<label>{$lang40}:</label> <br/><label>{$lang41}:</label> ">
+                                          <a href="#" data-toggle="popover" class="btn btn-3d btn-xs btn-blue" title="{$lang39} " data-content="<label>موجودی انبار:</label>{$no_pro['pro_count']|farsidigit} واحد <br/><label>تعداد سفارش: </label> ">
                                               <i class="fa fa-user" aria-hidden="true"></i>
                                               درباره محصول
                                           </a>
@@ -325,7 +325,7 @@
                                           <a href="{$adminurl}/shop.catalog.active.php?proid={$del_pro['proid']}" onclick="{literal} return confirm('آیا از فعالسازی این محصول مطمئن هستید؟!');{/literal}" class="btn btn-success btn-xs"><i class="fa fa-plus white"></i> فعالسازی </a>
 
 
-                                          <a href="#" data-toggle="popover" class="btn btn-3d btn-xs btn-blue" title="{$lang39} " data-content="<label>{$lang40}:</label> <br/><label>{$lang41}:</label> ">
+                                          <a href="#" data-toggle="popover" class="btn btn-3d btn-xs btn-blue" title="{$lang39} " data-content="<label>موجودی انبار:</label>{$no_pro['pro_count']|farsidigit} واحد <br/><label>تعداد سفارش: </label> ">
                                               <i class="fa fa-user" aria-hidden="true"></i>
                                               درباره محصول
                                           </a>
