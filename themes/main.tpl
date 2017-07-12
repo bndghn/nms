@@ -115,6 +115,7 @@
 				</div>
 			<div class="clearfix"></div>
 			
+			{block name="alert"}{/block}
 			
 			{block name="main"}{/block}
 			
