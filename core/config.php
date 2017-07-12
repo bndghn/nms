@@ -27,11 +27,15 @@ $dbPass = '';
 $dbName = 'shop';
 $default_language = "persian"; // Arabic, Turkish & English Comming soon
 date_default_timezone_set('Asia/Tehran');
-$config['adminurl']      =  $config['baseurl'].'/administrator';
-$config['assetsdir']      =  $config['baseurl'].'/assets';
-$config['cssurl']      =  $config['baseurl'].'/assets/css';
-$config['imagedir']      =  $config['basedir'].'/images';
-$config['imageurl']      =  $config['baseurl'].'/images';
+$config['adminurl']           =  $config['baseurl'].'/administrator';
+$config['assetsdir']          =  $config['baseurl'].'/assets';
+$config['cssurl']             =  $config['baseurl'].'/assets/css';
+$config['imagedir']           =  $config['basedir'].'/images';
+$config['imageurl']           =  $config['baseurl'].'/images';
+$config['imgproductdir']      =  $config['imagedir'].'/products';
+$config['imgproducturl']      =  $config['imageurl'].'/products';
+$config['public'] ='0';
+
 
 //connect to db
 $conn = &ADONewConnection($dbType);
@@ -121,6 +125,7 @@ STemplate::assign('assets',         $config['assetsdir']);
 STemplate::assign('cssurl',         $config['cssurl']);
 STemplate::assign('imagedir',       $config['imagedir']);
 STemplate::assign('imageurl',       $config['imageurl']);
+STemplate::assign('imgproduct',     $config['imgproducturl'].'/product');
 
 //config smarty
 STemplate::setCompileDir($config['basedir']."/temporary");
