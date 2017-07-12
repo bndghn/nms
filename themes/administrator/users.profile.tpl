@@ -151,11 +151,17 @@
                       {/foreach}
                     </select>
                 </div>
-                <div class="col-md-12 col-sm-12">
-                    <label> آدرس کاربر </label>
-                    <textarea name="user_address" rows="4" placeholder="ادامه آدرس کاربر را وارد نمایید." class="form-control">{$user['user_address']}</textarea>
-                </div>
+                
               </div>
+             </div>
+             
+             <div class="row">
+                 <div class="form-group">
+                     <div class="col-md-12 col-sm-12">
+                        <label> آدرس کاربر </label>
+                        <textarea name="user_address" rows="4" placeholder="ادامه آدرس کاربر را وارد نمایید." class="form-control">{$user['user_address']}</textarea>
+                     </div>
+                 </div>
              </div>
             </div>
           
