@@ -287,10 +287,25 @@ function insert_get_user_list($var){
         $isCustomer = intval($var['customer']);
         $add_sql    .= "AND user_group.isCustomer=$isCustomer";
     }
+  if(!isset($var['order'])){
+    $add_sql .=" ";
+  }elseif(($var['order']="1")){
+    $add_sql .=" ORDER BY users.userid DESC";
+  }
     
     if(!isset($var['start'])){
         $limit = intval($config['limit_users']);
+        if(isset($var['limited'])){
+          $limit  = intval($var['limited']);
+        }else{
+          $limit = intval($config['limit_users']);
+        }
         $add_sql    .= " LIMIT 0,". $limit;
+    }elseif(isset($var['limited'])){
+        $limit  = intval($var['limited']);
+        $start  = intval($var['limit_start']);
+        $add_sql    .= " LIMIT ".$start.",". $limit;
+      
     }else{
         $limit  = intval($config['limit_users']);
         $start  = intval($var['limit_start']);
@@ -298,7 +313,7 @@ function insert_get_user_list($var){
     }
     
     
-    $query ="SELECT users.*, user_group.* FROM `users`,`user_group` WHERE user_group.id= users.user_group ".$add_sql;
+    $query ="SELECT users.*, user_group.* FROM `users`,`user_group` WHERE user_group.id= users.user_group  ".$add_sql;
     
     //echo $query;
     $result = $conn->execute($query);
@@ -308,11 +323,16 @@ function insert_get_user_list($var){
     }else{
         return $users;
     }
-    
-    
-    
+    //ORDER BY users.userid ASC     
 }
 /**********************************************/
+
+
+
+
+
+
+
 function insert_get_user_group_list($gvar){
     global $conn;
     if(!isset($gvar['isCustomer']) ){
@@ -464,7 +484,6 @@ function insert_ishaveChild_shop_cat($var){
     $total = $executequery->fields['total'];
     //echo $query." for  total = $total </br>";
     
-    
     if ((int)$total === 0)
 	{
 		return false;
@@ -505,7 +524,10 @@ function get_shop_cat_parent($catid){
 function insert_get_pro_count($var){
     global $conn;
 //    $var=intval($var['stock_status']);
-  if($var['pro_status']=="1"){ 
+  if(!isset($var['pro_status'])){
+      $add_sql  = "`pro_status`=`pro_status`";    
+    }
+  elseif($var['pro_status']=="1"){ 
     $add_sql = " `pro_status`=1 ";
   }
   elseif($var['pro_status']=="0"){ 
@@ -513,7 +535,7 @@ function insert_get_pro_count($var){
   }
   
   if(!isset($var['stock_status'])){
-      $add_sql .= "";    
+      $add_sql .= " ";    
     }
   elseif($var['stock_status']=="0"){
       $add_sql .= " AND `stock_status`=0";
@@ -524,8 +546,6 @@ function insert_get_pro_count($var){
   elseif($var['stock_status']=="2"){
       $add_sql .= " AND `stock_status`=2";
     }
-    
- 
     
   $query ="SELECT count(*) as total  FROM `shop_product` WHERE  ".$add_sql;
     //echo $query;

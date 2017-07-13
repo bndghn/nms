@@ -24,6 +24,19 @@
         <fieldset>
             <div class="col-md-12 col-sm-12 padding-20">
           
+              <div class="row">
+                <div class="form-group">
+                  <div class="col-md-6 col-sm-6">
+                    <label> نام کاربری </label>
+                    <input type="text" name="username" value="{$user['username']}" class="form-control">
+                  </div>
+                </div>
+              </div>
+              
+              
+              
+              
+              
               
               <div class="row">
                 <div class="form-group">
@@ -151,18 +164,33 @@
                       {/foreach}
                     </select>
                 </div>
-                
+
               </div>
              </div>
-             
              <div class="row">
-                 <div class="form-group">
-                     <div class="col-md-12 col-sm-12">
-                        <label> آدرس کاربر </label>
-                        <textarea name="user_address" rows="4" placeholder="ادامه آدرس کاربر را وارد نمایید." class="form-control">{$user['user_address']}</textarea>
-                     </div>
-                 </div>
-             </div>
+                <div class="form-group">
+                  <div class="col-md-12 col-sm-12">
+                      <label> آدرس کاربر </label>
+                      <textarea name="user_address" rows="4" placeholder="ادامه آدرس کاربر را وارد نمایید." class="form-control">{$user['user_address']}</textarea>
+                  </div>
+                </div>
+              </div>
+             <div class="row">
+              <div class="form-group">
+                <div class="col-md-12 col-sm-12">
+                  <label class="switch switch-success switch-round"> 
+                  <span> وضعیت تایید کاربر :  </span>
+                  {if $user['verified'] eq "1"}
+                  <input name="verified" type="checkbox" checked="">
+                  {else}
+                  <input name="verified" type="checkbox">
+                  {/if}
+                  <span class="switch-label"  data-on="تایید" data-off="لغو"> </span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
             </div>
           
           

@@ -19,19 +19,16 @@ $message    =   "";
 if ($isDelete !=""){
     
     $deleteID = intval($isDelete);
-    $query = "DELETE FROM `shop_category` WHERE `catid` = ".$deleteID;
+    //$query = "DELETE FROM `shop_category` WHERE `catid` = ".$deleteID;
     
-    if($result = $conn->EXECUTE($query)){
+   /*if($result = $conn->EXECUTE($query)){
         header("location: ".$config['adminurl']."/shop.categories.php");
         $message = " این دسته کالا با موفقیت حذف شد.";
     }
     else{
         $error= $conn->errorMsg();
-    }
+    }*/
 }
-
-
-
 
 if ($submit === 1){
     (isset($_POST['catname']) ? $catname = $_POST['catname'] : $catname = "");
