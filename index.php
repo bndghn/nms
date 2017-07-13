@@ -10,5 +10,5 @@ if($config['public'] === "0"){
 (isset($_SESSION['USR_PASS']) ? $usrPSS = $_SESSION['USR_PASS'] : $usrPSS = "");
 
 STemplate::assign('test',"test");
-STemplate::display('fs.tpl');
+STemplate::display('index.tpl');
 ?>
