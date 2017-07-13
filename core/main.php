@@ -861,3 +861,29 @@ function insert_get_verify_user_step($var){
     return $step;
     
 }
+
+function digit_converter($str,$mod="fa"){
+	$fa_digits = array('۰','۱','۲','۳','۴','۵','۶','۷','۸','۹');
+	$en_digits = array('0','1','2','3','4','5','6','7','8','9');
+	if($mod =="fa"){
+		$str = str_replace($en_digits, $fa_digits, $str);
+	}
+	if($mod == "en"){
+		$str = str_replace($fa_digits, $en_digits, $str);
+	}
+	
+	return $str;
+}
+
+function insert_get_list_event($var){
+	global $conn;
+    if(isset($gvar['usrid'])){
+        $uid = intval($gvar['usrid']);
+    }else{
+        $uid = intval($_SESSION['USR_ID']);
+    }
+	$query = "SELECT * FROM `event` WHERE `event_uid`= $uid";
+    $result = $conn->execute($query);
+	$events	= $result->getAll();
+	return $events;
+}
