@@ -583,6 +583,7 @@ span.arrow-up {
   font: 13px "IRANSans-web";
   margin-left: 3%;
   margin-top: -6px;
+	width: 160px;
 }
 .search-top-bar .form-search {
   border: 0px;
