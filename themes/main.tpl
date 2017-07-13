@@ -50,7 +50,7 @@
 				<div class="text-center ads-top">
 				
 				<a href="#">
-				<img src="images/ads-top.png" class="gray-hover img-responsive">
+				<img src="images/ads-top.png" class="gray-hover img-responsive" alt="ads">
 				</a>
 				
 				
@@ -68,7 +68,7 @@
 				</div>
 				<div class="ex-se">
 					<a href="#" title="setting"><img src="images/icon_setting.png" alt=""> تنضیمات</a>&nbsp;
-					<a href="#" title="exit"><img src="images/icon_exit.png" alt=""> خروج</a>
+					<a href="{$baseurl}/logout.php" title="exit"><img src="images/icon_exit.png" alt=""> خروج</a>
 				</div>
 			</div>
 			<div class="clearfix"></div>
