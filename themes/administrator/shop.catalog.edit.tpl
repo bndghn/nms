@@ -243,13 +243,45 @@
                               <div class="col-md-6">
                                <fieldset>
                                  
+                                 {if $pro_edits['pro_pic_main'] ne "null"} 
+                                  <div class="row">
+                                    <div class="form-group">
+                                        <div class="col-md-6">
+                                            <label>
+                                                تصویر اصلی  
+                                                
+                                            </label>
+
+                                            
+                                            <img src="{$imgproduct}/main/{$pro_edits['pro_pic_main']}" width="100%"/>                                        
+                                            
+                                        </div>
+                                    
+                                        
+                                    </div>
+                                
                                  
-                                 
+                                    <div class="form-group">
+                                        <div class="col-md-6">
+                                            <label>
+                                                تصویر کوچک  
+                                                
+                                            </label>
+
+                                            
+                                            <img src="{$imgproduct}/thumbs/{$pro_edits['pro_pic_main']}" width="76px"/>                                        
+                                            
+                                        </div>
+                                    
+                                        
+                                    </div>
+                                </div>
+                                {/if}
                                  
                                         
                                 <div class="row">
                                     <div class="form-group">
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                             <label>
                                                 تصویر اصلی  
                                                 <small class="text-muted">- اجباری</small>
@@ -266,26 +298,7 @@
 
                                         </div>
                                     
-                                
-                                   
-                                 
-                                    
-                                        <div class="col-md-6">
-                                            <label>
-                                                 تصویر بندانگشتی  
-                                                <small class="text-muted">- اختیاری</small>
-                                            </label>
-
-                                            <!-- custom file upload -->
-                                            <div class="fancy-file-upload fancy-file-primary">
-                                                <i class="fa fa-upload"></i>
-                                                <input type="file" class="form-control" name="pro_pic_mini" onchange="jQuery(this).next('input').val(this.value);" />
-                                                <input type="text" class="form-control" placeholder="" readonly="" />
-                                                <span class="button">انتخاب فایل</span>
-                                            </div>
-                                            
-
-                                        </div>
+                                        
                                     </div>
                                 </div>
                                  

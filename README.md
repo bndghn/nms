@@ -1,10 +1,7 @@
-# NMS
-Notify Management System
+# Custom SHoping
+this is custom shop
+don`t use for public site.
 
-this system is under Developing.
-
-NMC Deseing and Develop for choose way to notify customers.
-
-Admin can select SMS, App Notify, Voice SMS, Telegram robat and Call message 
+only for share project in our team
 
 Erfan added to project o999oi8,8
