@@ -18,6 +18,7 @@ require_once($config['basedir'].'/core/template.class.php');
 require_once($config['basedir'].'/libraries/adodb/adodb.inc.php');
 require_once($config['basedir'].'/libraries/phpmailer/class.phpmailer.php');
 require_once($config['basedir'].'/core/email.class.php');
+require_once($config['basedir'].'/libraries/jdf.php');
 
 // Start Define Varibles
 $dbType = 'mysqli';
