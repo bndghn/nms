@@ -6,9 +6,10 @@ if($config['public'] === "0"){
 }
 
 (isset($_SESSION['USR_ID']) ? $usrID = $_SESSION['USR_ID'] : $usrID = "");
-(isset($_SESSION['USR_USER']) ? $usrUN = $_SESSION['USR_USER'] : $usrUN = "");
-(isset($_SESSION['USR_PASS']) ? $usrPSS = $_SESSION['USR_PASS'] : $usrPSS = "");
+(isset($_SESSION['USR_GENDER']) ? $usrGndr = $_SESSION['USR_GENDER'] : $usrGndr = "");
+(isset($_SESSION['USR_FNAME']) ? $usrFname = $_SESSION['USR_FNAME'] : $usrFname = "");
+(isset($_SESSION['USR_LNAME']) ? $usrLname = $_SESSION['USR_LNAME'] : $usrLname = "");
 
-STemplate::assign('test',"test");
+
 STemplate::display('index.tpl');
 ?>
