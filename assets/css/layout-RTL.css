@@ -235,12 +235,14 @@ body.min #middle {
 	border-right: rgba(0,0,0,0.04) 1px solid;
 }
 #middle .panel-heading ul.nav-tabs li {
-	border-right-color: rgba(255,255,255,0.08);
+	/*border-right: rgba(255,255,255,1) 1px solid;*/
 }
 #middle .panel-heading ul.nav-tabs.pull-left li {
-	border-right:0 !important;
-	border-left: rgba(0,0,0,0.08) 1px solid !important;
+	border-left:0 !important;
+	border-right: rgba(0,0,0,0.08) 1px solid !important;
 }
+
+
 
 .panel-heading ul.nav-tabs.pull-left {
 	margin-left:0;
