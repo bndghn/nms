@@ -1,0 +1,21 @@
+options -multiviews
+
+<IfModule mod_rewrite.c>
+RewriteEngine On 
+RewriteBase /nms/
+RewriteRule ^profiler$ profile.php
+RewriteRule ^logout$ logout.php
+RewriteRule ^setting$ setting.php
+RewriteRule ^page/([^/.]+)?$ page.php?slug=$1&%{QUERY_STRING}
+
+</IfModule>
+
+<IfModule mod_security.c> 
+   # Turn off mod_security filtering. 
+   SecFilterEngine Off 
+
+   # The below probably isn't needed, 
+   # but better safe than sorry. 
+   SecFilterScanPOST Off 
+</IfModule>
+
