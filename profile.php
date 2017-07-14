@@ -141,7 +141,7 @@ if($step3 === 1){
 		}
 		if($conn->EXECUTE($query)){
 			$message = "این مناسبت اضافه شد. میتونی مناسبت های دیگه رو هم اضافه کنی.";
-			$conn->EXECUTE($queryVerify);
+			
 		}else{
 			$error = $conn->errorMsg();
 		}
@@ -167,6 +167,11 @@ if($action ==="delete"){
 if($action ==="verify"){
 	$query	= "UPDATE `users` SET `verified` = 1 WHERE `userid`=$usrID";
 	if($conn->EXECUTE($query)){
+		$_SESSION['verified'] = "1";
+		$user_detail = get_user($usrID);
+		$_SESSION['USR_GENDER'] = $user_detail['gender'];
+		$_SESSION['USR_FNAME'] = $user_detail['fname'];
+		$_SESSION['USR_LNAME'] = $user_detail['lname'];
 		header('location: '.$config["baseurl"].'/index.php');
 	}else{
 		$error =  $conn->errorMsg(); 

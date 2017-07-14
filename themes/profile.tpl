@@ -1,7 +1,7 @@
 {extends file="main.tpl"} 
 
 {block name="css"}
-		<link rel="stylesheet" href="css/jquery.Bootstrap-PersianDateTimePicker.css" />
+		<link rel="stylesheet" href="{$baseurl}/css/jquery.Bootstrap-PersianDateTimePicker.css" />
 {/block}
 
 
