@@ -20,7 +20,17 @@
 							<ul><!-- submenus -->
 								<li {if $page eq "users"}class="active"{/if}><a href="{$adminurl}/users.php" >فهرست کاربران</a></li>
 								<li {if $page eq "usersgroup"}class="active"{/if}><a href="{$adminurl}/users.group.php">{$lang20}</a></li>
-								<li {if $page eq "usersacl"}class="active"{/if}><a href="{$adminurl}/users.acl">{$lang21}</a></li>
+							</ul>
+						</li>
+						<li {if $section eq "pages_manager"}class="active"{/if}>
+							<a href="#">
+								<i class="fa fa-menu-arrow pull-right"></i>
+								<i class="main-icon fa fa-book "></i> <span>مدیریت صفحات</span>
+							</a>
+							<ul><!-- submenus -->
+								<li {if $page eq "pages"}class="active"{/if}><a href="{$adminurl}/pages.php" >فهرست برگه‌ها</a></li>
+								<li {if $page eq "new_page"}class="active"{/if}><a href="{$adminurl}/pages.add.php" >ایجاد برگه جدید</a></li>
+								
 							</ul>
 						</li>
 						
