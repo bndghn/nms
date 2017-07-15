@@ -15,7 +15,7 @@ jQuery(document).ready(function($) {
 	function jcarsouel_miras_pars(){
 		
 	$number_slide = $('ul#jc li').length;	
-	$certain = $('ul#jc li.active').index() + 1;
+	$certain = $('ul#jc li.active').index();
 	if($certain ==$number_slide) {	
 		$('.carousel-stage').jcarousel('scroll', '0');
 		$now = 1;
@@ -55,7 +55,7 @@ jQuery(document).ready(function($) {
         jcarsouel_miras_pars();
 	});
 	
-	var IntID = setTimer();
+	/*var IntID = setTimer();
 
 	function setTimer(){
 		 i = setInterval(jcarsouel_miras_pars, 4500);
@@ -66,13 +66,13 @@ jQuery(document).ready(function($) {
 	}
 	function restartSlider(){
 		  IntID = setTimer();
-	}
+	}*/
 	
 	
 	//Stop in hover
 	$("li[data-nowproduct]").hover(
 		function() {
-			stopSlider();
+			/*stopSlider();*/
 			
 			$("div[data-slide]").hide();
 			$now_id = $("li[data-nowproduct]").attr('data-nowproduct');
@@ -104,7 +104,7 @@ jQuery(document).ready(function($) {
 			$( '.pop' ).hide();
 			$("li[data-nowproduct]").find( 'a' ).css('background-color','#fff').css('color','#808080');
 			
-			restartSlider();
+			/*restartSlider();*/
       }	
 
 		}
@@ -120,8 +120,8 @@ jQuery(document).ready(function($) {
 			  $( '.black-hover' ).css('background-color','transparent');
 			$( '.pop' ).hide();
 			$("li[data-nowproduct]").find( 'a' ).css('background-color','#fff').css('color','#808080');
-			stopSlider();
-			restartSlider();
+			/*stopSlider();
+			restartSlider();*/
 });
 	
 	
