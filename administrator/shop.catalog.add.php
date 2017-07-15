@@ -29,7 +29,7 @@ if ($submit === 1){
     (isset($_FILES['pro_pic_main']) ? $p_p_main = $_FILES['pro_pic_main'] : $p_p_main = "null");
     (isset($_FILES['pro_pic_mini']) ? $p_p_mini = $_FILES['pro_pic_mini'] : $p_p_mini = "null");
     (isset($_POST['pro_desc']) ? $pro_desc = $_POST['pro_desc'] : $pro_desc = "");
-    (isset($_POST['pro_short_desc']) ? $p_s_desc = $_POST['pro_short_desc'] : $p_s_desc = "");
+    (isset($_POST['pro_short_desc']) ? $pro_short_desc = $_POST['pro_short_desc'] : $pro_short_desc = "");
     (isset($_POST['pro_metakey']) ? $pro_metakey = $_POST['pro_metakey'] : $pro_metakey = "");
     (isset($_POST['pro_attributes']) ? $pro_attributes = $_POST['pro_attributes'] : $pro_attributes = "");
    
@@ -71,14 +71,14 @@ if ($submit === 1){
      $sku = $conn->qStr($sku);
      $pro_size = $conn->qStr($pro_size);
      $pro_desc = $conn->qStr($pro_desc);
-     $p_s_desc = $conn->qStr($p_s_desc);
+     $pro_short_desc = $conn->qStr($pro_short_desc);
      $pro_metakey = $conn->qStr($pro_metakey);
      $pro_attributes = $conn->qStr($pro_attributes);
      $pro_cat_parent = intval(get_shop_cat_parent($pro_cat));
       
        
         
-        $query=" INSERT INTO `shop_product`(`pro_name`, `pro_catid`,`pro_cat_pntid`, `sku`, `gender`, `pro_status` , `pro_count`, `pro_count_unit`, `pro_weight`, `pro_size`, `Delivery_time`, `stock_status`, `pro_desc`, `pro_short_desc`, `pro_metakey`, `pro_attributes`,`date_created`) VALUES ( $pro_name , $pro_cat , $pro_cat_parent, $sku , $gender , $pro_status , $pro_count , $p_c_unit , $pro_weight , $pro_size , $Delivery_time , $stock_status  , $pro_desc , $p_s_desc , $pro_metakey , $pro_attributes , '".time()."')";
+        $query=" INSERT INTO `shop_product`(`pro_name`, `pro_catid`,`pro_cat_pntid`, `sku`, `gender`, `pro_status` , `pro_count`, `pro_count_unit`, `pro_weight`, `pro_size`, `Delivery_time`, `stock_status`, `pro_desc`, `pro_short_desc`, `pro_metakey`, `pro_attributes`,`date_created`) VALUES ( $pro_name , $pro_cat , $pro_cat_parent, $sku , $gender , $pro_status , $pro_count , $p_c_unit , $pro_weight , $pro_size , $Delivery_time , $stock_status  , $pro_desc , $pro_short_desc , $pro_metakey , $pro_attributes , '".time()."')";
         
             
        if($conn->EXECUTE($query)){
@@ -162,39 +162,23 @@ if ($submit === 1){
            $error=$conn->errorMsg(); 
         }
 
-    }
+    }else{
+      
+        STemplate::assign('pro_name',$pro_name);
+        STemplate::assign('sku',$sku);
+        STemplate::assign('pro_count',$pro_count);
+        STemplate::assign('pro_weight',$pro_weight);
+        STemplate::assign('pro_size',$pro_size);
+        STemplate::assign('Delivery_time',$Delivery_time);        
+        STemplate::assign('stock_status',$stock_status);
+        STemplate::assign('pro_desc',$pro_desc);
+        STemplate::assign('pro_short_desc',$pro_short_desc);
+        STemplate::assign('pro_metakey',$pro_metakey);
+        STemplate::assign('pro_attributes',$pro_attributes);
+  }
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //load nessary template for loading
 STemplate::assign('message',$message);
 STemplate::assign('error',$error);

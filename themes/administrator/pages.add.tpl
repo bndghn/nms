@@ -34,13 +34,17 @@
                             <div class="form-group">
                               <div class="col-md-6 col-sm-6">
                                 <label>عنوان </label>
-                                <input type="text" name="title" value="" class="form-control" required>
+
+                                <input type="text" name="title" value="{if $error ne ""}{$title}{/if}" class="form-control" required>
+
                               </div>
                               <div class="col-md-6 col-sm-6">
                                 <label>لینک </label>
                                 <div class="row">
                                 	
-                                		<input type="text" name="slug" value="" placeholder="فقط حروف لاتین" class="form-control text-right col-md-offset-3 col-md-3" required>
+
+                                		<input type="text" name="slug" value="{if $error ne ""}{$slug}{/if}" placeholder="فقط حروف لاتین" class="form-control text-right col-md-offset-3 col-md-3" required>
+
                                 		 <p class="col-md-5 text-left" dir="ltr">{$baseurl}/page/ </p>
                                 </div>
                                 
@@ -52,7 +56,9 @@
                             <div class="form-group">
                               <div class="col-md-12 col-sm-12">
                                 <label>متن</label>
-                                <textarea name="content" rows="4" placeholder=" متن را وارد نمایید."  data-height="300" data-lang="fa-IR" class="form-control summernote"></textarea>
+
+                                <textarea name="content" rows="4" placeholder=" متن را وارد نمایید."  data-height="300" data-lang="fa-IR" class="form-control summernote">{if $error ne ""}{$content}{/if}</textarea>
+
                               </div>
                             </div>
                          </div>

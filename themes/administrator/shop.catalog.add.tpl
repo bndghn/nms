@@ -32,7 +32,7 @@
                        </a>
                      </li>
                    </ul>
-                    <form  action="{$adminurl}/shop.catalog.add.php" method="POST" enctype="multipart/form-data">
+                  <form  action="{$adminurl}/shop.catalog.add.php" method="POST" enctype="multipart/form-data">
                    <div class="tab-content transparent">
                      <p class="text-center">لطفا اطلاعات محصول را در فرم زیر به دقت وارد نمایید.</p>
                        {if $error ne ""}
@@ -54,7 +54,7 @@
                                     <div class="form-group">
                                        <div class="col-md-12 col-sm-12">
                                           <label> عنوان کالا  </label>
-                                          <input type="text" name="pro_name" value="" class="form-control required">
+                                          <input type="text" name="pro_name" value=" {if $error ne ""}{$pro_name}{/if}" class="form-control required">
                                        </div>
                                     </div>
                                  </div>
@@ -62,7 +62,7 @@
                                     <div class="form-group">
                                        <div class="col-md-12 col-sm-12">
                                           <label>  کد شناسایی کالا  </label>
-                                          <input type="text" name="sku" value="" class="form-control required">
+                                          <input type="text" name="sku" value="{if $error ne ""}{$sku}{/if}" class="form-control required">
                                        </div>
                                     </div>
                                  </div>
@@ -104,7 +104,7 @@
                                        <div class="col-md-12">
                                           <label>  موجودی انبار  </label>
                                           <div class="">
-                                             <input type="text" name="pro_count" value="0" class="form-control col-md-8">
+                                             <input type="text" name="pro_count" value="{if $error ne ""}{$pro_count}{else}0{/if}" class="form-control col-md-8">
                                              <select class="form-control select col-md-4" name="pro_count_unit" value="">
                                                 <option value="0">عدد</option>
                                                 <option value="1">جفت</option>
@@ -118,7 +118,7 @@
                                     <div class="form-group">
                                        <div class="col-md-12 col-sm-12">
                                           <label>  وزن کالا  </label>
-                                          <input type="text" name="pro_weight" value="0" class="form-control required">
+                                          <input type="text" name="pro_weight" value="{if $error ne ""}{$pro_weight}{else}0{/if}" class="form-control required">
                                        </div>
                                     </div>
                                  </div>
@@ -126,7 +126,7 @@
                                     <div class="form-group">
                                        <div class="col-md-12 col-sm-12">
                                           <label>  ابعاد کالا  </label>
-                                          <input type="text" name="pro_size" value="" placeholder="ابعاد محصول را وارد نمایید. " class="form-control required">
+                                          <input type="text" name="pro_size" value="{if $error ne ""}{$pro_size}{/if}" placeholder="ابعاد محصول را وارد نمایید. " class="form-control required">
                                        </div>
                                     </div>
                                  </div>
@@ -174,7 +174,7 @@
                                     <div class="form-group">
                                        <div class="col-md-12 col-sm-12">
                                           <label> وضعیت سفارش </label>
-                                          <select class="form-control select" name="stock_status" value="">
+                                          <select class="form-control select" name="stock_status" value="{if $error ne ""}{$stock_status}{/if}">
                                              <option value="0">عدم ثبت سفارش</option>
                                              <option value="1">فروش عادی</option>
                                              <option value="2">ثبت سفارش جهت تولید</option>
@@ -187,7 +187,7 @@
                                     <div class="form-group">
                                        <div class="col-md-12 col-sm-12">
                                           <label>  موعد تحویل (بر حسب روز) </label>
-                                          <input type="text" name="Delivery_time" value="" placeholder="زمان آماده شدن محصول برای تحویل" class="form-control required">
+                                          <input type="text" name="Delivery_time" value="{if $error ne ""}{$Delivery_time}{/if}" placeholder="زمان آماده شدن محصول برای تحویل" class="form-control required">
                                        </div>
                                     </div>
                                  </div>
@@ -207,7 +207,7 @@
                                     <div class="form-group">
                                       <div class="col-md-12 col-sm-12">
                                         <label> توضیحات مختصر  - meta Description</label>  
-                                         <textarea name="pro_short_desc" rows="4" placeholder="توضیحات مختصر درباره کالای مورد نظر وارد شود" class="form-control"></textarea>
+                                         <textarea name="pro_short_desc" rows="4" placeholder="توضیحات مختصر درباره کالای مورد نظر وارد شود" class="form-control">{if $error ne ""}{$pro_short_desc}{/if}</textarea>
                                        
                                       </div>
                                     </div>
@@ -217,7 +217,7 @@
                                   <div class="form-group">
                                      <div class="col-md-12 col-sm-12">
                                         <label> کلمات کلیدی - meta Key Words</label>
-                                        <input type="text" name="pro_metakey" value="" class="form-control required">
+                                        <input type="text" name="pro_metakey" value="{if $error ne ""}{$pro_metakey}{/if}" class="form-control required">
                                      </div>
                                   </div>
                                  </div>
@@ -287,7 +287,7 @@
                                     <div class="form-group">
                                       <div class="col-md-12 col-sm-12">
                                         <label>  مشخصات ظاهری کالا </label>
-                                        <textarea name="pro_attributes" rows="4" placeholder="مشخصات ظاهری کالای مورد نظر وارد شود" class="form-control"></textarea>
+                                        <textarea name="pro_attributes" rows="4" placeholder="مشخصات ظاهری کالای مورد نظر وارد شود" class="form-control">{if $error ne ""}{$pro_attributes}{/if}</textarea>
                                       </div>
                                     </div>
                                  </div>
@@ -305,7 +305,7 @@
                                         <label>  توضیحات کامل </label>  
                                       
                                         
-                                        <textarea rows="7" class="form-control summernote" data-height="300" data-lang="fa-IR" name="pro_desc" placeholder="توضیحات کامل درباره کالای مورد نظر وارد شود" ></textarea>
+                                        <textarea rows="7" class="form-control summernote" data-height="300" data-lang="fa-IR" name="pro_desc" placeholder="توضیحات کامل درباره کالای مورد نظر وارد شود" >{if $error ne ""}{$pro_desc}{/if}</textarea>
                                         
                                       </div>
                                     </div>
@@ -316,46 +316,9 @@
                          </div>
 
                          <div id="jtab3_nobg" class="tab-pane ">
-                           <div class="row">
-                            <div class="col-md-6">
-                              <fieldset>
-                               
-                             
-                                <div class="row">
-                                  <div class="form-group">
-                                    {insert name=get_product_ugroup_prc value=gvar id=5 assign=pro_ugroup}
-                                     <div class="col-md-12 col-sm-12">
-                                        <label>{$pro_ugroup['category']}</label>
-                                        <input type="text" name="price" value="" placeholder="بهای کالا در این قسمت وارد شود" class="form-control required">
-                                       </div>
-                                    </div>
-                                 </div>
-                                
-                                 <div class="row">
-                                  <div class="form-group">
-                                    {insert name=get_product_ugroup_prc value=gvar id=6 assign=pro_ugroup}
-                                     <div class="col-md-12 col-sm-12">
-                                        <label>{$pro_ugroup['category']}</label>
-                                        <input type="text" name="price" value="" placeholder="بهای کالا در این قسمت وارد شود" class="form-control required">
-                                       </div>
-                                    </div>
-                                 </div>
-                                 
-                                 <div class="row">
-                                  <div class="form-group">
-                                    {insert name=get_product_ugroup_prc value=gvar id=7 assign=pro_ugroup}
-                                     <div class="col-md-12 col-sm-12">
-                                        <label>{$pro_ugroup['category']}</label>
-                                        <input type="text" name="price" value="" placeholder="بهای کالا در این قسمت وارد شود" class="form-control required">
-                                        
-                                       </div>
-                                    </div>
-                                 </div>
-                              </fieldset>
-                            </div>
-                           </div>
+                           
                          </div>
-                         
+                     
                          <hr/>
                          <div class="row">
                           <div class="col-md-4 col-md-offset-4">
@@ -366,8 +329,8 @@
                           </div>
                         </div>
                      
-
-                  </div>
+                          
+                    </div>
                   </form>
                 </div>
               </div>
