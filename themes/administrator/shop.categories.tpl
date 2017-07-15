@@ -48,7 +48,7 @@
                             <div class="form-group">
                                 <div class="col-md-12 col-sm-12">
                                     <label> نام دسته  *</label>
-                                    <input type="text" name="catname" value="" class="form-control required">
+                                    <input type="text" name="catname" value="{if $error ne ""}{$catname}{/if}" class="form-control required">
                                 </div>
 
                             </div>
@@ -89,7 +89,7 @@
 
                            <div class="col-md-6 col-sm-6">
                                 <label>ترتیب  *</label>
-                                <input type="text" name="order" value="" placeholder="ترتیب دسته بندی کالا را وارد کنید" class="form-control required">
+                                <input type="text" name="order" value="{if $error ne ""}{$order}{/if}" placeholder="ترتیب دسته بندی کالا را وارد کنید" class="form-control required">
                            </div>
 
 
@@ -112,7 +112,7 @@
                             <div class="form-group">
                                 <div class="col-md-12 col-sm-12">
                                     <label> توضیحات </label>
-                                    <textarea name="cat_desc" rows="4" class="form-control"></textarea>
+                                    <textarea name="cat_desc" rows="4" class="form-control">{if $error ne ""}{$cat_desc}{/if}</textarea>
                                 </div>
                             </div>
                         </div>

@@ -65,7 +65,14 @@ if ($submit === 1){
         else{
            $error=$conn->errorMsg(); 
         }
-    }
+    }else{
+        STemplate::assign('catname',$catname);
+        STemplate::assign('cat_desc',$cat_desc);
+        STemplate::assign('order',$order);
+        STemplate::assign('pntid',$pntid);
+    
+  }
+  
 }
 
 (isset($_POST['isEdit']) ? $edit = intval($_POST['isEdit']) : $edit = 0);

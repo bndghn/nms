@@ -48,21 +48,21 @@ if ($isDelete !=""){
 
 
 if ($submit === "1"){
-    (isset($_POST['category']) ? $catname = $_POST['category'] : $catname = "");
-    (isset($_POST['description']) ? $descript = $_POST['description'] : $descript = "");
+    (isset($_POST['category']) ? $category = $_POST['category'] : $category = "");
+    (isset($_POST['description']) ? $description = $_POST['description'] : $description = "");
     (isset($_POST['iscostumer']) ? $iscostum = 1 : $iscostum = 0);
     (isset($_POST['status']) ? $status = 1 : $status = 0);
     
-    if($catname==="")
+    if($category==="")
     {
         $error = "حتما باید نام گروه کاربری را وارد نمایید.";
     }
 
     if($error===""){
-        $catname    = $conn->qStr($catname);
-        $descript   = $conn->qStr($descript);
+        $category    = $conn->qStr($category);
+        $description   = $conn->qStr($description);
         
-        $query='INSERT INTO `user_group`(`category`, `description`, `isCustomer`,`status`,`date_created`) VALUES('.$catname.','.$descript.','.$iscostum.','.$status.','.time().')';
+        $query='INSERT INTO `user_group`(`category`, `description`, `isCustomer`,`status`,`date_created`) VALUES('.$category.','.$description.','.$iscostum.','.$status.','.time().')';
        if($conn->EXECUTE($query)){
            header("location: ".$config['adminurl']."/users.group.php");
        } 
@@ -70,6 +70,10 @@ if ($submit === "1"){
            $error=$conn->errorMsg(); 
         }
 
+    }else{
+      STemplate::assign('category',$category);
+      STemplate::assign('description',$description);
+      
     }
 
 

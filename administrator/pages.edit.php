@@ -58,6 +58,15 @@ if ($submit === 1){
          $error=$conn->errorMsg(); 
        }
       
+
+    }else{
+      
+      STemplate::assign('title',$title);
+      STemplate::assign('slug',$slug);
+      STemplate::assign('content',$content);
+      STemplate::assign('status',$status);
+      
+
     }
 
 

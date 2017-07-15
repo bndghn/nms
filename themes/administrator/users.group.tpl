@@ -41,7 +41,7 @@
 						<div class="panel-body">
                                 
                                 {if $error ne ""}
-                                <div class="alert alert-mini alert-success nomargin noradius noborder">
+                                <div class="alert alert-mini alert-danger nomargin noradius noborder">
                                     <button class="close" data-dismiss="alert">×</button>
                                     <p><strong>خطا! </strong> {$error}</p>
                                 </div>
@@ -53,7 +53,7 @@
                                             <div class="form-group">
                                                 <div class="col-md-12 col-sm-12">
                                                     <label> نام گروه *</label>
-                                                    <input type="text" name="category" value="" class="form-control required">
+                                                    <input type="text" name="category" value="{if $error ne ""}{$category}{/if}" class="form-control required">
                                                 </div>
                                                 
                                             </div>
@@ -90,7 +90,7 @@
                                             <div class="form-group">
                                                 <div class="col-md-12 col-sm-12">
                                                     <label> توضیحات </label>
-                                                    <textarea name="description" rows="4" class="form-control"></textarea>
+                                                    <textarea name="description" rows="4" class="form-control">{if $error ne ""}{$description}{/if}</textarea>
                                                 </div>
                                             </div>
                                         </div>
