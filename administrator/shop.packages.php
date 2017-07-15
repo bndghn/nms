@@ -33,7 +33,7 @@ if ($isDelete !=""){
 
 if ($submit === 1){
     (isset($_POST['pck_title']) ? $pckname = $_POST['pck_title'] : $pckname = "");
-    (isset($_POST['pck_description']) ? $pck_desc = $_POST['pck_description'] : $pck_desc = "");
+    (isset($_POST['pck_description']) ? $pck_description = $_POST['pck_description'] : $pck_description = "");
     (isset($_POST['pck_status']) ? $pck_status = 1 : $pck_status = 0);
 
     if($pckname === "" )
@@ -42,9 +42,9 @@ if ($submit === 1){
     }     
   if($error === "" ){
         $pckname    = $conn->qStr($pckname);
-        $pck_desc   = $conn->qStr($pck_desc);
+        $pck_description   = $conn->qStr($pck_description);
         
-        $query=' INSERT INTO `shop_packages`(`pck_title`, `pck_description`, `pck_status`) VALUES('.$pckname.','.$pck_desc.','.$pck_status.')';
+        $query=' INSERT INTO `shop_packages`(`pck_title`, `pck_description`, `pck_status`) VALUES('.$pckname.','.$pck_description.','.$pck_status.')';
         
              echo $query;  
        if($conn->EXECUTE($query)){
@@ -53,7 +53,10 @@ if ($submit === 1){
         else{
            $error=$conn->errorMsg(); 
         }
-    }
+    }else{
+        STemplate::assign('pck_description',$pck_description);
+  }
+  
 }
 
 /*(isset($_POST['isEdit']) ? $edit = intval($_POST['isEdit']) : $edit = 0);

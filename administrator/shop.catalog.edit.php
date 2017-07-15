@@ -1,4 +1,3 @@
-
 <?php
 
 include('../core/config.php');
@@ -10,23 +9,18 @@ verify_login_admin();
 $error = "";
 $message = "";
 
+
 STemplate::assign('section',"shop");
 STemplate::assign('page',"shop_catalog");
   
-(isset($_GET['proid']) ? $proid =intval($_GET['proid']) : $proid = 0 );
+(isset($_REQUEST['proid']) ? $proid =intval($_REQUEST['proid']) : $proid = 0 );
 
-
-if($proid > 0){
+if($proid === 0){
   
-  STemplate::assign('proid',$proid);
-  STemplate::display('administrator/shop.catalog.edit.tpl');
+   header("location: ".$config['adminurl']."/shop.catalog.php");
+  
 
 }
-
-
-
-
-
 
 (isset($_POST['isSubmit']) ? $isSubmit = intval($_POST['isSubmit']) : $isSubmit = 0);
 
@@ -46,10 +40,9 @@ if ($isSubmit === 1){
     (isset($_POST['pro_pic_main']) ? $p_p_main = $_POST['pro_pic_main'] : $p_p_main = "null");
     (isset($_POST['pro_pic_mini']) ? $p_p_mini = $_POST['pro_pic_mini'] : $p_p_mini = "null");
     (isset($_POST['pro_desc']) ? $pro_desc = $_POST['pro_desc'] : $pro_desc = "");
-    (isset($_POST['pro_short_desc']) ? $p_s_desc = $_POST['pro_short_desc'] : $p_s_desc = "");
+    (isset($_POST['pro_short_desc']) ? $pro_short_desc = $_POST['pro_short_desc'] : $pro_short_desc = "");
     (isset($_POST['pro_metakey']) ? $pro_metakey = $_POST['pro_metakey'] : $pro_metakey = "");
-    (isset($_POST['pro_attributes']) ? $pro_attributes = $_POST['pro_attributes'] : $pro_attributes = "");
-   
+    (isset($_POST['pro_attributes']) ? $pro_attributes = $_POST['pro_attributes'] : $pro_attributes = "");   
      $proid =intval($_POST['proid']);
   
     if($pro_name === "" )
@@ -84,35 +77,49 @@ if ($isSubmit === 1){
     
 
     
-  if($error === "" ){
+  if($error === ""){
      $pro_name = $conn->qStr($pro_name);
      $sku = $conn->qStr($sku);
      $p_p_mini= $conn->qStr($p_p_mini);
      $p_p_main= $conn->qStr($p_p_main);
      $pro_size = $conn->qStr($pro_size);
      $pro_desc = $conn->qStr($pro_desc);
-     $p_s_desc = $conn->qStr($p_s_desc);
+     $pro_short_desc = $conn->qStr($pro_short_desc);
      $pro_metakey = $conn->qStr($pro_metakey);
      $pro_attributes = $conn->qStr($pro_attributes);
      $pro_cat_parent = intval(get_shop_cat_parent($pro_cat));
       
        
         
-        $query="UPDATE `shop_product` SET `pro_name`=$pro_name, `pro_catid`=$pro_cat, `pro_cat_pntid`=$pro_cat_parent, `sku`=$sku, `gender`=$gender, `date_update`=".time().", `pro_status`=$pro_status, `pro_count`=$pro_count, `pro_count_unit`=$p_c_unit, `pro_weight`=$pro_weight, `pro_size`=$pro_size, `Delivery_time`=$Delivery_time, `stock_status`=$stock_status, `pro_pic_main`=$p_p_main, `pro_pic_mini`=$p_p_mini, `pro_desc`=$pro_desc, `pro_short_desc`=$p_s_desc, `pro_metakey`=$pro_metakey, `pro_attributes`=$pro_attributes WHERE `proid`=$proid";
-             echo $query;  
+        $query="UPDATE `shop_product` SET `pro_name`=$pro_name, `pro_catid`=$pro_cat, `pro_cat_pntid`=$pro_cat_parent, `sku`=$sku, `gender`=$gender, `date_update`=".time().", `pro_status`=$pro_status, `pro_count`=$pro_count, `pro_count_unit`=$p_c_unit, `pro_weight`=$pro_weight, `pro_size`=$pro_size, `Delivery_time`=$Delivery_time, `stock_status`=$stock_status, `pro_pic_main`=$p_p_main, `pro_pic_mini`=$p_p_mini, `pro_desc`=$pro_desc, `pro_short_desc`=$pro_short_desc, `pro_metakey`=$pro_metakey, `pro_attributes`=$pro_attributes WHERE `proid`=$proid";
+        //     echo $query;  
        if($conn->EXECUTE($query)){
            header("location: ".$config['adminurl']."/shop.catalog.php");
        } 
         else{
-           $error=$conn->errorMsg(); 
+           $error = $conn->errorMsg(); 
         }
 
     }else{
-        header("location: ".$config['adminurl']."/shop.catalog.edit.php?tsError=$error");
+      
+        STemplate::assign('pro_name',$pro_name);
+        STemplate::assign('sku',$sku);
+        STemplate::assign('pro_count',$pro_count);
+        STemplate::assign('pro_weight',$pro_weight);
+        STemplate::assign('pro_size',$pro_size);
+        STemplate::assign('Delivery_time',$Delivery_time);
+        STemplate::assign('pro_desc',$pro_desc);
+        STemplate::assign('pro_short_desc',$pro_short_desc);
+        STemplate::assign('pro_metakey',$pro_metakey);
+        STemplate::assign('pro_attributes',$pro_attributes);
+
+       // header("location: ".$config['adminurl']."/shop.catalog.edit.php?tsError=$error");
     }
 }
+//load nessary template for loading
 
-      //load nessary template for loading
-    STemplate::assign('message',$message);
-    STemplate::assign('error',$error);
+STemplate::assign('message',$message);
+STemplate::assign('error',$error);
+STemplate::assign('proid',$proid);
+STemplate::display('administrator/shop.catalog.edit.tpl');
 ?>
