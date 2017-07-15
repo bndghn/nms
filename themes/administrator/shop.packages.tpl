@@ -56,7 +56,7 @@
                       <div class="form-group">
                         <div class="col-md-12 col-sm-12">
                           <label> توضیحات </label>
-                          <textarea name="pck_description" rows="4" class="form-control"></textarea>
+                          <textarea name="pck_description" rows="4" class="form-control">{if $error ne ""}{$pck_description}{/if} </textarea>
                         </div>
                       </div>
                     </div>

@@ -38,15 +38,16 @@
                      </li>
                    </ul>
                   
-                    <form  action="{$adminurl}/shop.catalog.edit.php" method="POST" enctype="multipart/form-data">
+                  <form  action="{$adminurl}/shop.catalog.edit.php" method="POST" enctype="multipart/form-data">
                    <div class="tab-content transparent">
+                      {if $error ne ""}
+                        <div class="alert alert-mini alert-danger nomargin noradius noborder">
+                            <button class="close" data-dismiss="alert">×</button>
+                            <p><strong>خطا! </strong> {$error}</p>
+                        </div>
+                      {/if}
                      <p class="text-center">لطفا اطلاعات محصول را در فرم زیر به دقت وارد نمایید.</p>
-                     <!--{if $error ne ""}
-                          <div class="alert alert-mini alert-danger nomargin noradius noborder">
-                              <button class="close" data-dismiss="alert">×</button>
-                              <p><strong>خطا! </strong> {$error}</p>
-                          </div>
-                       {/if}-->
+                     
                         <hr/>
                          <div id="jtab1_nobg" class="tab-pane active">
                            
@@ -60,7 +61,7 @@
                                     <div class="form-group">
                                        <div class="col-md-12 col-sm-12">
                                           <label> عنوان کالا  </label>
-                                          <input type="text" name="pro_name" value="{$pro_edits['pro_name']}" class="form-control required">
+                                          <input type="text" name="pro_name" value="{if $error ne ""}{$pro_name}{else}{$pro_edits['pro_name']}{/if}" class="form-control required">
                                        </div>
                                     </div>
                                  </div>
@@ -68,7 +69,7 @@
                                     <div class="form-group">
                                        <div class="col-md-12 col-sm-12">
                                           <label>  کد شناسایی کالا  </label>
-                                          <input type="text" name="sku" value="{$pro_edits['sku']}" class="form-control required">
+                                          <input type="text" name="sku" value="{if $error ne ""}{$sku}{else}{$pro_edits['sku']}{/if}" class="form-control required">
                                        </div>
                                     </div>
                                  </div>
@@ -114,7 +115,7 @@
                                        <div class="col-md-12">
                                           <label>  موجودی انبار  </label>
                                           <div class="">
-                                             <input type="text" name="pro_count" value="{$pro_edits['pro_count']}" class="form-control col-md-8">
+                                             <input type="text" name="pro_count" value="{if $error ne ""}{$pro_count}{else}{$pro_edits['pro_count']}{/if}" class="form-control col-md-8">
                                              <select class="form-control select col-md-4" name="pro_count_unit" value="">
                                                 <option value="0" {if $pro_edits['pro_count_unit'] eq "0"} selected {/if}>عدد</option>
                                                 <option value="1" {if $pro_edits['pro_count_unit'] eq "1"} selected {/if}>جفت</option>
@@ -128,7 +129,7 @@
                                     <div class="form-group">
                                        <div class="col-md-12 col-sm-12">
                                           <label>  وزن کالا  </label>
-                                          <input type="text" name="pro_weight" value="{$pro_edits['pro_weight']}" class="form-control required">
+                                          <input type="text" name="pro_weight" value="{if $error ne ""}{$pro_weight}{else}{$pro_edits['pro_weight']}{/if}" class="form-control required">
                                        </div>
                                     </div>
                                  </div>
@@ -136,7 +137,7 @@
                                     <div class="form-group">
                                        <div class="col-md-12 col-sm-12">
                                           <label>  ابعاد کالا  </label>
-                                          <input type="text" name="pro_size" value="{$pro_edits['pro_size']}" placeholder="ابعاد محصول را وارد نمایید. " class="form-control required">
+                                          <input type="text" name="pro_size" value="{if $error ne ""}{$pro_size}{else}{$pro_edits['pro_size']}{/if}" placeholder="ابعاد محصول را وارد نمایید. " class="form-control required">
                                        </div>
                                     </div>
                                  </div>
@@ -197,7 +198,7 @@
                                     <div class="form-group">
                                        <div class="col-md-12 col-sm-12">
                                           <label>  موعد تحویل (بر حسب روز) </label>
-                                          <input type="text" name="Delivery_time" value="{$pro_edits['Delivery_time']}" placeholder="زمان آماده شدن محصول برای تحویل" class="form-control required">
+                                          <input type="text" name="Delivery_time" value="{if $error ne ""}{$Delivery_time}{else}{$pro_edits['Delivery_time']}{/if}" placeholder="زمان آماده شدن محصول برای تحویل" class="form-control required">
                                        </div>
                                     </div>
                                  </div>
@@ -217,7 +218,7 @@
                                     <div class="form-group">
                                       <div class="col-md-12 col-sm-12">
                                         <label> توضیحات مختصر  - meta Description</label>  
-                                         <textarea name="pro_short_desc" rows="4" placeholder="{$pro_edits['pro_short_desc']}" class="form-control">{$pro_edits['pro_short_desc']}</textarea>
+                                         <textarea name="pro_short_desc" rows="4" placeholder="{$pro_edits['pro_short_desc']}" class="form-control">{if $error ne ""}{$pro_short_desc}{else}{$pro_edits['pro_short_desc']}{/if}</textarea>
                                        
                                       </div>
                                     </div>
@@ -227,7 +228,7 @@
                                   <div class="form-group">
                                      <div class="col-md-12 col-sm-12">
                                         <label> کلمات کلیدی - meta Key Words</label>
-                                        <input type="text" name="pro_metakey" value="{$pro_edits['pro_metakey']}" class="form-control required">
+                                        <input type="text" name="pro_metakey" value="{if $error ne ""}{$pro_metakey}{else}{$pro_edits['pro_metakey']}{/if}" class="form-control required">
                                      </div>
                                   </div>
                                  </div>
@@ -306,7 +307,7 @@
                                     <div class="form-group">
                                       <div class="col-md-12 col-sm-12">
                                         <label>  مشخصات ظاهری کالا </label>
-                                        <textarea name="pro_attributes" value="{$pro_edits['pro_attributes']}" rows="4" placeholder="{$pro_edits['pro_attributes']}" class="form-control">{$pro_edits['pro_attributes']}</textarea>
+                                        <textarea name="pro_attributes" value="{$pro_edits['pro_attributes']}" rows="4" placeholder="{$pro_edits['pro_attributes']}" class="form-control">{if $error ne ""}{$pro_attributes}{else}{$pro_edits['pro_attributes']}{/if}</textarea>
                                       </div>
                                     </div>
                                  </div>
@@ -324,7 +325,7 @@
                                         <label>  توضیحات کامل </label>  
                                       
                                         
-                                        <textarea rows="7" class="form-control summernote" data-height="300" data-lang="fa-IR" name="pro_desc" value="{$pro_edits['pro_desc']}" placeholder="{$pro_edits['pro_desc']}" >{$pro_edits['pro_desc']}</textarea>
+                                        <textarea rows="7" class="form-control summernote" data-height="300" data-lang="fa-IR" name="pro_desc" value="{$pro_edits['pro_desc']}" placeholder="{$pro_edits['pro_desc']}" >{if $error ne ""}{$pro_desc}{else}{$pro_edits['pro_desc']}{/if}</textarea>
                                         
                                       </div>
                                     </div>
@@ -338,44 +339,66 @@
                            <div class="row">
                             <div class="col-md-6">
                               <fieldset>
-                       
                                  <div class="row">
-                                  <div class="form-group">
-                                    {insert name=get_product_ugroup_prc value=gvar id=5 assign=pro_ugroup}
-                                     <div class="col-md-12 col-sm-12">
-                                        <label>{$pro_ugroup['category']}</label>
-                                        <input type="text" name="price" value="" placeholder="بهای کالا در این قسمت وارد شود" class="form-control required">
-                                       </div>
+                                  <div class="form-group">                               
+                                    <div class="col-md-6 col-sm-12">
+                                       {insert name=get_user_group_list isCustomer="1" value=gvar assign=groupList}
+                                       {if $groupList ne null}
+                                       
+                                        <label> گروه کاربری  </label>
+                                        <select class="form-control select" name="category">
+                                           <option value="0">-- انتخاب یک گروه کاربری --</option>
+                                           {foreach from=$groupList item=group}
+                                           <option value="{$group['id']}" class="optionGroup">{$group['category']}</option>
+                                           {/foreach}
+                                        </select>
+                                        {/if}
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                    <label>قیمت</label>
+                                    <input type="text" name="price" value="" class="form-control required">                                    
                                     </div>
                                  </div>
+                                </div>
                                 
-                                 <div class="row">
-                                  <div class="form-group">
-                                    {insert name=get_product_ugroup_prc value=gvar id=6 assign=pro_ugroup}
-                                     <div class="col-md-12 col-sm-12">
-                                        <label>{$pro_ugroup['category']}</label>
-                                        <input type="text" name="price" value="" placeholder="بهای کالا در این قسمت وارد شود" class="form-control required">
-                                       </div>
+                                <div class="row">
+                                  <div class="form-group">                               
+                                    <div class="col-md-12 col-sm-12">
+                                    <table class="table table-striped table-bordered table-hover" id="datatable_sample">
+                                      <thead>
+                                        <tr>
+                                          <th class="width-150 text-center">گروه کاربری</th>
+                                          <th class="width-150 text-center">قیمت محصول</th>
+                                          <th class="width-150 text-center">عملیات</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td class="align-middle text-center"></td>
+                                          <td class="align-middle text-center"></td>
+                                          <td class="text-center  align-middle">
+                                             <a href="{$adminurl}/shop.catalog.edit.php?id={$['']}" data-target="#Edit{$['']}" data-toggle="modal" class="btn btn-default btn-xs "><i class="fa fa-edit white"></i> ویرایش </a>
+
+                                             <a href="{$adminurl}/shop.catalog.php?delete={$['']}"  class="btn btn-danger btn-xs " onclick="{literal} return confirm('آیا از حذف این دسته بندی مطمئن هستید؟!');{/literal}"><i class="fa fa-times white"></i> حذف </a>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
                                     </div>
-                                 </div>
-                                 
-                                 <div class="row">
-                                  <div class="form-group">
-                                    {insert name=get_product_ugroup_prc value=gvar id=7 assign=pro_ugroup}
-                                     <div class="col-md-12 col-sm-12">
-                                        <label>{$pro_ugroup['category']}</label>
-                                        <input type="text" name="price" value="" placeholder="بهای کالا در این قسمت وارد شود" class="form-control required">
-                                        
-                                       </div>
-                                    </div>
-                                 </div>
+                                  </div>
+                                </div>
+                        
                               </fieldset>
                             </div>
                            </div>
-                         </div>
+                        
                          
                          <hr/>
-                         <div class="row">
+                         
+                     
+
+                    </div>
+                    <div class="row">
                           <div class="col-md-4 col-md-offset-4">
                             <input type="hidden" name="isSubmit" value="1"/>
                             <input type="hidden" name="proid" value="{$pro_edits['proid']}"/>
@@ -384,9 +407,7 @@
                             </button>
                           </div>
                         </div>
-                     
-
-                  </div>
+                    </div>
                   </form>
                 </div>
               </div>
