@@ -349,7 +349,7 @@
                                         <select class="form-control select" name="category">
                                            <option value="0">-- انتخاب یک گروه کاربری --</option>
                                            {foreach from=$groupList item=group}
-                                           <option value="{$group['id']}" class="optionGroup">{$group['category']}</option>
+                                           <option value="{$group['id']}" class="optionGroup">{$group['category']|stripslashes}</option>
                                            {/foreach}
                                         </select>
                                         {/if}
@@ -360,7 +360,10 @@
                                     </div>
                                  </div>
                                 </div>
-                                
+                              </fieldset>
+                            </div>
+                                <div class="col-md-6">
+                                <fieldset>
                                 <div class="row">
                                   <div class="form-group">                               
                                     <div class="col-md-12 col-sm-12">
@@ -373,8 +376,10 @@
                                         </tr>
                                       </thead>
                                       <tbody>
+                                        {insert name=get_user_group_list isCustomer="1" value=gvar assign=groupList}
+                                        {foreach from=$groupList item=group}
                                         <tr>
-                                          <td class="align-middle text-center"></td>
+                                          <td class="align-middle text-center">{$group['category']|stripslashes} </td>
                                           <td class="align-middle text-center"></td>
                                           <td class="text-center  align-middle">
                                              <a href="{$adminurl}/shop.catalog.edit.php?id={$['']}" data-target="#Edit{$['']}" data-toggle="modal" class="btn btn-default btn-xs "><i class="fa fa-edit white"></i> ویرایش </a>
@@ -382,6 +387,7 @@
                                              <a href="{$adminurl}/shop.catalog.php?delete={$['']}"  class="btn btn-danger btn-xs " onclick="{literal} return confirm('آیا از حذف این دسته بندی مطمئن هستید؟!');{/literal}"><i class="fa fa-times white"></i> حذف </a>
                                           </td>
                                         </tr>
+                                        {/foreach}
                                       </tbody>
                                     </table>
                                     </div>
