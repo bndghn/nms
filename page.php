@@ -10,6 +10,15 @@ if($config['public'] === "0"){
 (isset($_SESSION['USR_FNAME']) ? $usrFname = $_SESSION['USR_FNAME'] : $usrFname = "");
 (isset($_SESSION['USR_LNAME']) ? $usrLname = $_SESSION['USR_LNAME'] : $usrLname = "");
 
+(isset($_GET['slug']) ? $slug = $_GET['slug'] : $slug = "");
+if($slug === ""){
+	header("location: ".$config['baseurl']);
+}
 
-STemplate::display('index.tpl');
+
+
+
+
+STemplate::assign('slug',$slug);
+STemplate::display('page.tpl');
 ?>

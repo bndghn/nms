@@ -2303,7 +2303,6 @@ ul.easypiecharts li span.stat-title {
 	.box .box-title {
 		padding:10px 0 10px 0;
 		position:relative;
-		border-bottom: rgba(0,0,0,0.1) 1px solid;
 	}
 	.box .box-title i.fa {
 		position:absolute;

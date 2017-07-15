@@ -254,6 +254,20 @@ function insert_get_user($var){
         return $user['0'];
     }
 }
+
+/**********************************************/
+function get_user($usrid){
+    global $conn,$config;
+    $uID = intval($usrid);
+    $query = "SELECT users.*, user_group.* FROM `users`,`user_group` WHERE user_group.id= users.user_group AND users.userid=$uID";
+    $result = $conn->execute($query);
+    if(!$user = $result->getArray()){
+        echo $conn->errorMsg();
+        return false;
+    }else{
+        return $user['0'];
+    }
+}
 /**********************************************/
 function insert_get_user_list($var){
     global $conn,$config;
@@ -428,6 +442,32 @@ function verify_user_unique($field,$value)
 	{
 		return true;
 	}
+}
+
+/**********************************************/
+function verify_slug($slug, $tbl, $idfield="",$id="")
+{
+	global $config,$conn;
+	$slug = $conn->qStr($slug);
+	$addsql = "";
+	
+	if($idfield!=""){
+		$pid = intval($id);
+		$addsql = " AND NOT `$idfield`=$pid";
+	}
+	$query = "SELECT count(*) as `total` FROM `$tbl` WHERE  `slug` = $slug $addsql limit 1";
+	$executequery = $conn->execute($query);
+    //echo $conn->errorMsg();
+	$total = $executequery->fields['total'];
+	if ($total >= 1)
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+	
 }
 /**********************************************/
 function isUserChange($uid, $field, $value){
@@ -906,4 +946,38 @@ function insert_get_list_event($var){
     $result = $conn->execute($query);
 	$events	= $result->getAll();
 	return $events;
+}
+
+function insert_get_pages(){
+	global $conn;
+	$query = "SELECT * FROM `pages` WHERE NOT `pg_status`=2 ";
+    $result = $conn->execute($query);
+	$pages	= $result->getAll();
+	return $pages;
+}
+function insert_get_page($var){
+	global $conn;
+	
+	$addsql = "";
+	if(isset($var['slug'])){
+        $slug = $conn->qStr($var['slug']);
+		$addsql = " `slug`=$slug ";
+    }else{
+		$pgid = intval($var['page_id']);
+		$addsql = " `pgid` = $pgid ";
+	}
+	if(isset($var['status'])){
+        $status = intval($var['status']);
+		$addsql .= " AND `pg_status` = 1 ";
+    }
+	
+	
+	$query = "SELECT * FROM `pages` WHERE  $addsql ";
+    $result = $conn->execute($query);
+	
+	$pages	= $result->getAll();
+	return $pages['0'];
+		
+	
+	
 }

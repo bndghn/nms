@@ -91,6 +91,7 @@ if (isset($_SESSION['LOGIN']))
             $_SESSION['USR_ID'] = $getID;
             $_SESSION['USERNAME'] = $getUname;
             $_SESSION['USR_PASS'] = $encodePass;
+			 $_SESSION['verified'] = "0";
 
             if($getVerified == 1){
                 $_SESSION['USR_GENDER'] = $getGender;
@@ -112,10 +113,10 @@ if (isset($_SESSION['LOGIN']))
 
 
 
-            if(!isset($_SESSION['verified'])){
+            if($_SESSION['verified'] == "0"){
                 $redirect = $config['baseurl']."/profile.php";
             }else{
-                $redirect = $config['baseurl']."/index2.php";
+                $redirect = $config['baseurl']."/index.php";
             }
             header("location: $redirect");
 

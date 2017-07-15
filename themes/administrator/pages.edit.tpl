@@ -34,13 +34,17 @@
                             <div class="form-group">
                               <div class="col-md-6 col-sm-6">
                                 <label>عنوان </label>
-                                <input type="text" name="title" value="{if $error ne ""}{$title}{else}{$page['title']|stripslashes}{/if}" class="form-control">
+
+                                <input type="text" name="title" value="{if $error ne ""}{$title|stripslashes}{else}{$page['title']|stripslashes}{/if}" class="form-control">
+
                               </div>
                               <div class="col-md-6 col-sm-6">
                                 <label>لینک </label>
                                 <div class="row">
                                 	
-                                		<input type="text" name="slug" value="{if $error ne ""}{$slug}{else}{$page['slug']|stripslashes}{/if}" class="form-control text-right col-md-offset-2 col-md-4">
+
+                                		<input type="text" name="slug" value="{if $error ne ""}{$slug|stripslashes}{else}{$page['slug']|stripslashes}{/if}" class="form-control text-right col-md-offset-2 col-md-4">
+
                                 		 <p class="col-md-5 text-left" dir="ltr">{$baseurl}/page/ </p>
                                 </div>
                                 
@@ -52,7 +56,9 @@
                             <div class="form-group">
                               <div class="col-md-12 col-sm-6">
                                 <label>متن</label>
-                                <textarea name="content" rows="4" placeholder=" متن را وارد نمایید."  data-height="300" data-lang="fa-IR" class="form-control summernote">{if $error ne ""}{$content}{else}{$page['content']|stripslashes}{/if}</textarea>
+
+                                <textarea name="content" rows="4" placeholder=" متن را وارد نمایید."  data-height="300" data-lang="fa-IR" class="form-control summernote">{if $error ne ""}{$content|stripslashes}{else}{$page['content']|stripslashes}{/if}</textarea>
+
                               </div>
                             </div>
                          </div>

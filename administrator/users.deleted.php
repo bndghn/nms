@@ -14,7 +14,7 @@ $message = "";
 if ($userid != 0){
   if($error === "" ){
         $query= "DELETE FROM `users` WHERE `userid`=$userid";
-             echo $query;  
+               
        if($conn->EXECUTE($query)){
            header("location: ".$config['adminurl']."/users.php");
        } 

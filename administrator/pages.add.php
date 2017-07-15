@@ -47,6 +47,7 @@ if ($submit === 1){
          $error=$conn->errorMsg(); 
        }
       
+
     }else{
       
       STemplate::assign('title',$title);
@@ -54,6 +55,7 @@ if ($submit === 1){
       STemplate::assign('content',$content);
       STemplate::assign('status',$status);
       
+
     }
 
 

@@ -6,22 +6,22 @@
 		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 		<title>{block name="title"} {$site_name} {/block}</title>
 		<meta name='description' content='{block name="description"}{$meta_description}{/block}' />
-		<meta name="Author" content="ben dehqan" />
+		<meta name="Author" content="" />
 
 		<!-- Css -->
-		<link rel="stylesheet" href="font.css">
-		<link rel="stylesheet" href="css/font-awesome.min.css">
-		<link rel="stylesheet" href="css/animate.min.css">
-		<link rel="stylesheet" href="css/jcarousel.connected-carousels.css">
-		<link rel="stylesheet" href="assets/css/essentials.css">
-		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" href="{$baseurl}/font.css">
+		<link rel="stylesheet" href="{$baseurl}/css/font-awesome.min.css">
+		<link rel="stylesheet" href="{$baseurl}/css/animate.min.css">
+		<link rel="stylesheet" href="{$baseurl}/css/jcarousel.connected-carousels.css">
+		<link rel="stylesheet" href="{$baseurl}/assets/css/essentials.css">
+		<link rel="stylesheet" type="text/css" href="{$baseurl}/css/style.css" />
         {block name="css"}{/block}
 		 <!-- Java Script -->
-		<script src="js/jquery.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/jquery.jcarousel.min.js"></script>
-		<script src="js/jcarousel.connected-carousels.js"></script>
-		<script src="js/script.js"></script>
+		<script src="{$baseurl}/js/jquery.min.js"></script>
+		<script src="{$baseurl}/js/bootstrap.min.js"></script>
+		<script src="{$baseurl}/js/jquery.jcarousel.min.js"></script>
+		<script src="{$baseurl}/js/jcarousel.connected-carousels.js"></script>
+		<script src="{$baseurl}/js/script.js"></script>
 		{block name="script"}{/block}
 
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -35,22 +35,22 @@
 		<div class="container top-header">
 		
 			<div class="col-md-2 col-md-push-10 col-xs-6 s-logo">
-				<a href="#" title="logo"><img src="images/header.png" alt=""></a>
+				<a href="#" title="logo"><img src="{$baseurl}/images/header.png" alt=""></a>
 			</div>
 			
 			<div class="col-md-8 hidden-sm hidden-xs">
 				<div class="top-menu">
 					<ul>
-						<li class="text-right"><a href="" title="">خـــــــدمـــــــات ویـــــــــژه</a></li>
-						<li><a href="" title="">حمایــت از صنـــایع دســتی گــروه هــای خـاص</a></li>
-						<li class="text-left"><a href="" title="">حمــایت از گــروه ارکســتر موسیـــقی به کوش</a></li>
+						<li class="text-right"><a href="{$baseurl}/page/services" target="_blank" title="">خـــــــدمـــــــات ویـــــــــژه</a></li>
+						<li><a href="{$baseurl}/page/support_handicrafts" target="_blank" title="">حمایــت از صنـــایع دســتی گــروه هــای خـاص</a></li>
+						<li class="text-left"><a href="{$baseurl}/page/support_behkosh" target="_blank">حمــایت از گــروه ارکســتر موسیـــقی به کوش</a></li>
 					</ul>
 				</div>
 				
 				<div class="text-center ads-top">
 				
 				<a href="#">
-				<img src="images/ads-top.png" class="gray-hover img-responsive" alt="ads">
+				<img src="{$baseurl}/images/ads-top.png" class="gray-hover img-responsive" alt="ads">
 				</a>
 				
 				
@@ -61,14 +61,14 @@
 			
 			<div class="col-md-2 col-md-pull-10 col-xs-6 user-profile">
 				<div class="per-img">
-					<img src="images/user.png" alt="personal image">
+					<img src="{$baseurl}/images/user.png" alt="personal image">
 				</div>
 				<div class="per-name">
-					نام صاحب صفحه
+					{if $smarty.session.verified eq 1}{$smarty.session.USR_FNAME} {$smarty.session.USR_LNAME}{else} کاربر تایید نشده{/if}
 				</div>
 				<div class="ex-se">
-					<a href="#" title="setting"><img src="images/icon_setting.png" alt=""> تنضیمات</a>&nbsp;
-					<a href="{$baseurl}/logout.php" title="exit"><img src="images/icon_exit.png" alt=""> خروج</a>
+					<a href="{$baseurl}/setting" title="setting"><img src="{$baseurl}/images/icon_setting.png" alt=""> تنضیمات</a>&nbsp;
+					<a href="{$baseurl}/logout" title="exit"><img src="{$baseurl}/images/icon_exit.png" alt=""> خروج</a>
 				</div>
 			</div>
 			<div class="clearfix"></div>
@@ -104,7 +104,7 @@
 				<div class="search-box-res">
 				
 				<div class="search-top-bar text-center">
-				<form action="http://localhost/scarf" method="get" class="form-search">
+				<form action="{$baseurl}/search" method="get" class="form-search">
 				<input type="text" class="input-search" name="s" placeholder="جستجو در سایت ..." autocomplete="off">
 				<button class="input-search-submit text-left"><i class="fa fa-search"></i></button>
 				</form> 
@@ -136,10 +136,10 @@
 				<div class="footer">
 					<div class="col-md-4 f-r text-right">
 						<ul>
-							<li><a href="" title="">صفحه اصلی</a></li>
-							<li><a href="" title="">درباره ما</a></li>
-							<li><a href="" title="">قوانین و شرایط</a></li>
-							<li><a href="" title="">تماس با ما</a></li>
+							<li><a href="{$baseurl}" title="">صفحه اصلی</a></li>
+							<li><a href="{$baseurl}/page/about_us" title="">درباره ما</a></li>
+							<li><a href="{$baseurl}/page/terms" title="">قوانین و شرایط</a></li>
+							<li><a href="{$baseurl}/connectus" title="">تماس با ما</a></li>
 						</ul>
 					</div>
 					<div class="col-md-4 f-m">
@@ -151,7 +151,7 @@
 						</div>
 					</div>
 					<div class="col-md-4 f-l">
-						<img src="images/footer.png" alt="">
+						<img src="{$baseurl}/images/footer.png" alt="">
 					</div>
 				</div>
 			</div>			
