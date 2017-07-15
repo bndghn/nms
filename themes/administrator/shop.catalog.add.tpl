@@ -316,7 +316,7 @@
                          </div>
 
                          <div id="jtab3_nobg" class="tab-pane ">
-                           
+                           <div class="text-center size-20	 bold">برای درج قیمت‌ها، ابتدا محصول را باید ذخیره نمایید.</div>
                          </div>
                      
                          <hr/>

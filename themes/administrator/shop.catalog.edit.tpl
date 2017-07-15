@@ -21,23 +21,23 @@
                  <div class="tabs nomargin">
                    <!-- tabs -->
                    <ul class="nav nav-tabs nav-justified">
-                     <li class="active">
-                       <a href="#jtab1_nobg" data-toggle="tab">
+                     <li {if $tab eq ""}class="active"{/if}>
+                       <a href="#jtab1" data-toggle="tab">
                            مشخصات اولیه 
                        </a>
                      </li>
                      <li class="">
-                       <a href="#jtab2_nobg" data-toggle="tab">
+                       <a href="#jtab2" data-toggle="tab">
                            توضیحات و تصاویر محصول
                        </a>
                      </li>
-                      <li class="">
-                       <a href="#jtab3_nobg" data-toggle="tab">
+                      <li {if $tab eq "price"}class="active"{/if}>
+                       <a href="#jtab3" data-toggle="tab">
                            مدیریت قیمت 
                        </a>
                      </li>
                    </ul>
-                  
+				  <form  action="{$adminurl}/shop.catalog.edit.php" method="POST" id="price"></form>
                   <form  action="{$adminurl}/shop.catalog.edit.php" method="POST" enctype="multipart/form-data">
                    <div class="tab-content transparent">
                       {if $error ne ""}
@@ -49,7 +49,7 @@
                      <p class="text-center">لطفا اطلاعات محصول را در فرم زیر به دقت وارد نمایید.</p>
                      
                         <hr/>
-                         <div id="jtab1_nobg" class="tab-pane active">
+                         <div id="jtab1" class="tab-pane {if $tab eq ""}active{/if}">
                            
                             <div class="row">
                              
@@ -208,7 +208,7 @@
                             </div>
                          </div>
 
-                         <div id="jtab2_nobg" class="tab-pane ">
+                         <div id="jtab2" class="tab-pane ">
                             <div class="row">
                               <div class="col-md-6">
                                <fieldset>
@@ -335,7 +335,7 @@
                          </div>
                          </div>
 
-                         <div id="jtab3_nobg" class="tab-pane ">
+                         <div id="jtab3" class="tab-pane {if $tab eq 'price'}active{/if}">
                            <div class="row">
                             <div class="col-md-6">
                               <fieldset>
@@ -346,8 +346,7 @@
                                        {if $groupList ne null}
                                        
                                         <label> گروه کاربری  </label>
-                                        <select class="form-control select" name="category">
-                                           <option value="0">-- انتخاب یک گروه کاربری --</option>
+                                        <select class="form-control select" name="category" form="price">
                                            {foreach from=$groupList item=group}
                                            <option value="{$group['id']}" class="optionGroup">{$group['category']|stripslashes}</option>
                                            {/foreach}
@@ -356,10 +355,22 @@
                                     </div>
                                     <div class="col-md-6 col-sm-12">
                                     <label>قیمت</label>
-                                    <input type="text" name="price" value="" class="form-control required">                                    
+                                    <input type="text" name="price" value="" class="form-control required" form="price">                                    
                                     </div>
                                  </div>
                                 </div>
+                                
+                                <div class="row">
+                                  <div class="form-group">                               
+                                    <div class="col-md-12 col-sm-12">
+                                      	<input type="hidden" name="isPrice" value="1" form="price"/>
+                            			<input type="hidden" name="proid" value="{$proid}" form="price"/>
+                                       <input type="submit" value="ثبت قیمت" class="btn btn-info  btn-block" name="submit" form="price" form="price"/>
+                                    </div>
+                                    
+                                 </div>
+                                </div>
+                                
                               </fieldset>
                             </div>
                                 <div class="col-md-6">
@@ -367,7 +378,8 @@
                                 <div class="row">
                                   <div class="form-group">                               
                                     <div class="col-md-12 col-sm-12">
-                                    <table class="table table-striped table-bordered table-hover" id="datatable_sample">
+                                    {insert name=get_prices  product_id=$proid value=gvar assign=prices}
+                                    <table class="table table-striped table-bordered table-hover" id="datatable_prices">
                                       <thead>
                                         <tr>
                                           <th class="width-150 text-center">گروه کاربری</th>
@@ -376,13 +388,13 @@
                                         </tr>
                                       </thead>
                                       <tbody>
-                                        {insert name=get_user_group_list isCustomer="1" value=gvar assign=groupList}
-                                        {foreach from=$groupList item=group}
+                                        
+                                        {foreach from=$prices item=group}
                                         <tr>
                                           <td class="align-middle text-center">{$group['category']|stripslashes} </td>
-                                          <td class="align-middle text-center"></td>
+                                          <td class="align-middle text-center">{$group['price']|farsidigit} تومان</td>
                                           <td class="text-center  align-middle">
-                                             <a href="{$adminurl}/shop.catalog.edit.php?id={$['']}" data-target="#Edit{$['']}" data-toggle="modal" class="btn btn-default btn-xs "><i class="fa fa-edit white"></i> ویرایش </a>
+                                             
 
                                              <a href="{$adminurl}/shop.catalog.php?delete={$['']}"  class="btn btn-danger btn-xs " onclick="{literal} return confirm('آیا از حذف این دسته بندی مطمئن هستید؟!');{/literal}"><i class="fa fa-times white"></i> حذف </a>
                                           </td>
@@ -407,7 +419,6 @@
                     <div class="row">
                           <div class="col-md-4 col-md-offset-4">
                             <input type="hidden" name="isSubmit" value="1"/>
-                            <input type="hidden" name="proid" value="{$pro_edits['proid']}"/>
                             <button type="submit" class="btn btn-success  btn-lg btn-block margin-top-20 ">
                               ویرایش کالا
                             </button>
@@ -422,3 +433,6 @@
      
 
         {/block}
+{block name="script"}
+
+{/block}

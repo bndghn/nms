@@ -156,7 +156,7 @@ if ($submit === 1){
                
            }
            
-          header("location: ".$config['adminurl']."/shop.catalog.php");
+          header("location: ".$config['adminurl']."/shop.catalog.edit.php?proid=".$pid."&tab=price");
        } 
         else{
            $error=$conn->errorMsg(); 

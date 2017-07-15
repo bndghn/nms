@@ -116,7 +116,45 @@ if ($isSubmit === 1){
        // header("location: ".$config['adminurl']."/shop.catalog.edit.php?tsError=$error");
     }
 }
+
+
+(isset($_POST['isPrice']) ? $isPrice = intval($_POST['isPrice']) : $isPrice = 0);
+if($isPrice === 1){
+	(isset($_POST['price']) ? $price = intval($_POST['price']) : $price = 0);
+	$usrGroup = intval($_POST['category']);
+	$productID = intval($_POST['proid']);
+	
+	/*if(!verifyUserData("number",$price)){
+		$message = "فقط قیمت کالا با اعداد لاتین تایپ شود.";
+	}*/
+	
+	if(verify_price($usrGroup, $productID)){
+		$query = "INSERT INTO `shop_prodouct_price`(`ppid`,`ugid`,`price`) VALUES ($productID,$usrGroup,$price ) ";
+		if($conn->EXECUTE($query)){
+			header("location: ".$config['adminurl']."/shop.catalog.edit.php?proid=".$proid."&tab=price");
+		}else{
+			$error = $conn->errorMsg(); 
+		}
+	}else{
+		$query="UPDATE `shop_prodouct_price` SET `price`=$price WHERE `ppid`=$productID AND `ugid`=$usrGroup ";
+		if($conn->EXECUTE($query)){
+			header("location: ".$config['adminurl']."/shop.catalog.edit.php?proid=".$proid."&tab=price");
+		}else{
+			$error = $conn->errorMsg(); 
+		}
+	}
+
+	
+}
+
+
 //load nessary template for loading
+(isset($_GET['tab']) ? $tab =$_GET['tab'] : $tab = "" );
+if($tab !=""){
+	STemplate::assign('tab',$tab);
+}else{
+	STemplate::assign('tab',"");
+}
 
 STemplate::assign('message',$message);
 STemplate::assign('error',$error);
