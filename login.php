@@ -79,6 +79,7 @@ if (isset($_SESSION['LOGIN']))
             $getMobile  = $result->fields['mobile'];
             $getStatus  = $result->fields['user_status'];
             $getVerified  = intval($result->fields['verified']);
+            $getUGroup  = intval($result->fields['user_group']);
 
             // set LatLogin to db
             $qLIP = $conn->qStr(get_last_ip());
@@ -91,14 +92,16 @@ if (isset($_SESSION['LOGIN']))
             $_SESSION['USR_ID'] = $getID;
             $_SESSION['USERNAME'] = $getUname;
             $_SESSION['USR_PASS'] = $encodePass;
-			 $_SESSION['verified'] = "0";
+            $_SESSION['USR_GROUP'] = $getUGroup;
 
-            if($getVerified == 1){
+            if($getVerified === 1){
                 $_SESSION['USR_GENDER'] = $getGender;
                 $_SESSION['USR_FNAME'] = $getFname;
                 $_SESSION['USR_LNAME'] = $getLname;
-                $_SESSION['verified'] = "1";
-            }
+                $_SESSION['verified'] = 1;
+            }else{
+				$_SESSION['verified'] = 0;
+			}
 
             if($getEmail !="" ){
                 $_SESSION['USR_EMAIL'] = $getEmail;
@@ -113,7 +116,7 @@ if (isset($_SESSION['LOGIN']))
 
 
 
-            if($_SESSION['verified'] == "0"){
+            if($_SESSION['verified'] === 0){
                 $redirect = $config['baseurl']."/profile.php";
             }else{
                 $redirect = $config['baseurl']."/index.php";
