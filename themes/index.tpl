@@ -33,7 +33,7 @@
 		<div class="container top-header">
 		
 			<div class="col-md-2 col-md-push-10 col-xs-6 s-logo">
-				<a href="#" title="logo"><img src="{$baseurl}/images/header.png" alt=""></a>
+				<a href="{$baseurl}" title="logo"><img src="{$baseurl}/images/header.png" alt=""></a>
 			</div>
 			
 			<div class="col-md-8 hidden-sm hidden-xs">
@@ -111,7 +111,8 @@
 					</div>
 					<div class="col-md-4 pishnahad">
 					<span id="product_pishnahad">
-						تا کنون این کالا به ۰ نفر پیشنهاد شده
+					{random in=0 out=30 assign=firstRand}
+						تا کنون این کالا به {$firstRand|farsidigit} نفر پیشنهاد شده
 						</span>
 						
 					</div>
@@ -131,9 +132,9 @@
 								<ul id="big_slide">
 									{foreach from=$products  item=slide }
 									{if $slide['pro_pic_main'] eq "null"}
-									<li data-name="{$slide['pro_name']}" data-num="{$slide['pro_count']|farsidigit}" data-pishnahad="۰" data-link="{$baseurl}/product/{$slide['proid']}" data-link-card="{$baseurl}/order/{$slide['proid']}"><img src="{$baseurl}/images/big.png" alt="" class="img-responsive"></li>
+									<li data-name="{$slide['pro_name']}" data-num="{$slide['pro_count']|farsidigit}" data-pishnahad="{$firstRand|farsidigit}" data-link="{$baseurl}/product/{$slide['proid']}" data-link-card="{$baseurl}/order/{$slide['proid']}"><img src="{$baseurl}/images/big.png" alt="" class="img-responsive"></li>
 									{else}
-									<li data-name="{$slide['pro_name']}" data-num="{$slide['pro_count']|farsidigit}" data-pishnahad="۰" data-link="{$baseurl}/product/{$slide['proid']}" data-link-card="{$baseurl}/order/{$slide['proid']}"><img src="{$baseurl}/images/products/product/main/{$slide['pro_pic_main']}" alt="" class="img-responsive"></li>
+									<li data-name="{$slide['pro_name']}" data-num="{$slide['pro_count']|farsidigit}" data-pishnahad="{0|rand:30|farsidigit}" data-link="{$baseurl}/product/{$slide['proid']}" data-link-card="{$baseurl}/order/{$slide['proid']}"><img src="{$baseurl}/images/products/product/main/{$slide['pro_pic_main']}" alt="" class="img-responsive"></li>
 									{/if}
 									{/foreach}
 									

@@ -10,6 +10,6 @@ if($config['public'] === "0"){
 (isset($_SESSION['USR_FNAME']) ? $usrFname = $_SESSION['USR_FNAME'] : $usrFname = "");
 (isset($_SESSION['USR_LNAME']) ? $usrLname = $_SESSION['USR_LNAME'] : $usrLname = "");
 
-STemplate::assign('favs_array',get_fav_cats($usrID));
+//STemplate::assign('favs_array',get_fav_cats($usrID));
 STemplate::display('index.tpl');
 ?>
