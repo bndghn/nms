@@ -1334,17 +1334,7 @@
 						jQuery(this).summernote({
 							height: jQuery(this).attr('data-height') || 200,
 							lang: 	jQuery(this).attr('data-lang') || 'fa-IR', // default: 'en-US'
-							toolbar: [
-							/*	[groupname, 	[button list]]	*/
-								['style', 		['style']],
-								['fontsize', 	['fontsize']],
-								['style', 		['bold', 'italic', 'underline','strikethrough', 'clear']],
-								['color', 		['color']],
-								['para', 		[ 'paragraph']],
-								
-								['media', 		['link', 'picture']],
-								['misc', 		['codeview']]
-							]
+							
 						});
 					});
 
