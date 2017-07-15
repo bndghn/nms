@@ -399,6 +399,10 @@ function verifyUserData($type,$value){
         
         if(!preg_match("/^[a-zA-Z0-9]*$/i",$value)){ return false; } else {return true;}
            
+     }elseif($type === "number"){
+        
+        if(!preg_match("/^[0-9]*$/i",$value)){ return false; } else {return true;}
+           
      }elseif($type === "codemeli"){
         
         if (strlen($value) == 10){
@@ -456,6 +460,30 @@ function verify_slug($slug, $tbl, $idfield="",$id="")
 		$addsql = " AND NOT `$idfield`=$pid";
 	}
 	$query = "SELECT count(*) as `total` FROM `$tbl` WHERE  `slug` = $slug $addsql limit 1";
+	$executequery = $conn->execute($query);
+    //echo $conn->errorMsg();
+	$total = $executequery->fields['total'];
+	if ($total >= 1)
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+	
+}
+
+/**********************************************/
+function verify_price($ugID, $pdID)
+{
+	global $config,$conn;
+	$ugID = intval($ugID);
+	$pdID = intval($pdID);
+	
+	$addsql = "";
+	
+	$query = "SELECT count(*) as `total` FROM `shop_prodouct_price` WHERE  `ugid` = $ugID and  `ppid`= $pdID limit 1";
 	$executequery = $conn->execute($query);
     //echo $conn->errorMsg();
 	$total = $executequery->fields['total'];
@@ -980,4 +1008,27 @@ function insert_get_page($var){
 		
 	
 	
+}
+function insert_get_prices($var){
+	global $conn;
+	$pdID = intval($var['product_id']);
+	$query = "SELECT shop_prodouct_price.* , user_group.* FROM shop_prodouct_price , user_group WHERE shop_prodouct_price.ppid = $pdID ";
+	$query .="AND shop_prodouct_price.ugid = user_group.id" ;
+	
+	$result = $conn->execute($query);
+	//echo $conn->errorMsg();
+	$prices	= $result->getAll();
+	return $prices;
+}
+
+function insert_get_products_list_user($var){
+	global $conn;
+	$userGroup = intval($_SESSION['USR_GROUP']);
+	$userID = intval($_SESSION['USR_ID']);
+	$query = "SELECT shop_prodouct_price.* , shop_product.* , users.* FROM shop_prodouct_price, shop_product, users ";
+	$query .=" WHERE shop_prodouct_price.ugid = $userGroup AND shop_product.proid = shop_prodouct_price.ppid AND shop_product.pro_status=1 AND find_in_set(shop_product.pro_catid,users.fav_cats) <> 0 AND users.userid = $userID";
+	$result = $conn->execute($query);
+	echo $conn->errorMsg();
+	$products	= $result->getAll();
+	return $products;
 }
