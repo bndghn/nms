@@ -11,13 +11,7 @@
 
 {block name="main"}
 
-{if $page eq null}
-{php} 
 
-Header( "Location: ". $_smarty_tpl->getTemplateVars('baseurl')); 
-
-{/php}
-{/if}
 
 <div class="col-md-12">
    <div class="panel panel-default">
