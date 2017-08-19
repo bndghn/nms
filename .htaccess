@@ -7,6 +7,11 @@ RewriteRule ^profiler$ profile.php
 RewriteRule ^logout$ logout.php
 RewriteRule ^setting$ setting.php
 RewriteRule ^page/([^/.]+)?$ page.php?slug=$1&%{QUERY_STRING}
+RewriteRule ^product/([^/.]+)?$ product.php?cid=$1&%{QUERY_STRING}
+RewriteRule ^category/([^/.]+)?$ category.php?catid=$1&%{QUERY_STRING}
+RewriteRule ^order$ order.php
+RewriteRule ^order/([^/.]+)?$ order.php?orderid=$1&%{QUERY_STRING}
+
 
 </IfModule>
 

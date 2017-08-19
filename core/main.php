@@ -586,6 +586,26 @@ function get_shop_cat_parent($catid){
     $parent = $result->fields['pntid'];
     return $parent;
 }
+
+/**********************************************/
+function insert_get_shop_cat_parent($var){
+     global $conn;
+    $CatID = intval($var['catid']);
+    $query = "SELECT *  FROM `shop_category` WHERE `catid`= $CatID";
+    $result = $conn->execute($query);
+    $parent = $result->fields['pntid'];
+    return $parent;
+}
+
+/**********************************************/
+function insert_get_shop_cat_name($var){
+     global $conn;
+    $CatID = intval($var['catid']);
+    $query = "SELECT *  FROM `shop_category` WHERE `catid`= $CatID";
+    $result = $conn->execute($query);
+    $parent = $result->fields['cat_name'];
+    echo $parent;
+}
 /**********************************************/
 /*********** product **********/
 /**********************************************/
@@ -1002,13 +1022,62 @@ function insert_get_page($var){
 	
 	$query = "SELECT * FROM `pages` WHERE  $addsql ";
     $result = $conn->execute($query);
-	
 	$pages	= $result->getAll();
 	return $pages['0'];
-		
-	
 	
 }
+
+function insert_get_product($var){
+	global $conn;
+	
+	$addsql = "";
+	if(isset($var['product_id'])){
+        $pid = intval($var['product_id']);
+		$addsql = " `proid`=$pid ";
+    }else{
+		header("location: ".$config('baseurl'));
+		//echo "not found product";
+	}
+	if(isset($var['status'])){
+        $status = intval($var['status']);
+		$addsql .= " AND `pro_status` = 1 ";
+    }
+	
+	
+	$query = "SELECT * FROM `shop_product` WHERE  $addsql ";
+    $result = $conn->execute($query);
+	$product	= $result->getArray();
+	return $product['0'];
+	//echo "salam";
+	
+}
+
+function get_product($pid=0,$status=1){
+	global $conn;
+	
+	$addsql = "";
+	if($pid !=0){
+       $pid = intval($pid);
+		$addsql = " `proid`=$pid ";
+    }else{
+		header("location: ".$config('baseurl'));
+		//echo "not found product";
+	}
+	if($status == 1){
+		$addsql .= " AND `pro_status` = 1 ";
+    }
+	$query = "SELECT * FROM `shop_product` WHERE  $addsql ";
+    $result = $conn->execute($query);
+	if($result->recordcount()>0){
+		$product	= $result->getArray();
+		return $product['0'];
+	}else{
+		return 0;
+	}
+}
+
+
+
 function insert_get_prices($var){
 	global $conn;
 	$pdID = intval($var['product_id']);
@@ -1021,14 +1090,72 @@ function insert_get_prices($var){
 	return $prices;
 }
 
+function get_prices($pid){
+	global $conn;
+	$pdID = intval($pid);
+	$query = "SELECT shop_prodouct_price.* , user_group.* FROM shop_prodouct_price , user_group WHERE shop_prodouct_price.ppid = $pdID ";
+	$query .="AND shop_prodouct_price.ugid = user_group.id" ;
+	
+	$result = $conn->execute($query);
+	//echo $conn->errorMsg();
+	
+	
+	
+	if($result->recordcount()>0){
+		$prices	= $result->getAll();
+		return $prices['0']['price'];
+	}else{
+		return 0;
+	}
+}
+
 function insert_get_products_list_user($var){
 	global $conn;
+	$add_sql = "";
 	$userGroup = intval($_SESSION['USR_GROUP']);
 	$userID = intval($_SESSION['USR_ID']);
+	if(isset($var['limit'])){
+		$limit = intval($var['limit']);
+		$add_sql = " LIMIT 0,". $limit;
+	}
 	$query = "SELECT shop_prodouct_price.* , shop_product.* , users.* FROM shop_prodouct_price, shop_product, users ";
-	$query .=" WHERE shop_prodouct_price.ugid = $userGroup AND shop_product.proid = shop_prodouct_price.ppid AND shop_product.pro_status=1 AND find_in_set(shop_product.pro_catid,users.fav_cats) <> 0 AND users.userid = $userID";
+	$query .=" WHERE shop_prodouct_price.ugid = $userGroup AND shop_product.proid = shop_prodouct_price.ppid AND shop_product.pro_status=1 AND find_in_set(shop_product.pro_catid,users.fav_cats) <> 0 AND users.userid = $userID $add_sql";
 	$result = $conn->execute($query);
 	echo $conn->errorMsg();
 	$products	= $result->getAll();
 	return $products;
+}
+
+function insert_get_product_price($var){
+	global $conn;
+	$userGroup = intval($_SESSION['USR_GROUP']);
+	$pid = intval($var['product_id']);
+	$query = "SELECT * FROM `shop_prodouct_price` WHERE `ugid`=$userGroup AND `ppid`=$pid ";
+	
+	if($result = $conn->execute($query)){
+		
+			$price = $result->fields['price'];
+			return $price;
+		
+		
+	}
+	
+}
+
+function insert_get_category_product($var){
+	global $conn;
+	$userGroup	= intval($_SESSION['USR_GROUP']);
+	$catid		= intval($var['category_id']);
+	$query		= "SELECT shop_prodouct_price.* , shop_product.* FROM shop_prodouct_price, shop_product ";
+	$query		.="WHERE shop_prodouct_price.ugid=$userGroup AND shop_product.pro_catid=$catid AND shop_product.pro_status=1 AND shop_product.proid = shop_prodouct_price.ppid";
+	if($result = $conn->execute($query)){
+		$products	= $result->getAll();
+		return $products;
+	}else{
+		echo $query;
+		echo $conn->errorMsg();
+	}
+	
+	
+	
 }

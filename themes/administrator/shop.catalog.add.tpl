@@ -241,7 +241,7 @@
                                     <div class="form-group">
                                         <div class="col-md-6">
                                             <label>
-                                                تصویر اصلی  
+                                                تصویر اسلایدشو  
                                                 <small class="text-muted">- اجباری</small>
                                             </label>
 
@@ -266,8 +266,8 @@
                                     
                                         <div class="col-md-6">
                                             <label>
-                                                 تصویر بندانگشتی  
-                                                <small class="text-muted">- اختیاری</small>
+                                                 تصویر محصول  
+                                                <small class="text-muted">- اجباری</small>
                                             </label>
 
                                             <!-- custom file upload -->

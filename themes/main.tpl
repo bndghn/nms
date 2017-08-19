@@ -7,7 +7,8 @@
 		<title>{block name="title"} {$site_name} {/block}</title>
 		<meta name='description' content='{block name="description"}{$meta_description}{/block}' />
 		<meta name="Author" content="" />
-
+		{block name="meta"}{/block}
+		
 		<!-- Css -->
 		<link rel="stylesheet" href="{$baseurl}/font.css">
 		<link rel="stylesheet" href="{$baseurl}/css/font-awesome.min.css">

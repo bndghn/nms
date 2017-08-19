@@ -83,8 +83,9 @@ if ($submit === 1){
             
        if($conn->EXECUTE($query)){
            $pic_error="";
+		   $pid = $conn->insert_Id();
            if($p_p_main!="null"){
-                $pid = $conn->insert_Id();
+                
                 $gstop = "1";
                $skip="0";
                 $gphoto = $_FILES['pro_pic_main']['tmp_name'];
@@ -128,6 +129,76 @@ if ($submit === 1){
                             {
                                 if($pic_error === "")
                                 {
+                                    $myvideoimgnew=$config['imgproductdir']."/o/slide/".$thepp;
+                                    if(file_exists($myvideoimgnew))
+                                    {
+                                        unlink($myvideoimgnew);
+                                    }
+                                    move_uploaded_file($gphoto, $myvideoimgnew);
+                                    $myvideoimgMain=$config['imgproductdir']."/product/slide/".$thepp;
+                                    do_resize_image($myvideoimgnew, "1170", "400", false, $myvideoimgMain);
+                                    if(file_exists($config['imgproductdir']."/o/slide/".$thepp))
+                                    {
+                                        $query2 = "UPDATE shop_product SET pro_pic_main='$thepp' WHERE proid='$pid'";
+                                        if(!$conn->execute($query2)){
+                                             $error=$conn->errorMsg(); 
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        
+                    }
+                    
+                    
+                }
+               
+           }
+		   
+		   if($p_p_mini !="null"){
+                $gstop = "1";
+               $skip="0";
+                $gphoto = $_FILES['$p_p_mini']['tmp_name'];
+                if($gphoto != "")
+                {
+                    $ext = substr(strrchr($_FILES['$p_p_mini']['name'], '.'), 1);
+                    $ext2 = strtolower($ext);
+                    if($ext2 == "jpeg" || $ext2 == "jpg" || $ext2 == "gif" || $ext2 == "png")
+                    {
+                        $theimageinfo = getimagesize($gphoto);
+                        if($theimageinfo[2] != 1 && $theimageinfo[2] != 2 && $theimageinfo[2] != 3)
+                        {
+                            $gstop = "1";
+                        }
+                        else
+                        {
+                            $gstop = "0";	
+                        }
+                        
+                        if($gstop == "0")
+                        {
+                            $thepp = "product".$pid;
+                            if($theimageinfo[2] == 1)
+                            {
+                                $thepp .= ".gif";
+                            }
+                            elseif($theimageinfo[2] == 2)
+                            {
+                                $thepp .= ".jpg";
+                            }
+                            elseif($theimageinfo[2] == 3)
+                            {
+                                $thepp .= ".png";
+                            }
+                            else
+                            {
+                                $skip = "1";	
+                                echo "khata dar file";
+                            }
+                            if($skip != "1")
+                            {
+                                if($pic_error === "")
+                                {
                                     $myvideoimgnew=$config['imgproductdir']."/o/".$thepp;
                                     if(file_exists($myvideoimgnew))
                                     {
@@ -135,12 +206,21 @@ if ($submit === 1){
                                     }
                                     move_uploaded_file($gphoto, $myvideoimgnew);
                                     $myvideoimgMain=$config['imgproductdir']."/product/main/".$thepp;
-                                    do_resize_image($myvideoimgnew, "1170", "400", false, $myvideoimgMain);
+                                    do_resize_image($myvideoimgnew, "1280", "854", false, $myvideoimgMain);
+									
                                     $myvideoimgthumbs=$config['imgproductdir']."/product/thumbs/".$thepp;
-                                    do_resize_image($myvideoimgnew, "75", "75", false, $myvideoimgthumbs);
+                                    do_resize_image($myvideoimgnew, "75", "75", false, $myvideoimgthumbs); 
+									
+									$myvideoimgSmall=$config['imgproductdir']."/product/small/".$thepp;
+                                    do_resize_image($myvideoimgnew, "411", "274", false, $myvideoimgSmaller);
+									$myvideoimgSmaller=$config['imgproductdir']."/product/smaller/".$thepp;
+                                    do_resize_image($myvideoimgnew, "200", "150", false, $myvideoimgSmaller);
+									
+									$myvideoimgOther=$config['imgproductdir']."/product/other/".$thepp;
+                                    do_resize_image($myvideoimgnew, "231", "231", false, $myvideoimgOther);
                                     if(file_exists($config['imgproductdir']."/o/".$thepp))
                                     {
-                                        $query2 = "UPDATE shop_product SET pro_pic_main='$thepp' WHERE proid='$pid'";
+                                        $query2 = "UPDATE shop_product SET pro_pic_mini='$thepp' WHERE proid='$pid'";
                                         if(!$conn->execute($query2)){
                                              $error=$conn->errorMsg(); 
                                         }

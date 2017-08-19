@@ -18,7 +18,7 @@ STemplate::assign('page',"shop_catalog");
 if($proid === 0){
   
    header("location: ".$config['adminurl']."/shop.catalog.php");
-  
+  //echo "wrong in revice proid";
 
 }
 
@@ -37,8 +37,8 @@ if ($isSubmit === 1){
     (isset($_POST['pro_size']) ? $pro_size = $_POST['pro_size'] : $pro_size = "");
     (isset($_POST['Delivery_time']) ? $Delivery_time =intval($_POST['Delivery_time']) : $Delivery_time = 0);
     $stock_status =intval($_POST['stock_status']);
-    (isset($_POST['pro_pic_main']) ? $p_p_main = $_POST['pro_pic_main'] : $p_p_main = "null");
-    (isset($_POST['pro_pic_mini']) ? $p_p_mini = $_POST['pro_pic_mini'] : $p_p_mini = "null");
+    (isset($_POST['pro_pic_main']) ? $p_p_main = $_POST['pro_pic_main'] : $p_p_main = "");
+    (isset($_POST['pro_pic_mini']) ? $p_p_mini = $_POST['pro_pic_mini'] : $p_p_mini = "");
     (isset($_POST['pro_desc']) ? $pro_desc = $_POST['pro_desc'] : $pro_desc = "");
     (isset($_POST['pro_short_desc']) ? $pro_short_desc = $_POST['pro_short_desc'] : $pro_short_desc = "");
     (isset($_POST['pro_metakey']) ? $pro_metakey = $_POST['pro_metakey'] : $pro_metakey = "");
@@ -88,7 +88,10 @@ if ($isSubmit === 1){
      $pro_metakey = $conn->qStr($pro_metakey);
      $pro_attributes = $conn->qStr($pro_attributes);
      $pro_cat_parent = intval(get_shop_cat_parent($pro_cat));
-      
+     
+	 if(!$p_p_main === ""){
+		 
+	 }
        
         
         $query="UPDATE `shop_product` SET `pro_name`=$pro_name, `pro_catid`=$pro_cat, `pro_cat_pntid`=$pro_cat_parent, `sku`=$sku, `gender`=$gender, `date_update`=".time().", `pro_status`=$pro_status, `pro_count`=$pro_count, `pro_count_unit`=$p_c_unit, `pro_weight`=$pro_weight, `pro_size`=$pro_size, `Delivery_time`=$Delivery_time, `stock_status`=$stock_status, `pro_pic_main`=$p_p_main, `pro_pic_mini`=$p_p_mini, `pro_desc`=$pro_desc, `pro_short_desc`=$pro_short_desc, `pro_metakey`=$pro_metakey, `pro_attributes`=$pro_attributes WHERE `proid`=$proid";
